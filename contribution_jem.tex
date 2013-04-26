@@ -61,7 +61,7 @@ Les données EIC étant disponibles pour une génération sur quatre, on regroupe ég
 On conserve pour l'appariement statistique uniquement les individus qui au moment de l'enquête ne sont pas agriculteurs ou indépendants, et qui dans leur trajectoire rétrospective de l'Enquête Patrimoine ont déclaré au moins une période comme salarié (à temps plein ou temps partiel, dans le public ou le privé), comme au chômage ou en alternance de courtes périodes d'emploi et de chômage, entre 1984 et 2001. Pour ceux qui n'ont pas connu de tels épisodes sur cette période, on matche séparément ceux qui en ont connu au moins une sur la période 1976 à 1983. Les autres ne sont donc pas appariés et se verront attribuer des revenus salariaux nuls entre 1976 et 2001, ce qui est cohérent leur déclaration dans l'enquête Patrimoine.
 On dissocie en effet 1976-1983 et 1984-2001 car la variable de statut vis-à-vis de l'emploi ne peut être définie de la même manière sur ces deux périodes, les données UNEDIC n'étant pas renseignées avant 1984.
 
-Enfin, on ne matche pas pour l'instant les individus à la retraite \footnote{On ne dispose pas de suffisamment d'individus à la retraite dans l'échantillon EIC 2001 (puisqu'on ne prend en compte que les générations nées à partir de 1942).}.
+Enfin, on n'apparie pas pour l'instant les individus à la retraite \footnote{On ne dispose pas de suffisamment d'individus à la retraite dans l'échantillon EIC 2001 (puisqu'on ne prend en compte que les générations nées à partir de 1942).}.
 
 
 
@@ -90,7 +90,7 @@ $W_{N+1} =  W_{N} \ . \ g_{N+1} \ . \ t$
 
 $W_{N}    =  W_{N-1} \ . \ g_{N} \ . \ t$\\
 
-avec $g$ la croissance nominale des salaires dans le privé et semi-public (données INSEE) et $t$ un facteur de croissance spécifique à la fonction publique et constant entre $N-1$ et $N+1$, et que l'on calcule donc comme $t = \sqrt{\frac{W_{N+1}}{g_{N+1} \ . \ W_{N-1} \ . \ g_{N}}}$. 
+avec $g$ la croissance nominale des salaires dans le privé et semi-public (données INSEE) et $t$ un facteur de croissance spécifique à la fonction publique et constant entre $N-1$ et $N+1$, et que l'on calcule donc comme $t = \sqrt{\frac{W_{N+1}}{g_{N+1} \ . \ W_{N-1} \ . \ g_{N}}}$.
 
 On choisit ensuite d'appliquer ce facteur (multiplié par la croissance nominale) au salaire de l'année $N-1$ lorsque celui-ci existe, et au salaire de l'année $N+1$ dans le cas contraire, et ce si l'individu est présent dans la fonction publique l'année $N$.
 Les salaires des années 1976 et 1977 sont connus dans les DADS mais pas dans les EIC pour la Fonction Publique d'Etat (l'appartenance au fichier de paie des agents de l'Etat est par contre connue). On impute pour l'année 1977 le salaire de 1978 déflaté par la croissance réelle des salaires dans le privé et le semi-public si l'individu appartient à la Fonction Publique cette année-là, et de même pour 1976 en utilisant l'année 1977.
@@ -114,7 +114,7 @@ On considère ici les trajectoires salariales sur la période allant de 1976 à 200
 
 $I_{1}=\frac{1}{n}\sum_{i=1}^{n}\frac{y_{i}}{\overline{y}}\text{log}(\frac{y_{i}}{\overline{y}})$\\
 
-$I_{1}=\frac{1}{n}\sum_{i=1}^{n}\text{log}(\frac{\overline{y}}{y_{i}})$\\
+$I_{0}=\frac{1}{n}\sum_{i=1}^{n}\text{log}(\frac{\overline{y}}{y_{i}})$\\
 
 
 $I_{0}$ ne peut être calculé que dans le cas où les revenus sont non-nuls pour tous les individus à toutes les périodes. Cela n'est pas le cas pour nos trajectoires salariales. L'indice de Theil $I_{1}$ au contraire peut être calculé même lorsque le revenu des individus est nul à certaines périodes, en ne prenant pas en compte ces périodes dans la somme (on a $ \lim\limits_{y \to 0} y \ \text{log}(y) =0$). On calcule alors un indice de Theil intra-individuel pour chaque individu, sur la période 1976 à 2001 et pour les générations 1942 à 1958 (la génération 1958 a entre 18 et 43 ans et la génération 1942 entre 34 et 59 ans sur la période considérée). Cet indice individuel renseigne sur la volatilité des revenus sur le cycle de vie.
