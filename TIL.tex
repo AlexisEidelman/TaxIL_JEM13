@@ -62,21 +62,46 @@ Le travail sur les loyers n'a pas encore été fait mais ne devrait pas poser de d
 
 On pourrait à terme utiliser avoir réellement un parc de logement dont on simulerait la variation chaque année. Lors des déménagement, les ménages choisirait l'un des logements en fonction de la taille du ménage et du logement ainsi qu'en fonction des revenus et du loyer. On simulerait ainsi des déménagements en fonction d'un surpeuplement ou sous-peuplement ainsi qu'en cas d'évolution dans les revenus. L'idée serait de reproduire des tensions sur le marché du logement. 
 
-\subsubsection{Activité et Revenus}
+On impute aussi initialement pour chaque logements, un propriétaire. Du travail est encore nécessaire à cette étape mais indubitablement savoir identifier les propriétaires de leur résidence, les locataires sera un plus pour le modèle.
 
+\subsubsection{Marché du travail}
+
+La question de la situation sur le marché de l'emploi est évidemment un élément crucial pour \til , qui veut étudier la redistribution.
+C'est à ce niveau que l'investissement le plus important devrait être fait. Les équations de transition devraient être estimée le plus précisément possible en tenant compte d'un nombre important de paramètre afin de reproduire la réalité du marché du travail. 
+On est pour l'instant loin d'un niveau satisfaisant mais il sera, là-encore, facile, au moins en terme de programmation d'améliorer cette partie du modèle. 
+
+\paragraph{Situation}. Dans l'idéal, on détermine l'état à la date T+1 en fonction de l'état à la date T mais aussi des états précédents pour être plus précis. Pour l'instant deux méthodes simplistes ont été implémentée. La première calcul un score en fonction de l'âge puis tire un nombre de transition en suivant des proportions en input du modèle. La seconde sélectionne aléatoirement 2,5 \% des individus actifs et inactifs pour les faire changer de statut. Au passage à l'activité, la catégorie d'emploi est tirée au sort. 
+
+\paragraph{Type d'emploi et d'employeur}. Comme pour le logement, on crée un fichier d'entreprise. Tout est à faire mais on a avec l'enquête patrimoine une idée de la taille de l'entreprise des salariés. Une des entreprises peut regrouper les indépendants et libéraux. Cet élément n'est pas prioritaire mais l'idée est de pouvoir simuler un marché du travail par secteur ou bien d'avoir un modèle de travailleur indépendant ou encore de se focaliser sur un secteur d'activité particulier, la médecine par exemple.
+
+\paragraph{Salaire et revenus}. Les salaires sont pour l'instant imputés à partir d'une équation de Mincer relativement simple. Si la personne a un revenu d'activité initialement, on détermine une productivité individuel comme étant le rapport entre son salaire et le salaire de l'équation de Mincer. Pour les autres, la productivité est tirée aléatoirement. Par la suite, l'équation de Mincer est toujours multipliée par la productivité. 
+
+\paragraph{Retraite}. Le passage à la retraite est pour l'instant entièrement déterminé par l'âge. 
 
 
 \subsubsection{Épargne et consommation}
 
+Les deux thèmes d'épargne et de consommation doivent toujours être pensés ensemble. En effet, à chaque période, on sait que le revenu est consommé ou épargné. Si l'un de deux éléments est déterminé l'autre s'en déduit. Un taux d'épargne est donc simulé. Il faut ensuite déterminer la structure de consommation ainsi que la structure d'épargne. L'achat immobilier demandera une imputation particulière. \\
 
+On se servira de l'enquête Budget des Familles, pour imputer une structure de consommation en catégorie permettant de calculer les taxes sur la consommation. \\
+
+A partir du nouveau stock d'épargne, on détermine de revenus du patrimoine.
+
+\subsubsection{Calcul de la législation}. En fin de simulation, la législation est calculée. Cela inclut les cotisations salariales, l'impôt sur le revenu, l'impôt sur la fortune, le bouclier fiscal et les prestations. Les prestations associées au handicap sont déjà simulée mais celui n'est pas encore dans la projection de la population. Les taxes d'habitations et foncières sont encore à travailler. Tout le volet santé est aussi à travailler. 
+
+Enfin, les retraites et le chômage devrait être imputé d'ici peu. 
+ 
 \subsection{Projets futurs}
 
-\subsubsection{Améliorations des imputations}
+On a déjà donné beaucoup de piste d'amélioration dans la section précédente. Ici, on présente les éléments qui pourront agrémenter le modèle à l'avenir. 
 
-Consommation, importantes...
 \subsubsection{Simulation par mois}
 
+La plupart des modèles de microsimulation travaille sur un base annuelle. Pourtant la plupart des minima ainsi que les retraites sont calculé par trimestre, les prestations familiales et logement ainsi que les cotisations et contributions prélevées à la source sont calculées mois par mois. La simulation dynamique étant rapide, on peut modifier la période pour que le pas devienne le trimestre ou le mois. L'étape de mise en couple qui est la plus longue peut éventuellement n'être simulée qu'une fois par ans pour gagner encore du temps de calcul\footnote{Il s'agit là d'un abus de langage, car si on travaillait par trimestre par exemple, on aura quatre fois un quart des mariages annuels à simuler. Comme l'algorithme de matching est non linéaire, il est plus rapide de faire tourner quatre fois sur le quart de l'échantillon qu'une fois sur l'échantillon global. La contrepartie en est que le matching obtenu est théoriquement de moins bonne qualité puisque chaque individu n'a qu'un choix limité d'époux. Cette partie demanderait à être expertisée.}. L'application de la législation pourrait se faire d'autant plus précisément. 
+
 \subsubsection{Transferts intergénérationnels}
+
+Dans un premier temps, les calculs sont effectués avec une législation figée. Celle 
 
 \subsubsection{Comportements}
 
