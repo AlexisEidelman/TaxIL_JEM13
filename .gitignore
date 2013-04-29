@@ -168,3 +168,5 @@ pip-log.txt
 *.dvi
 *.log
 *.gz
+*.blg
+*.bak

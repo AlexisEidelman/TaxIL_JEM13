@@ -1,5 +1,6 @@
 \documentclass[11pt,a4paper]{article}
 \usepackage[latin1]{inputenc}
+\inputencoding{latin1}
 \usepackage[T1]{fontenc}
 \usepackage{amsmath}
 \usepackage{amsfonts}
@@ -24,124 +25,11 @@
 
 \section*{Introduction}
 
-\section{Construction de la base de données}
-
-\subsection{Appariement statistique des données EIC-DADS avec l'Enquête Patrimoine}
-
-Un des intérêts majeurs de TAXIPP Life réside dans l'utilisation de trajectoires salariales effectivement observées, plutôt que simulées. Les données administratives des EIC et DADS ont été utilisées à cette fin. Celles-ci ont été couplées à l'enquête Patrimoine afin de disposer d'un certain nombre d'informations, notamment au niveau du ménage plutôt que de l'individu. Un appariement statistique a donc été effectué entre les deux sources de données : appariement statistique exact sur un certain nombre de variables considérées au moment de l'enquête (sexe, âge, PCS à 1 chiffre, tranche de revenus salariaux et de remplacement), puis appariement avec le plus proche voisin, en particulier en termes de trajectoire vis-à-vis de l'emploi.\\
-
-Il a été dans un premier temps nécessaire de manipuler les fichiers EIC-DADS (et UNEDIC) d'une part et l'enquête Patrimoine d'autre part afin de les rendre plus exactement comparables quant aux variables utilisées pour l'appariement statistique : il faut en effet que ces variables soient définies de la façon la plus proche possible dans une base et dans l'autre. En particulier, il a fallu utiliser l'information des fichiers EIC-DADS-UNEDIC afin de retracer les trajectoires vis-à-vis de l'emploi, selon les mêmes modalités que celles renseignées dans le calendrier rétrospectif de l'Enquête Patrimoine, calendrier renseignant les changements entre des situations ayant duré au moins un an.
-
-\subsubsection{Mise en forme des fichiers EIC-DADS-UNEDIC}
-
-On conserve uniquement les individus nés à partir de 1942, les données concernant les générations 1934 et 1938 n'étant pas complètes.
-
-\paragraph{Reconstitution des trajectoires vis-à-vis de l'emploi}
-Les observations du fichier DADS correspondent au croisement individu x année x entreprise. A partir de ce fichier et pour les années 1976 à 2001, on détermine le statut de l'individu au 1er janvier de chaque année, en termes d'emploi à temps plein ou temps partiel. Les données du fichier EIC caisse x individu x année permettent par ailleurs de croiser cette information avec le fait que le salarié était dans le public, le privé ou encore était indépendant pour l'année donnée. Ces sources permettent de retracer les modalités suivantes de la variable de statut vis-à-vis de l'emploi de l'Enquête Patrimoine : salarié du public à temps complet, salarié du public à temps partiel, salarié du privé à temps complet, salarié du privé à temps partiel et à son compte .
-Lorsqu'il y a cumul de plusieurs emplois au premier janvier de l'année, que ceux-ci soient à temps plein ou temps partiel, on considère que l'individu travaille à temps plein. Enfin, l'appartenance au public  ou à la catégorie des indépendants étant obtenue dans l'EIC grâce à l'appartenance à différentes caisses - appartenance dont seule l'année est connue et non les dates exactes au cours de cette année -, on a 2116 individus qui pour au moins une année sont affiliés à la fois à une caisse du public et à une caisse d'indépendants. On attribue aléatoirement un des deux statuts à ces individus pour l'année donnée.
-
-Le fichier UNEDIC permet quant à lui de retracer pour les années 1984 à 2001 et grâce au type d'allocation perçue le fait qu'au 1er janvier de chaque année l'individu soit en situation de chômage indemnisé ou non (chômage indemnisé seulement jusqu'en 1992), de formation et de préretraite. S'il y a cumul de plusieurs allocations dont une de préretraite ou de formation au 1er janvier de l'année considérée, on classe l'individu comme étant plutôt en préretraite ou formation. Lorsqu'on a à la fois un statut provenant du fichier DADS et un statut provenant du fichier UNEDIC pour le même individu et la même année, on conserve le statut DADS.
-L'information provenant du fichier EIC caisse x individu x année , complétée par les dates de sortie des fichiers EIC-DADS-UNEDIC, nous permet de retracer les départs à la retraite.
-Enfin, le calendrier rétrospectif de l'enquête Patrimoine comprend une modalité "succession de courtes périodes  (inférieures à un an) d'emploi et de chômage", qu'il serait dommage d'assimiler aléatoirement à de l'emploi ou du chômage, celle-ci nous renseignant sur un type de situation particulière vis-à-vis de l'emploi. De telles périodes ont ainsi été repérées dans le fichier DADS.
-
-\paragraph{Revenus salariaux et de remplacement pour l'année 2001}
-On additionne les salaires nets renseignés dans les DADS et les salaires nets des fonctionnaires de l'Etat donnés dans la base EIC caisse x individu x année. On prend enfin en compte les revenus de remplacement, que l'on divise par 0,7 afin de comparer des salaires de référence et non des revenus effectifs, qui nous intéresseraient moins ici : il serait par exemple peu souhaitable d'apparier un individu gagnant 2000 euros mensuels avec un autre gagnant généralement 3000 euros environ, mais qui l'année considérée se trouve être en situation de chômage et donc le revenu de remplacement est donc plus proche de 2000 euros.\\
-
-
-
-
-
-\subsubsection{Mise en forme de l'Enquête Patrimoine}
-
-	L'appariement se fera naturellement lorsque l'on disposera du fichier EIC-DADS 2010, mais on matche pour l'instant l'Enquête Patrimoine 2009-2010 et l'EIC 2001 en alignant la première sur l'EIC, et en considérant donc la situation d'un individu pour l'année 2010 dans l'Enquête Patrimoine comme correspondant à celle pour l'année 2001 de l'EIC. Ainsi, on utilise pour l'appariement selon les trajectoires des dates retardées de 9 années pour l'Enquête Patrimoine, ce qui revient à comparer des situations vis-à-vis de l'emploi pour un âge donné.
-On déflate par ailleurs les revenus salariaux et de remplacement de l'Enquête Patrimoine 2010 par la croissance nominale observée des salaires afin qu'ils soient comparables à ceux provenant des fichiers EIC-DADS-UNEDIC en 2001. De même que pour les données issues du fichier EIC, on multiplie les revenus de remplacement par un facteur de 0.7 avant de les additionner aux revenus salariaux.
-
-Les données EIC étant disponibles pour une génération sur quatre, on regroupe également les individus de l'Enquête Patrimoine en catégories correspondant à quatre années de naissance : les individus de l'Enquête Patrimoine nés entre 1941 et 1944 seront par exemple appariés avec la génération née en 1942 du fichier EIC, ceux nés entre 1945 et 1948 avec la génération 1946, et ainsi de suite. L'échantillon est donc composé d'individus nés entre 1941 et 1972.\\
-
-On conserve pour l'appariement statistique uniquement les individus qui au moment de l'enquête ne sont pas agriculteurs ou indépendants, et qui dans leur trajectoire rétrospective de l'Enquête Patrimoine ont déclaré au moins une période comme salarié (à temps plein ou temps partiel, dans le public ou le privé), comme au chômage ou en alternance de courtes périodes d'emploi et de chômage, entre 1984 et 2001. Pour ceux qui n'ont pas connu de tels épisodes sur cette période, on matche séparément ceux qui en ont connu au moins une sur la période 1976 à 1983. Les autres ne sont donc pas appariés et se verront attribuer des revenus salariaux nuls entre 1976 et 2001, ce qui est cohérent leur déclaration dans l'enquête Patrimoine.
-On dissocie en effet 1976-1983 et 1984-2001 car la variable de statut vis-à-vis de l'emploi ne peut être définie de la même manière sur ces deux périodes, les données UNEDIC n'étant pas renseignées avant 1984.
-
-Enfin, on n'apparie pas pour l'instant les individus à la retraite \footnote{On ne dispose pas de suffisamment d'individus à la retraite dans l'échantillon EIC 2001 (puisqu'on ne prend en compte que les générations nées à partir de 1942).}.
-
-
-
-\subsubsection{Appariement des deux bases}
-
-L'appariement est effectué de façon exacte sur les variables de sexe, d'âge par tranches de quatre ans, de PCS à un chiffre et de revenus salariaux et de remplacement par tranches au nombre de 12, entre les données de l'année 2001 dans le fichier EIC-DADS et celles de l'année 2010 pour l'Enquête Patrimoine (ces dernières étant ré-évaluées pour les revenus salariaux et de remplacement). Au sein d'une cellule d'individus possédant les mêmes caractéristiques, on recherche alors un plus proche voisin quant à la trajectoire en termes de statut entre 1984 et 2001, sauf pour les individus n'ayant pas eu de période salariée ou de chômage entre 1984 et 2001, et aux revenus salariaux et de remplacement.
-
-La distance entre trajectoires est calculée en spécifiant des coûts de suppression d'un statut - il est ainsi coûteux de passer d'une trajectoire à la trajectoire identique, avec simplement une période en moins ou en plus - et de substitution d'un statut à un autre. Le coût de suppression est le même quel que soit le statut pendant la période supprimée, mais les coûts de substitution varient selon le statut que l'on substitue à un autre statut donné : on doit ainsi définir une matrice de coûts (cf. infra). On n'autorise pas les statuts manquants au cours ou à la fin d'une trajectoire : une période manquante est catégorisée comme "Inactif et autres". On autorise par contre les statuts manquants au début des trajectoires, c'est-à-dire avant l'entrée dans une des bases de données, si celle-ci a lieu après 1976. Une trajectoire considérée est ainsi plus courte si elle comporte des statuts manquants au début, mais cela n'est pas vrai si elle comporte des statuts manquants au milieu ou à la fin.
-
-
-\paragraph{Définition de la matrice de coûts pour la distance entre trajectoires}
- La distance entre deux statuts est définie comme étant la différence en valeur absolue entre les revenus (d'activité et de remplacement) médians parmi les sous-groupes se trouvant dans chacun des deux statuts, en 2010. On choisit de considérer des distances en termes de salaire puisque c'est finalement l'adéquation de la trajectoire salariale de l'EIC avec la trajectoire salariale réelle connue par l'individu de l'Enquête Patrimoine qui nous importe. Il est évident que les distances entre statuts en termes de revenus salariaux et de remplacement ont pu varier entre 1984 et 2010, mais il nous faut définir une unique matrice de coûts de substitution.
-
-\paragraph{Poids relatifs de la distance entre les salaires en 2001 et de la distance entre trajectoires}
-Différents essais ont été effectués pour l'appariement afin de déterminer l'ordre de grandeur du poids qu'il faut attribuer à la distance entre les trajectoires relativement à celle entre les revenus salariaux et de remplacement en 2001. Lorsque l'on augmente le poids relatif attribué à la distance entre trajectoires, même considérablement, le pourcentage de statuts qui ne correspondent pas pour une période donnée entre ce qui est déclaré dans l'Enquête Patrimoine et ce qui est connu à travers l'EIC ne diminue pas beaucoup. Au contraire, la distance moyenne entre les revenus dans l'Enquête Patrimoine et dans l'EIC augmente fortement. On choisit donc d'accorder un poids relativement élevé à la distance entre les revenus en 2001, puisque cela ne détériore pas grandement la qualité de l'appariement en termes de trajectoires de statuts, tout en améliorant assez nettement celle en termes de revenus salariaux et de remplacement en 2001.
-
-
-\subsection{Trajectoires salariales}
-
-\subsubsection{Imputation des années manquantes}
-
-\paragraph{Imputation des années manquantes pour la Fonction Publique d'Etat}
-Les années 1979, 1981 et 1987 sont manquantes en totalité pour la Fonction Publique d'Etat. Dans le fichier EIC, les salaires de ces années ont été imputées en étudiant la probabilité d'être entré dans la fonction publique l'année N plutôt que l'année $N+1$ (si l'individu n'était pas déjà dans la base l'année $N-1$). Cette imputation de la présence dans la fonction publique est conservée, mais plutôt que de reprendre simplement le salaire de l'année précédente, on fait en sorte qu'il y ait une augmentation progressive entre les salaires des années $N-1$, $N$ et $N+1$. Plus précisément, on veut qu'en moyenne :\\
-
-$W_{N+1} =  W_{N} \ . \ g_{N+1} \ . \ t$
-
-$W_{N}    =  W_{N-1} \ . \ g_{N} \ . \ t$\\
-
-avec $g$ la croissance nominale des salaires dans le privé et semi-public (données INSEE) et $t$ un facteur de croissance spécifique à la fonction publique et constant entre $N-1$ et $N+1$, et que l'on calcule donc comme $t = \sqrt{\frac{W_{N+1}}{g_{N+1} \ . \ W_{N-1} \ . \ g_{N}}}$.
-
-On choisit ensuite d'appliquer ce facteur (multiplié par la croissance nominale) au salaire de l'année $N-1$ lorsque celui-ci existe, et au salaire de l'année $N+1$ dans le cas contraire, et ce si l'individu est présent dans la fonction publique l'année $N$.
-Les salaires des années 1976 et 1977 sont connus dans les DADS mais pas dans les EIC pour la Fonction Publique d'Etat (l'appartenance au fichier de paie des agents de l'Etat est par contre connue). On impute pour l'année 1977 le salaire de 1978 déflaté par la croissance réelle des salaires dans le privé et le semi-public si l'individu appartient à la Fonction Publique cette année-là, et de même pour 1976 en utilisant l'année 1977.
-
-
-\paragraph{Imputation des années manquantes pour le secteur privé}
-Les années 1981, 1983 et 1990 sont entièrement manquantes dans les DADS. On estime les revenus salariaux pour chacune de ces années grâce à des modèles tobit.
-Pour l'année 1981, on estime tout d'abord un modèle tobit en régressant les salaires nets totaux (issus de l'emploi privé) pour l'année 1980 sur les salaires (issus du privé) de 1979 et 1978, l'âge et l'âge au carré en 1980, le sexe, et la présence dans une caisse du secteur privé en 1980 (connue grâce au fichier EIC), ce grâce à la procédure de Heckman. La sélection se fait sur les mêmes variables, avec en supplément le statut vis-à-vis de l'emploi en 1978 et 1979. Pour cette estimation, on utilise uniquement les individus pour lesquels il existe au moins un salaire strictement positif pour les années 1978, 1979 et 1982.
-Le salaire comme variable explicative est renseigné de façon catégorielle, par l'appartenance à l'un des neuf premiers déciles ou aux catégories P90-95, P95-99, P99-99.5, P99.5-99.9, P99.9-99.95, P99.95-99.99, et P99.99-100. Le fait de prendre en compte de façon fine l'appartenance au haut de la distribution les années passées permet par la suite de simuler des salaires suffisamment élevés pour l'année en cours. La variable de statut vis-à-vis de l'emploi est celle qui a été construite pour l'appariement, et qui reprend une partie des catégories de la variable CYACT de l'enquête Patrimoine.
-Une fois cette estimation effectuée, on effectue la prédiction des salaires nets de l'année 1981 ainsi que de la probabilité d'avoir un salaire positif, à partir des salaires des années 1980 et 1979, de l'âge et de l'âge au carré en 1981, etc. On n'applique cela qu'aux individus pour lesquels au moins l'un des salaires de 1979, 1980 ou 1982 est strictement positif. On impute un salaire nul aux individus dont les salaires de ces années sont tous nuls.
-
-Pour l'année 1990, on transpose la même procédure en estimant tout d'abord un modèle tobit régressant les salaires de 1989 sur les données de 1987, 1988 et 1991 (et 1989 pour les variables d'âge et d'appartenance à une caisse du secteur privé), puis en effectuant la prédiction des salaires de 1990 à partir des données concernant les années 1988, 1989 et 1992.
-On applique la même procédure pour l'année 1983. Il n'est pas possible d'utiliser l'année 1981 pour l'estimation et/ou la prédiction, cette année ayant un statut particulier puisqu'elle a elle-même été imputée. On estime ainsi l'effet des salaires etc. des années 1980, 1985 et 1986 sur l'année 1984, puis on obtient la prédiction des salaires de 1983 en utilisant les données de 1979, 1984 et 1985.
-
-
-\subsection{Résultats préliminaires : description des trajectoires salariales}
-
-\subsubsection{Volatilité des revenus sur le cycle de vie}
-
-On considère ici les trajectoires salariales sur la période allant de 1976 à 2001, dans le but d'examiner les inégalités intra-individuelles de revenu sur une partie du cycle de vie. Pour cela, on s'inspire du travail effectué par Björklund et Palme (1997) dans le cas de la Suède. Les auteurs utilisent des mesures d'entropie généralisées permettant de décomposer les inégalités en deux fractions, inégalités interindividuelles de revenu total calculé sur le cycle de vie d'une part, inégalités intra-individuelles au cours du cycle de vie d'autre part. Cette mesure des inégalités dépend d'un paramètre d'aversion à la pauvreté : lorsque celui-ci vaut 0 et 1 respectivement, on retrouve l'indice de Theil-L $I_{0}$ et l'indice de Theil $I_{1}$ respectivement. Le premier correspond à un degré plus grand d'aversion à la pauvreté, accordant une importance relativement plus grande aux revenus très faibles pour une période donnée. Les formules correspondant à ces deux indices sont les suivantes :\\
-
-$I_{1}=\frac{1}{n}\sum_{i=1}^{n}\frac{y_{i}}{\overline{y}}\text{log}(\frac{y_{i}}{\overline{y}})$\\
-
-$I_{0}=\frac{1}{n}\sum_{i=1}^{n}\text{log}(\frac{\overline{y}}{y_{i}})$\\
-
-
-avec $y_{i}$ le revenu de l'individu à la période $i$ et $\overline{y}$ son revenu moyen sur le cycle de vie. $I_{0}$ ne peut être calculé que dans le cas où les revenus sont non-nuls pour tous les individus à toutes les périodes. Cela n'est pas le cas pour nos trajectoires salariales. L'indice de Theil $I_{1}$ au contraire peut être calculé même lorsque le revenu des individus est nul à certaines périodes, en ne prenant pas en compte ces périodes dans la somme (on a $ \lim\limits_{y \to 0} y \ \text{log}(y) =0$). On calcule alors un indice de Theil intra-individuel pour chaque individu, sur la période 1976 à 2001 et pour les générations 1942 à 1958 (la génération 1958 a entre 18 et 43 ans et la génération 1942 entre 34 et 59 ans sur la période considérée). Cet indice individuel renseigne sur la volatilité des revenus sur le cycle de vie.
-Björklund et Palme considèrent quant à eux les revenus  des individus sur une période de 18 années allant de 1974 à 1991, pour une catégorie d'individus " âgés " (ayant entre 33 et 47 ans en 1974) et une catégorie d'individus " jeunes " (ayant entre 18 et 32 ans en 1974). Pour chacun de ces deux groupes, ils examinent la corrélation entre l'indice de Theil intra-individuel (sur le cycle de vie) et le revenu total sur la période considérée. Celle-ci est significativement négative, signifiant que les carrières salariales sont plus instables dans le bas de la distribution. Lorsqu'ils effectuent la même analyse quartile par quartile, les auteurs trouvent une corrélation significativement négative pour le premier quartile, mais non significativement différente de zéro pour les trois quartiles de revenus (sur le cycle de vie) les plus élevés.
-Toutes générations confondues (1942 à 1958), on trouve pour les données EIC-DADS une corrélation entre indice de Theil intra-individuel et revenus salariaux sur le cycle de vie significativement négative (au seuil de 1 \%), d'une valeur de -0.48. Lorsqu'on divise la population en quartiles, les résultats sont les suivants :\\
-
-\begin{tabular}{|c|c|c|c|c|}
-\hline
-           &   P0-25 &  P25-50 &  P50-75 & P75-100 \\
-\hline
-Indice de Theil moyen &       1.95 &       0.67 &       0.28 &       0.23 \\
-\hline
-Corrélation avec le revenu total & -0.74 (***) & -0.47 (***) & -0.18 (***) & 0.18 (***) \\
-\hline
-\end{tabular}\\
-
-\
-
-Et lorsqu'on examine les individus génération par génération, et en découpant la distribution à un niveau plus fin (particulièrement pour le haut de celle-ci), on peut figurer graphiquement les indices de Theil moyens par quantile :
-\begin{center}
-\includegraphics{Theil_intra.jpg}
-\end{center}
-
-\
-On observe ainsi une baisse de l'instabilité des revenus salariaux jusqu'à un certain point, et une remontée assez prononcée dans l'extrémité haute de la distribution des revenus. Ceci pourrait être dû en particulier à la prise en compte des bonus et primes dans les salaires, bonus et primes qui sont variables au cours du temps et pouvant représenter des montants considérables pour les salariés les plus rémunérés.
+\include{construction_BDD}
 
 \section{Simulation sur le cycle de vie (Alexis)}
+
+\include{TIL}
 
 \section{Résultats préliminaires : simulation des allocations familiales (...et de ??)}
 
