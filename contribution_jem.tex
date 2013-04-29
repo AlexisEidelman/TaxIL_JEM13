@@ -36,20 +36,22 @@ En effet, les études en coupe doivent contourner la difficulté causée par les tr
 
 L'étandue des questions auxquelles TaxIPP-Life est très grande. On ne les détaillera pas ici car l'état actuel du projet ne permet pas encore d'aborder ces points. Le présent document détaillera essentiellement la méthode utilisée et donnera de premiers résultats provisoires.\\
 
-L'étude sur le cycle de vie exige, et c'est une lapalissade, des données sur l'ensemble de ce cycle de vie. Cela n'est pas sans poser de problème. Le plus évident est que lorsque l'on interroge un individu, il ne connait pas son avenir. Le modèle \til \ contient un module réalisant une projection à un niveau individuel du futur. Ceci sera développé dans la deuxième partie de ce document. La première s'attardera sur un point moins évident qui est que le passé des individus n'est pas non plus si bien connus. En dehors des effets de mémoire qui font qu'une partie du passé est oubliée, aucune enquête ne demande à un individu l'ensemble de ses revenus passés. Des données administratives semblent être la seule solution pour connaitre par exemple la trajectoire professionnelle des individus. Mais les données administratives ne sont pas non plus une panacée, elles ne donnent en général pas d'information sur la vie matrimoniale des personnes, or, savoir qui vit avec qui est déterminant pour étudier la consommation et les niveaux de vie. Nous avons donc procédé à un matching statistique de données d'enquête et de données administratives. La première partie de document présentera ce matching avec entre les données de l'enquête patrimoine et les données de l'échantillon EIR-EIC.
+L'étude sur le cycle de vie exige, et c'est une lapalissade, des données sur l'ensemble de ce cycle de vie. Cela n'est pas sans poser de problème. Le plus évident est que lorsque l'on interroge un individu, il ne connait pas son avenir. Le modèle \til \ contient un module réalisant une projection à un niveau individuel du futur. Ceci sera développé dans la deuxième partie de ce document. La première s'attardera sur un point moins évident qui est que le passé des individus n'est pas non plus si bien connus. En dehors des effets de mémoire qui font qu'une partie du passé est oubliée, aucune enquête ne demande à un individu l'ensemble de ses revenus passés. Des données administratives semblent être la seule solution pour connaitre par exemple la trajectoire professionnelle des individus. Mais les données administratives ne sont pas non plus une panacée, elles ne donnent en général pas d'information sur la vie matrimoniale des personnes, or, savoir qui vit avec qui est déterminant pour étudier la consommation et les niveaux de vie. Enfin, une troisième voie serait l'utilisation d'un panel qui suivrait les individus tout au long de leur vie, toutefois une telle base de données, avec des informations assez riches pour pouvoir appliquer la législation socio-fiscal n'existe pas. Nous avons donc procédé à un matching statistique de données d'enquête et de données administratives. La première partie de document présentera ce matching avec entre les données de l'enquête patrimoine et les données de l'échantillon EIR-EIC.
 
 
 
 \section{Construction de la base de données}
-\include{construction_BDD}
+\input{construction_BDD}
 
 \section{Simulation sur le cycle de vie (Alexis)}
 
-\include{TIL}
+\input{TIL}
 
 \section{Résultats préliminaires : simulation des allocations familiales (...et de ??)}
 
 \section*{Annexe}
+
+\subsection*{Méthode de matching}
 
 \hspace{-2.5cm}
 \begin{tabular}{|p{3.2cm}|p{1.2cm}|p{1.2cm}|p{1.2cm}|p{1.2cm}|p{1.2cm}|p{1.2cm}|p{1.2cm}|p{1.2cm}|p{1.2cm}|p{1.2cm}|}

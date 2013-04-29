@@ -1,4 +1,4 @@
-Avant de commencer cette partie, certaines personnes doivent être remerciée. En effet, le projet \til \ a bénéficié de l'aide de plusieurs autres projets. Le souci de partage des personnes concernées, leur réceptivité aux idées d'amélioration ainsi que leurs conseils et leurs temps ont été d'une aide extrêmement précieuse. \til n'est pas encore un sujet abouti mais il serait très éloigné de ce qu'il est en matière et auraient probablement des objectifs beaucoup plus restreint sans elle. Je remercie donc l'équipe d'OpenFisca\footnote{} et en particulier M. Ben Jelloul, l'équipe de Liam2\footnote{} en en particulier G. Dekkers et G. de Menten, l'équipe Destinie\footnote{} avec Aude Leduc et Anthony Marino et l'équipe de PensIPP et en particulier D. Blanchet et S.Rabaté.
+Avant de commencer cette partie, certaines personnes doivent être remerciée. En effet, le projet \til \ a bénéficié de l'aide de plusieurs autres projets. Le souci de partage des personnes concernées, leur réceptivité aux idées d'amélioration ainsi que leurs conseils et leurs temps ont été d'une aide extrêmement précieuse. \til n'est pas encore un sujet abouti mais il serait très éloigné de ce qu'il est en matière et auraient probablement des objectifs beaucoup plus restreint sans elles. Je remercie donc l'équipe d'OpenFisca\footnote{} et en particulier M. Ben Jelloul, l'équipe de Liam2\footnote{} en en particulier G. Dekkers et G. de Menten, l'équipe Destinie\footnote{} avec Aude Leduc et Anthony Marino et l'équipe de PensIPP et en particulier D. Blanchet et S.Rabaté. 
 
 \subsection{Quelques mots de techniques}
 
@@ -6,17 +6,78 @@ Dans cette courte section, seront décrits les choix techniques qui ont été fait 
 
 \subsubsection{La base de données initiales}
 
+Comme on peut l'imaginer à la lecture de la première partie de ce document c'est l'enquête patrimoine qui va servir de base d'information à notre modèle. La raison en est la connaissance des trajectoires professionnelle passée. La connaissance du patrimoine est aussi , bien sûr, une des forces de l'enquête. On aurait pu utiliser d'autres sources. Par exemple l'enquête Santé et Itinéraire Professionnel, qui comme son nom là aussi l'indique, est bien moins précise sur le patrimoine mais bien plus sur les conditions de santé. Pour la simulation du futur uniquement, on peut aussi envisager l'utilisation d'enquête plus générale et n'ayant pas de volet trajectoire. Ainsi, l'enquête budget des familles est par exemple attirante car la consommation est alors connue, au moins pour une année. On peut aussi penser à l'enquête Logement. 
+L'idée est à étudier mais on peut essayer d'étendre le matching statistique réalisé avec deux enquêtes à plusieurs en constituant se faisant une sur-enquête couvrant la majorité des champs micro-économiques. 
+
+Dans la suite, nous ne parlerons que de l'enquête patrimoine 2009-2010. L'échantillon contient 29 951 individus répartis en 12788 ménages\footnote{Les ménages interrogés aux Antilles, ont un questionnaire légèrement différent. Par souci de simplicité et pour travailler avec un échantillon uniforme, ils sont pour l'instant exclu du champ.}. De plus, 14 954 déclarations fiscales sont imputées (pour l'instant sommairement). 
+
 \subsubsection{La fermeture de l'échantillon}
+
+Une première limite de l'enquête patrimoine pour notre sujet est qu'elle ne donne pas de lien entre les ménages. Si les relations sont connues au sein d'un ménage, on veut aussi connaitre les relations et particulièrement les liens de filiation entre les individus qui ne vivent pas dans le même ménage. Cela peut permettre d'imputer ensuite les successions, les pensions alimentaires l'aide pendant les études mais aussi les différentes formes d'aide vers les ascendants, en particulier en cas de dépendance. On peut aussi imaginer d'imputer un recours aux grands parents pour les gardes d'enfants. \\
+
+Dans l'enquête patrimoine, les parents ayant des enfants vivant à l'extérieur du domicile se voient poser quelques questions à leur sujet (date de naissance, nombre d'enfant, statut sur le marché de l'emploi, diplôme, etc). Nous créons ainsi des individus factices représentant ces enfants hors domicile. Puis par un procédé de matching, nous cherchons des individus correspondant, déclarant un ou deux parents en vie, qui correspondent le plus possible à ces statistiques. On leur attribue alors les parents enquêté de l'individu fictif comme étant ses parents 
+
+Nous n'utilisons pas les informations ascendantes, celle que les enfants déclare à propos de leur parents. Elles sont assez pauvre et concerne pratiquement exclusivement l'enfance de l'enfant or il se peut que la situation des parents ait changé entre l'enfance de l'enfant et le moment de l'enquête. On pourrait aussi utiliser les informations sur le décès ou non des grands parents. Enfin, notons que nous n'utilisons que les données de l'enquête, on n'utilise pas d'information annexe par exemple sur la corrélation entre les revenus des parents et des enfants. Pour l'instant, on fait donc l'hypothèse que les variables utilisées sont suffisantes pour que les distributions croisées soient respectées. \\ 
+
+Nous donnons ici une petite précision sur la méthode de calcul pour souligner au lecteur une petite limite actuelle de cette étape. Lorsque les parents sont interrogés sur leurs enfants vivant hors du domicile, on leur demande de préciser s'il s'agit de l'enfant du couple ou de l'un d'eux seulement. S'il s'agit de l'enfant du couple, alors on cherche des enfants dont les deux parents sont vivants. Il reste ensuite de tels enfants avec deux parents vivants à apparier ce qui est logique car les parents peuvent être vivant et ne plus vivre ensemble. On cherche pour eux, comme pour les enfants n'ayant qu'un parent à trouver, un père puis une mère. Si on ne cherche qu'un parent, il n'y a pas de problème, en revanche, un point à noter est que lorsque l'on cherche deux parents, on les cherche indépendamment. Par exemple, si on a deux enfants identiques, deux pères potentiels, l'un de 40 et l'autre de 60 ans et deux mères potentielles, l'une de 40 ans et l'autre de 60 ans, rien ne contrôle que l'on a plus de chance d'avoir un couple dont les deux membres ont 40 ans et un dont les deux couples ont 60 ans que deux couples avec 20 ans d'écart d'âge. On peut donc ne pas reproduire la réalité statistique en créant une distribution jointe des parents non réaliste. Du moins c'est le cas, si on pense que deux couples de parents peuvent avoir des enfants similaires même s'ils sont différents au départ. Une solution serait, une fois la mère trouver de chercher un père avec un age assez proche, une autre solution serait de réaliser un mariage fictif des parents ayant des enfants similaire puis de tirer un couple de parents aux enfants. \\
+
+Enfin, précisons que le matching est fait à partir d'une méthode de score (voir Annexe pour plus d'information sur les méthodes de matching) 
 
 \subsubsection{Étendre l'échantillon}
 
-\subsubsection{Choix de programmation}
+Travailler avec des pondérations n'est en général pas un problème dans le cadre de statistiques statiques. Cependant, dans le contexte particulier de la microsimulation dynamique où des liens sont établis entre ménage cela pose problème. On ne peut en effet pas associer 50 enfants à 3 000 mères ou unir un homme en représentant 1000 avec une femme représentant 2000 femmes de la population française. On se demande par exemple, comment on pondérerait leurs enfants. Pour solutionner le problème, le choix a été fait de dupliquer les individus autant de fois que nécessaire pour ainsi avoir une pondération uniforme. Dans l'enquête patrimoine 2010, qui contient un sur-échantillonnage des hauts-patrimoines, la plus petite pondération est de 6 et cela devrait être la pondération uniforme. Cela nous mène en théorie à une base de plus de 10 millions de lignes dans la base pour représenter la population française. \\
+
+Le modèle DESTINIE tire ensuite un sous-échantillon à partir de cette population étendue. \til , quant à lui, essaie de tourner sur l'ensemble de cet échantillon. Cela a aussi l'avantage qu'un même individu au départ, se verra associé plusieurs carrière, on conserve ainsi une certaine variabilité dans le futur de chaque individu de la base initial ce qui ne peut être que bon pour la précision statistique. Comme nous le verrons ci-dessous, travailler sur une base étendue est un vrai challenge. Pour l'instant, nous travaillons en général sur l'échantillon non étendu, sans tenir compte des pondérations dans les différentes étapes. Une alternative acceptable en terme de temps de calcul et qui permet de tester le modèle est d'utiliser comme pondération uniforme 200, ce qui fait une base de 300 000 individus. Les ménages avec une pondération initiale inférieure à 200 se voit attribuer un poids de 200 ce qui biaise donc en théorie pour l'instant un peu les résultats  
+
+\subsubsection{Choix de langage de programmation}
+
+Toutes les étapes initiales, y compris l'extension de l'échantillon décrit ci-dessus, sont réalisées en R. Les étapes de simulation, vieillissement de la population et calcul de la législation sont réalisées en Python. On utilise ainsi les forces de chaque programme\footnote{Parce qu'il s'agit d'un matching, l'étape de créations des liens entre parents et enfants vivant hors domicile est, elle aussi, réalisée en Python.}. L'utilisation de Python permet une écriture adaptée à la microsimulation et est relativement incomparable avec les logiciels statistiques en terme de performances dont on a montré qu'elles étaient importantes pour \til .
+L'étape de calcul de la législation qui prend 15 minutes en SAS est effectué dans un temps de l'ordre de grandeur de dix secondes. La possibilité de travailler avec un gros échantillon ou avec des équations comportementales devient envisageable. 
 
 \subsection{Les étapes de la simulation dynamique}
 
+Avant d'entamer cette section, il faut préciser que \til \ est encore un projet jeune en développement. Les étapes présentées ici peuvent toutes être améliorer, certaines sont tellement rudimentaires qu'elles n'ont d'autre mérite que d'exister. La description de ces étapes permet toute fois de donnée une première idée des fonctionnalité et possibilité de \til . L'écriture sous forme de module indépendant permet à tout moment d'améliorer chacune de ces étapes.
+
+\subsubsection{Démographie}
+
+L'age est bien sûr incrémenté à chaque période.
+
+\paragraph{Naissance}. On donner à toutes les femmes en couple âgées de 16 à 50 ans se voir imputer un enfant\footnote{On élimine les femmes qui ont 8 enfants ou plus ou dont le conjoint est dans cette situation. 
+On pourrait toutefois supprimer sans difficulté cette condition.}. 
+Un certain nombre de ces femmes sont sélectionnées en s'assurant de vérifier les projections de naissance en fonction de l'âge de la mère. Le sexe de l'enfant est choisi aléatoirement.
+
+Le fait de ne pas avoir de probabilité différente pour les femmes selon leur caractéristiques, autre que leur age est problématique. Le nombre d'enfant ainsi que le niveau d'étude devrait intervenir\footnote{On ne peut pas pour autant dire que le tirage obtenu et complétement indépendant du niveau d'étude et du nombre d'enfant dans la mesure où ceux-ci interviennent dans les équations de mise en couple et de divorce, pré-requis pour se voir imputer des enfants dans \til.}. 
+
+\paragraph{Décès}. La probabilité de décès ne dépend que de l'age et du sexe. Le nombre de décès prédit par les projections démographiques de l'Insee est ainsi reproduit. Si une personne décédée vit seule avec des enfants, ces enfants sont attribués à l'autre parent si celui-ci est encore en vie. Si ce n'est pas le cas, ils sont affectés à un ménage spécial sans adulte avec tous les autres enfants dans ce cas. 
+
+\paragraph{Union}. Pour l'instant, dans le modèle, l'union entre deux personnes correspond à la fois à un emménagement et à une union légale. Sans qu'il n'y ait de contrindication technique à le faire, il n'y a donc pas de création de concubinage. Il en existe toutefois dans la base initiale. 
+Reprenant les équations utilisée par DESTINIE à partir du travail de Duée(??) on impute une probabilité d'avoir se mettre en couple. Cela est fait d'une part pour les premières unions et d'autre part pour les personnes ayant déjà été en couple séparément selon le sexe, en fonction de l'age depuis la fin des études, du fait d'avoir un enfant et, de la durée depuis la précédente séparation le cas échéant. En utilsant, une méthode d'alignement de Liam2 (voir ...), un tiers de ces personnes est sélectionné\footnote{Un calage plus pertinent ne serait pas une mauvaise chose.}. Ensuite, un matching est effectué pour associer les individus en fonction de leur âge, de leur différence d'âge et de leur niveau de diplôme comparé. Encore une fois, ce matching, crucial pour étudier bon nombre de question de redistribution, par exemple, l'impact de l'endogamie, mériterait d'être affiné.
+En cas d'union, les personnes rattachée aux nouveaux conjoints (enfants le plus souvent) emménage avec eux. Idem pour les déclarations fiscales.
+
+\paragraph{Séparation}. C'est plus crédible cette fois : les séparations se traduisent à la fois par un changement de logement d'un des deux conjoints et par une rupture du contrat (et donc le passage à des déclarations fiscales séparées). La probabilité de rupture dépend du nombre d'enfant du couple, de son ancienneté et de la différence d'âge entre ses membres. Ceci pour être régi par des probabilité mais pour l'instant c'est l'homme qui déménage (sauf lorsque le couple habitait chez ses parents) et la femme qui a une nouvelle déclaration\footnote{Dans le cas de couple homosexuel, le choix est fait aléatoirement}. Les enfants et personnes rattachées ne change de logement que s'ils sont liés à la personne qui part sans être liés à la personne qui reste, que ce soit pour le logement ou pour la déclaration fiscale. 
+
+\subsubsection{Logement}
+Le travail sur le logement est extrêmement rudimentaire. Les déménagement ne se font que lors des unions et séparations et lorsque qu'une personne de plus de 24 ans n'est ni personne de référence ni en couple (i.e. vit avec ses parents).
+Le travail sur les loyers n'a pas encore été fait mais ne devrait pas poser de difficulté majeure. 
+
+On pourrait à terme utiliser avoir réellement un parc de logement dont on simulerait la variation chaque année. Lors des déménagement, les ménages choisirait l'un des logements en fonction de la taille du ménage et du logement ainsi qu'en fonction des revenus et du loyer. On simulerait ainsi des déménagements en fonction d'un surpeuplement ou sous-peuplement ainsi qu'en cas d'évolution dans les revenus. L'idée serait de reproduire des tensions sur le marché du logement. 
+
+\subsubsection{Activité et Revenus}
+
+
+
+\subsubsection{Épargne et consommation}
+
+
 \subsection{Projets futurs}
+
+\subsubsection{Améliorations des imputations}
+
+Consommation, importantes...
+\subsubsection{Simulation par mois}
 
 \subsubsection{Transferts intergénérationnels}
 
 \subsubsection{Comportements}
 
+\subsubsection{Autres enquêtes}
