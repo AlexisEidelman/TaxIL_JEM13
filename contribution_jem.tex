@@ -9,6 +9,9 @@
 \usepackage{verbatim}
 \usepackage{multicol}
 \usepackage{setspace}
+\usepackage{makeidx}
+\usepackage{epigraph}
+\usepackage{hyperref}
 \onehalfspacing
 \usepackage[french]{babel}
 \usepackage{fullpage}
@@ -19,10 +22,21 @@
  \newcommand{\til}{TaxIPP-Life}
 
 \author{Béatrice Boutchenik et Alexis Eidelman\\ IPP}
-\title{Micro-simulation sur le cycle de vie : le modèle TaxIPP-Life}
+\title{Micro-simulation sur le cycle de vie :\\ le modèle TaxIPP-Life}
+
 
 \begin{document}
 \maketitle
+
+\begin{center}
+Document extrêmement préliminaire. Ne pas diffuser, ne pas citer.  \newline \newline
+Ce document présente le modèle \til. La construction de ce modèle a débuté il y a moins d'un an au moment de la rédaction de ce rapport. Le modèle est encore dans une phase de développement. Les résultats du modèle correspondent pour l'instant plus à des exercices de test qu'à des statistiques. 
+\end{center}
+
+
+\newpage
+\tableofcontents
+\newpage
 
 \section*{Introduction}
 
@@ -41,9 +55,11 @@ L'étude sur le cycle de vie exige, et c'est une lapalissade, des données sur l'e
 
 
 \section{Construction de la base de données}
+
 \input{construction_BDD}
 
-\section{Simulation sur le cycle de vie (Alexis)}
+\newpage
+\section{Simulation sur le cycle de vie}
 
 \input{TIL}
 
