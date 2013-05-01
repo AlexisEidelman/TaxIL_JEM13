@@ -74,7 +74,9 @@ La question de la situation sur le marché de l'emploi est évidemment un élément 
 C'est à ce niveau que l'investissement le plus important devrait être fait. Les équations de transition devraient être estimée le plus précisément possible en tenant compte d'un nombre important de paramètre afin de reproduire la réalité du marché du travail. 
 On est pour l'instant loin d'un niveau satisfaisant mais il sera, là-encore, facile, au moins en terme de programmation d'améliorer cette partie du modèle. 
 
-\paragraph{Éducation}.
+\paragraph{Éducation}. L'entrée sur le marché du travail correspond à la fin des études. L'âge de fin d'études est déterminé à partir de l'âge de fin d'étude des parents (au moment de la naissance de l'enfant donc). On peut penser à des modèles plus compliqués de décision (voir \ref{comportement}). Pour l'instant, on impute pour les individus qui ne sont pas encore sorti du système scolaire un âge de fin d'étude qui est la moyenne de celui de ses parents auxquels on ajoute un élément correcteur en fonction de leur date de naissance pour tenir compte de l'allongement moyen des études. 
+
+Lorsque l'individu est encore en étude, son niveau scolaire est entièrement déterminé par son âge. Ce niveau d'étude servira ensuite à imputer la valeur du transfert en nature associée à l'éducation.
 
 \paragraph{Situation}. Dans l'idéal, on détermine l'état à la date T+1 en fonction de l'état à la date T mais aussi des états précédents pour être plus précis. Pour l'instant deux méthodes simplistes ont été implémentée. La première calcul un score en fonction de l'âge puis tire un nombre de transition en suivant des proportions en input du modèle. La seconde sélectionne aléatoirement 2,5 \% des individus actifs et inactifs pour les faire changer de statut. Au passage à l'activité, la catégorie d'emploi est tirée au sort. 
 
@@ -118,6 +120,7 @@ Par exemple, il n'y a pas de croissance simulée. Les revenus passés sont eux rev
 Bien évidemment, à terme, \til \ simulera l'ensemble des législations passées et simulera la population en fonction de tendance observée ou supposée. Les imputations dépendront de la période simulée. Ceci permettra de reproduire fidèlement la population et de pouvoir procéder à une analyse d'équité intergénérationnelle. Pour l'instant, on étudie finalement une population de 2009 évoluant et ayant évolué dans les conditions de 2009 hormis pour les trajectoires salariales et maritales avant 2009. 
 
 \subsubsection{Comportements}
+\label{comportement}
 
 Une dimension supplémentaire peut être apportée au modèle en introduisant des équations comportementales. Au lieu de simuler des transitions en fonction d'équations estimées, on peut créer un modèle d'agent dans lequel les individus prennent leur décision en fonction d'anticipation. Il y a deux décisions importantes dans le cycle de vie dans lesquelles ces modèles ont leur place : le choix d'éducation et la retraite. 
 
