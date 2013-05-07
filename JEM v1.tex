@@ -1,0 +1,166 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage[english,french]{babel}
+\usepackage[latin1]{inputenc}
+\usepackage[OT1]{fontenc}
+\usepackage{amsmath,amssymb, amsthm}
+\usepackage{a4wide}
+\usepackage[pdftex]{graphicx}
+\usepackage{verbatim}
+\usepackage{float}
+\usepackage{placeins}
+\usepackage{subfigure}
+\usepackage{flafter}
+\usepackage{longtable}
+\usepackage{rotating}
+\usepackage{multirow}
+\usepackage{hhline}
+\usepackage{eurosym}
+\usepackage{breakcites}
+\usepackage{datetime}
+\usepackage{natbib}
+\usepackage{setspace}
+\usepackage{lscape}
+%\usepackage[usenames]{color}
+\usepackage{indentfirst}
+\usepackage{url}
+\usepackage{arcs}                       % Pour réaliser le logo TAXIPP
+\usepackage{slashbox}                   % Pour réaliser le logo TAXIPP
+\usepackage{MnSymbol}                   % Pour réaliser le logo TAXIPP
+\PassOptionsToPackage{usenames,dvipsnames,svgnames}{xcolor} % Pour réaliser le logo TAXIPP
+\usepackage{xcolor}                     % Pour réaliser le logo TAXIPP
+
+
+% Création du logo PENSIPP
+\makeatletter
+\def\PENSIPP{PENS\kern-.05em\lower-.19ex\hbox{${\color{BlueGreen}
+\scalebox{1.4}{\underarc[1]{\overarc[1]{\textcolor{black}{\scalebox{0.7}{ipp}}}}}}\hspace{0.5ex}$}\@}
+\makeatother
+
+% Création du logo TAXIPP-LIFE
+\makeatletter
+\def\til{TAX\kern-.05em\lower-.19ex\hbox{${\color{BlueGreen}
+\scalebox{1.4}{\underarc[1]{\overarc[1]{\textcolor{black}{\scalebox{0.7}{ipp}}}}}}\hspace{0.5ex}$}-LIFE\@}
+\makeatother
+
+% Création du logo TAXIPP
+\makeatletter
+\def\taxipp{TAX\kern-.05em\lower-.19ex\hbox{${\color{BlueGreen}
+\scalebox{1.4}{\underarc[1]{\overarc[1]{\textcolor{black}{\scalebox{0.7}{ipp}}}}}}\hspace{0.5ex}$}\@}
+\makeatother
+
+% Macro pour créer un tableau (avec notes optionnelles) %
+\newenvironment{tab}[4][1]
+{\def\TMP{#3}\newdimen\TMPsize\settowidth{\TMPsize}{\TMP}
+\begin{table}[!ht]
+\begin{center}
+\begin{minipage}{14cm}
+\caption{#2}
+\end{minipage}
+\end{center}
+\begin{center}
+\begin{minipage}{#1}
+\resizebox{\textwidth}{!}{#3}
+\end{minipage}
+\if!#4!\empty \else \\
+\begin{scriptsize}
+\begin{minipage}{#1}\vspace{0.2cm} \par #4
+\end{minipage}
+\end{scriptsize} \fi }
+{\end{center}
+\end{table}}
+
+% Macro d'inclusion de graphiques pdf %
+\newcommand{\graphique}[2][1]{\begin{minipage}{\linewidth}\begin{center}\includegraphics[width=#1\linewidth,clip]{Graphiques/#2}\end{center}\end{minipage}}
+
+% Macro pour créer une figure (avec notes optionnelles) dans le corps du texte %
+\newenvironment{fig}[4][1]{
+\begin{figure}[!ht]
+\begin{center}
+\begin{minipage}{14cm}
+\caption{#2}
+\end{minipage}
+\end{center}
+\begin{center}
+\begin{minipage}{#1}
+\begin{center}#3
+\end{center}
+\end{minipage}
+\if!#4!\empty \else \\
+\begin{scriptsize}
+\begin{minipage}{#1}\vspace{0.2cm} \par #4
+\end{minipage}
+\end{scriptsize} \fi }
+{\end{center}
+\end{figure}}
+
+
+% Raccourcis de commandes
+\newcommand{\e}{\textsuperscript{e}}
+\newcommand{\eme}{\textsuperscript{??ï¿½ï¿½?ï¿½ï¿½me}}
+\newcommand{\er}{\textsuperscript{er}}
+\newcommand{\thh}{\textsuperscript{th}}
+\newcommand{\cy}{\citeyear}
+\setlength{\doublerulesep}{\arrayrulewidth}
+\renewcommand{\floatpagefraction}{.9}
+\renewcommand{\textfraction}{.1}
+\renewcommand{\d}{\text{\rm d}}
+\newcommand{\ta}{\hspace{-.8em}\left.\phantom{\frac{\alpha}{\alpha}}\right|}
+
+% Paramètres de bibliographie
+\bibliographystyle{agsm}
+
+\onehalfspace
+
+\begin{document}
+
+\title{Le modèle de micro-simulation TAXIPP-LIFE: Appréhender la redistribution sur le cycle de vie}
+
+\author{Béatrice Boutchenik et Alexis Eidelman\thanks{Institut des politiques publiques (IPP).
+Ce travail repose sur le modèle TAXIPP-LIFE en cours de développement à l'Institut des politiques publiques. Doivent être remerciées pour leurs conseils et leur souci de partage l'équipe d'OpenFisca (www.openfisca.fr) et en particulier M. Ben Jelloul, ainsi que G. Dekkers et G. de Menten de l'équipe Liam2 (http://liam2.plan.be), l'équipe Destinie de l'INSEE dont A. Leduc et A. Marino et enfin D. Blanchet et S. Rabaté de l'équipe de PENSIPP (www.ipp.eu/fr/outils/pensipp-simulation).}}
+
+\date{\today}
+\maketitle
+
+\begin{center}
+\textsc{Version préliminaire. Ne pas citer.}
+\end{center}
+
+\begin{abstract}
+\noindent
+Le modèle de micro-simulation \til~a pour objet l'étude de la redistribution dans une perspective de cycle de vie. Les études réalisées en coupe à ce sujet se heurtent en effet au phénomène de mobilité des individus dans la distribution des revenus au cours du temps : elles ne peuvent en tenir compte et tendent donc à donner une vision tronquée à la fois des inégalités et de la redistribution opérée par les systèmes fiscaux et sociaux considérés. \til~ repose d'une part sur des trajectoires salariales réellement observées obtenues par appariement entre les données administratives du fichier EIC-DADS et de l'Enquête Patrimoine, d'autre part sur la simulation d'un ensemble d'éléments concernant les trajectoires futures des individus. La mise en place de ces deux volets est décrite dans ce document, ainsi que certains résultats préliminaires obtenus concernant les inégalités sur le cycle de vie.
+\end{abstract}
+
+\textit{Mots clés:} Redistribution; micro-simulation; cycle de vie
+
+\textit{JEL:} H2; H3
+
+
+\newpage
+\section{Introduction}
+\input{introduction}
+
+
+\section{L'enjeu de la mesure de la redistribution sur le cycle de vie}
+\input{revue_litt}
+
+
+\section{Construction de la base de données}
+\input{construction_BDD}
+
+
+\section{Simulation sur le cycle de vie}
+\input{TIL}
+
+
+\section{Résultats préliminaires : inégalités sur le cycle de vie}
+\input{resultats}
+
+
+\section{Conclusion et développements}
+\input{conclusion}
+\newpage
+
+\bibliographystyle{apalike}
+\bibliography{biblio}
+
+\end{document} 

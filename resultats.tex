@@ -1,0 +1,78 @@
+Dans la continuité des résultats qui ont été présentés dans la section 2, nous nous sommes intéressés à ce qu'apporte une perspective de cycle de vie à l'étude des inégalités. Nous avons ainsi mis à profit l'information que nous possédons concernant les trajectoires salariales passées réellement observées, afin de prendre en compte la portion des inégalités qui correspond à des variations de revenus au cours du temps pour le même individu. Ainsi nous avons d'une part effectué une décomposition des inégalités de revenus salariaux entre inégalités inter- et intra-individuelles, d'autre part nous nous sommes intéressés plus précisément à cette seconde fraction des inégalités pour montrer que les inégalités intra-individuelles, correspondant à la variabilité des revenus, ne sont pas uniformément répartis dans la population.
+
+
+\subsection{Décomposition des inégalités de revenus}
+
+Comme on l'a déjà évoqué, les inégalités sur le cycle de vie peuvent être décomposées en inégalités intra-individuelles (inégalités de revenus au cours du temps pour un individu donné) et inégalités inter-individuelles (entre les revenus totaux sur le cycle de vie pour les personnes considérés). Ainsi \cite{Bjoerklund1997} utilisent dans le cas de la Suède des mesures d'entropie généralisée afin de distinguer ces deux types d'inégalités. Ces mesures incluent un paramètre d'aversion à la pauvreté :
+
+lorsque celui-ci vaut 0 et 1, on retrouve l'indice de Theil-L $I_{0}$ et l'indice de Theil $I_{1}$ respectivement. Le premier correspond à un degré plus grand d'aversion à la pauvreté, accordant une importance relativement plus grande aux revenus très faibles pour une période donnée. Les formules correspondant à ces deux indices sont les suivantes :\\
+
+$I_{1}=\frac{1}{n}\sum_{i=1}^{n}\frac{y_{i}}{\overline{y}}\text{log}(\frac{y_{i}}{\overline{y}})$\\
+
+$I_{0}=\frac{1}{n}\sum_{i=1}^{n}\text{log}(\frac{\overline{y}}{y_{i}})$\\
+
+avec $y_{i}$ le revenu pour l'observation $i$ (ici individu-période) et $\overline{y}$ la moyenne de ces revenus. $I_{0}$ ne peut être calculé que dans le cas où les revenus sont non-nuls pour tous les individus à toutes les périodes. Cela n'est pas le cas pour nos trajectoires salariales. L'indice de Theil $I_{1}$ au contraire peut être calculé même lorsque le revenu des individus est nul à certaines périodes, en ne prenant pas en compte ces périodes dans la somme (on a $ \lim\limits_{y \to 0} y \ \text{log}(y) =0$).
+
+L'indice de Theil $I_{1}$ peut être décomposé de façon exacte en une partie intra- et une partie inter-individuelle. On montre en effet que :\\
+
+$I_{1}=\sum_{i=1}^{n}[\frac{Y_{i}}{\sum_{i=1}^{n}Y_{i}}]I_{1,i}^{W} + I_{1}^{B}$\\
+
+Le premier terme (part intra-individuelle ou $within$ des inégalités) est la somme des indices de Theil individuels $within$ $I_{1,i}^{W}$ pondérés par la part du revenu sur le cycle de vie de l'individu $i$ dans le revenu total. Le second terme $I_{1}^{B}$ est la part inter-individuelle ou $between$ des inégalités, qui correspond à l'indice de Theil calculé sur les moyennes individuelles des revenus sur le cycle de vie.
+
+On applique cette décomposition aux trajectoires salariales allant de 1976 à 2001, pour les individus nés entre 1941 et 1960 (et ayant donc entre 16 et 35 ans en 1976 et entre 41 et 60 ans en 2001)\footnote{On utilise ici les trajectoires appariées à l'Enquête Patrimoine. L'échantillon dont on dispose est donc restreint au champ des individus de l'Enquête Patrimoine qu'on a appariés, décrit plus haut. On impose par ailleurs que, lorsque les individus sont en couple, les deux personnes formant le couple aient été comprises dans ce même champ pour qu'elles soient incluses dans l'échantillon. On dispose ainsi d'un échantillon de 8903 individus, dont 6459 ont été appariés avec une trajectoire salariale. Les autres individus sont par exemple indépendants, ou n'ont jamais été actifs, etc.}. Les revenus antérieurs à l'année 2001 sont inflatés par l'indice des prix à la consommation afin de s'intéresser simplement aux différences en termes de revenus réels. Les résultats de la décomposition de l'indice de Theil entre ses composantes intra- et inter-individuelles sont donnés dans la table \ref{tab1}.
+
+\begin{tab}[15cm]{Inégalités totales et intra-individuelles de revenus salariaux de 1976 à 2001 \label{tab1}}
+{\begin{tabular}{|r|r|r|r|}
+\hline
+           & Niveau individuel & Niveau du couple & Prise en compte des enfants \\
+\hline
+Inégalités totales (indice de Theil) &      0,411 &      0,336 &      0,347 \\
+\hline
+Inégalités intra-individuelles &      0,195 &      0,163 &      0,163 \\
+\hline
+\% d'inégalités intra-individuelles &       47,4 &       48,5 &       47,0 \\
+\hline
+\end{tabular}}
+{\textsc{Source:}~\til~0.0. \textsc{Champ:} Echantillon de 8903 individus de l'Enquête Patrimoine, nés entre 1941 et 1960, dont le conjoint ou concubin éventuel est également né entre 1941 et 1960, et non-retraités.
+}
+\end{tab}
+
+La mesure des inégalités totales sur la période considérée varie selon que l'on considère les revenus salariaux individuels, ou que l'on utilise comme échelle d'équivalence la racine carrée du nombre de personnes prises en compte (en considérant dans un premier temps simplement les couples, puis en intégrant également les enfants à charge)\footnote{Pour cette étude préliminaire, on a fait l'approximation consistant à considérer que les paires d'individus qui sont en couple à la date de l'enquête l'ont été sur l'ensemble de la période.}. Les inégalités apparaissent bien sûr moins fortes lorsque les revenus salariaux sont pris en compte au niveau du ménage qu'au niveau individuel. Dans les trois cas, on constate que près de 50 \% des inégalités considérées sur le cycle de vie sont intra-individuelles, ce qui confirme l'importance d'études des inégalités sur un terme assez long plutôt que sur une seule année. Il peut paraître étonnant à première vue que la prise en compte des enfants à travers l'échelle d'équivalence ne fasse pas augmenter la mesure des inégalités intra-individuelles, puisque le nombre d'enfants à charge varie sur le cycle de vie, entraînant donc une variation dans le revenu attribué à chaque individu. Toutefois, le profil des revenus salariaux étant globalement croissant sur les intervalles d'âge considérés, et que le nombre d'enfants à charge l'est également jusqu'à un certain âge, les revenus peuvent apparaître plus équitablement répartis pour un même individu au sein du cycle de vie.
+
+\subsection{Variabilité des revenus sur le cycle de vie}
+
+Il est intéressant d'approfondir l'étude de la composante intra-individuelle des inégalités, et donc de se pencher sur l'instabilité des revenus sur le cycle de vie. Björklund et Palme (1997) examinent pour cela la corrélation entre les indices de Theil individuels (calculés pour un individu donné au sein de son cycle de vie) et le revenu total de ces individus sur la période considérée. Les auteurs trouvent une corrélation significativement négative, signifiant que les carrières salariales sont plus instables dans le bas de la distribution des revenus. Lorsqu'ils effectuent la même analyse quartile par quartile, les auteurs trouvent une corrélation significativement négative pour le premier quartile, mais non significativement différente de zéro pour les trois quartiles de revenus (sur le cycle de vie) les plus élevés.
+Pour la même population que celle étudiée dans la section précédente (individus nés entre 1941 et 1960), on trouve une corrélation entre indice de Theil intra-individuel et revenus salariaux sur le cycle de vie significativement négative (au seuil de 1 \%), d'une valeur de -0.38. Lorsqu'on divise la population en quartiles, les résultats sont présentés dans la table \ref{tab2}.
+
+\begin{tab}[15cm]{Indices de Theil moyens et corrélation avec le revenu individuel selon le quartile de revenu salarial total entre 1976 et 2001 \label{tab2}}
+{\begin{tabular}{|c|c|c|c|c|}
+\hline
+           &   P0-25 &  P25-50 &  P50-75 & P75-100 \\
+\hline
+Indice de Theil moyen &       1.25 &       0.44 &       0.20 &       0.13 \\
+\hline
+Corrélation avec le revenu total & -0.77 (***) & -0.16 (***) & -0.23 (***) & 0.11 (***) \\
+\hline
+\end{tabular}}
+{\textsc{Source:}~\til~0.0. \textsc{Champ:} Echantillon de 8903 individus de l'Enquête Patrimoine, nés entre 1941 et 1960, dont le conjoint ou concubin éventuel est également né entre 1941 et 1960, et non-retraités.
+}
+\end{tab}
+
+Ces résultats concernent les revenus calculés au niveau individuel. Si l'on considère les indices de Theil moyens concernant les revenus individuels mais également au niveau du ménage, en prenant ou non en compte les enfants, et ce par décile de revenus sur le cycle de vie, on obtient le graphique \ref{theil_intra_ep}.
+
+\begin{fig}[15cm]{Indices de Theil moyens selon le décile de revenu salarial total, au niveau individuel et du ménage -- prenant en compte ou non les enfants à charges -- entre 1976 et 2001 \label{theil_intra_ep}}
+{\graphique[1]{theil_intra_ep2.jpg}}
+{\textsc{Source:}~\til~0.0. \textsc{Champ:} Echantillon de 8903 individus de l'Enquête Patrimoine, nés entre 1941 et 1960, dont le conjoint ou concubin éventuel est également né entre 1941 et 1960, et non-retraités.}
+\end{fig}
+
+
+De même que chez  Björklund et Palme (1997), la relation entre instabilité des revenus et revenus totaux sur le cycle de vie n'est donc pas linéaire. Elle est fortement décroissante dans le bas de la distribution de revenus, puis s'affaiblit voire devient positive dans le haut de la distribution comme pourraient le suggérer les corrélations par quartile. Il serait intéressant de savoir à quel niveau du haut de la distribution s'effectue réellement cette hausse de l'instabilité des revenus, mais le nombre d'observations appariées dont nous disposons ne permet pas d'aller dans plus de détail.
+
+L'échantillon initial de carrières salariales EIC-DADS, au contraire, permet d'examiner la distribution à un niveau plus fin, et ce par année de naissance dans le fichier EIC. Les indices de Theil moyens selon la position dans la distribution sont donnés sur le graphique \ref{Theil_intra}.
+
+\begin{fig}[15cm]{Indices de Theil moyens selon le décile de revenu salarial total au niveau individuel entre 1976 et 2001 \label{Theil_intra}}
+{\graphique[1]{Theil_intra2.jpg}}
+{\textsc{Source:}~\til~0.0. \textsc{Champ:} Echantillon de 93198 trajectoires salariales d'individus nés entre 1942 et 1958 et apparaissant au moins une fois dans le champ EIC-DADS entre 1976 et 2001. }
+\end{fig}
+
+La hausse assez prononcée de l'instabilité des revenus dans l'extrémité haute de la distribution pourrait être due en particulier à la prise en compte des bonus et primes dans les salaires, ceux-ci étant plus volatils que les salaires de base et pouvant atteindre des montants très élevés pour les salariés les mieux rémunérés.
