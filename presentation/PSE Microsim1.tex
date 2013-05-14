@@ -1,0 +1,774 @@
+\documentclass[xcolor=table,ignorenonframetext,12pt]{beamer}
+%\documentclass[xcolor=table,handout,12pt]{beamer}
+\usepackage[frenchb]{babel}
+\usepackage[latin1]{inputenc}
+\usepackage{amsmath,amssymb}
+\usepackage{graphicx}
+\usepackage{pgfarrows,pgfnodes}
+\usepackage{url}
+\usepackage{textcomp}
+\usepackage[vcentermath]{youngtab}
+\usepackage{epstopdf}
+\usepackage{hhline}
+\usepackage{xmpmulti}
+\usepackage{subfigure}
+\usepackage{tikz}
+
+\mode<article> {
+  \usepackage{fullpage}
+  \usepackage{pgf}
+  \usepackage{hyperref}
+}
+\newcommand{\til}{TaxIPP-Life}
+
+\mode<presentation>
+
+\usetheme[left]{Goettingen}
+%\setbeamertemplate{background canvas}{\includegraphics[width=\paperwidth]{ippheader.pdf}}
+\setbeamertemplate{background canvas}{\hspace{10.1cm}\includegraphics
+    [width=0.2\paperwidth]{logo_ipp.pdf}}
+\definecolor{ippdark}{RGB}{0,93,116}
+\definecolor{ipplight}{RGB}{0,142,156}
+\useinnertheme[shadow=true]{rounded}
+\setbeamertemplate{items}[circle]
+\setbeamercolor{title}{bg=ipplight, fg=black}
+\setbeamercolor{structure}{fg=ipplight}
+%\setbeamertemplate{sidebar canvas left}{} % pour supprimer le fond de couleur de la barre latérale	
+\setbeamertemplate{sidebar canvas left}[vertical shading][top=structure.fg!20,bottom=structure.fg!15]
+\setbeamertemplate{caption}[numbered]
+\setlength{\leftmargini}{12pt}
+\setbeamerfont{framesubtitle}{size=\large}
+
+%\usepackage[latin1]{inputenc}
+%\usepackage[english]{babel}
+
+\newenvironment{checklist}[1]{\begin{list}{$\surd$}{}#1}{\end{list}}%
+\newcommand{\graphique}[2][1]{\begin{minipage}{\linewidth}\begin{center}\includegraphics[width=#1\linewidth,clip]{#2}\end{center}\end{minipage}}%
+\newcommand{\os}[2]{\onslide+<#1->{#2}}%
+
+\newcommand{\m}[2]{\multicolumn{#1}{c}{#2}}%
+\newcommand{\ml}[2]{\multicolumn{#1}{l}{#2}}%
+\newcommand{\tth}{\textsuperscript{th}}%
+\newcommand{\nde}{\textsuperscript{nde}}
+\newcommand{\hligne}{\begin{tikzpicture}[remember picture,overlay]\node[shift={(-10.5 cm,-1.2cm)}]at(current page.north east){\begin{tikzpicture}{\draw[line width=0.2mm,color=ipplight,overlay](0,0)--(8,0);}\end{tikzpicture}};\end{tikzpicture}\vspace{-0.8cm}}
+\newcommand{\hlignee}{\begin{tikzpicture}[remember picture,overlay]\node[shift={(-10.5 cm,-1.2cm)}]at(current page.north east){\begin{tikzpicture}{\draw[line width=0.2mm,color=ipplight,overlay](0,0)--(8,0);}\end{tikzpicture}};\end{tikzpicture}}
+
+% MTABLE: macro for tables %
+\newenvironment{mfigure}[4][1]{\def\TMP{#3}\newdimen\TMPsize\settowidth{\TMPsize}{\TMP}
+\begin{figure}\caption{#2}\begin{center}\begin{tiny}
+\begin{minipage}{#1\textwidth}\resizebox{\textwidth}{!}{#3}\end{minipage}
+\if!#4!\empty \else \\
+\resizebox{#1\textwidth}{!}{\begin{minipage}{\TMPsize}\begin{tiny}\smallskip\par
+#4 \end{tiny}\end{minipage}} \fi}
+{\end{tiny}\end{center}\end{figure}}
+
+\makeatletter
+\def\TAXIPP{TAX\kern-.05em\lower-.19ex\hbox{${\color{BlueGreen} \scalebox{1.4}{\underarc[1]{\overarc[1]{\textcolor{black}{\scalebox{0.7}{ipp}}}}}}\hspace{0.5ex}$}\@}
+\makeatother
+
+\title{Simuler le cycle de vie\\ Le modèle \til}
+\author{Alexis Eidelman}
+\institute{\emph{Institut des politiques publiques}}
+\subject{PSE - microsimulation}
+
+\date{Expériences et perspectives de la micro-simulation \\Montreuil -- 23 mai 2013}
+
+\begin{document}
+
+\frame{\maketitle}
+
+
+\section{Introduction}
+
+\begin{frame}
+  \hligne
+  \frametitle{Introduction}
+  \framesubtitle{\vspace{0.3cm} Pourquoi faire des simulations sur le cycle de vie ?}
+  \begin{itemize}
+    \item  mesure d'un \og meilleur \fg \ niveau de vie
+        \begin{itemize}
+          \item Variabilité des revenus
+          \item Équité dans le traitement des individus vis-à-vis de leur âge. 
+          \item Prise en compte du patrimoine
+        \end{itemize} \pause
+    \item Possibilité d'arbitrer entre part assurantielle et part redistributive des transferts \pause
+    \item Capacité de prédiction \pause
+    \item ...et bien d'autres \pause
+  \end{itemize}
+\end{frame}
+
+\begin{frame}
+  \hligne
+  \frametitle{Introduction}
+  \framesubtitle{\vspace{0.3cm}Organisation}\pause
+  \begin{itemize}
+    \item \textbf{Language}
+    \begin{itemize}
+    \item Traitement initial des données en R
+    \item Utilisation principale de Python
+    \end{itemize} 
+     \item \textbf{Pourquoi Python} ?\pause
+    \begin{itemize}
+    	\item La microsimulation n'est pas essentiellement statistique, pourquoi se limiter à un langage de stat ?
+    	\item Langage clair. Possibilité d'avoir plusieurs niveaux de lecture, très utile pour la microsimulation 
+   		\item Gratuité
+		\item Performances très intéressantes (important pour \til  voir plus loin)	
+    \end{itemize} 
+	Un choix que d'autres ont fait avant moi (voir plus loin)
+ )
+  \end{itemize}
+\end{frame}
+
+\begin{frame}
+  \hligne
+  \frametitle{Introduction}
+  \framesubtitle{\vspace{0.3cm}Organisation}\pause
+  \begin{itemize}
+    \item \textbf{Language}
+    \begin{itemize}
+    \item Traitement initial des données en R
+    \item Utilisation principale de Python
+    \end{itemize} 
+     \item \textbf{Pourquoi Python} ?\pause
+    \begin{itemize}
+    	\item La microsimulation n'est pas essentiellement statistique, pourquoi se limiter à un langage de stat ?
+    	\item Langage clair. Possibilité d'avoir plusieurs niveaux de lecture, très utile pour la microsimulation 
+   		\item Gratuité
+		\item Performances très intéressante	
+    \end{itemize} 
+	Un choix que d'autres ont fait avant moi (voir plus loin)
+
+  \end{itemize}
+\end{frame}
+
+
+
+
+\begin{frame}
+  \hligne
+  \frametitle{Introduction}
+  \framesubtitle{\vspace{0.3cm}Outline}
+  \begin{itemize}
+    \item[I.] Data setup
+    \item[II.] Microsimulation model
+    \item[III.] Measuring redistribution
+    \item[IV.] Ongoing and future developments
+  \end{itemize}
+\end{frame}
+
+
+\section{I. Data}
+
+\begin{frame}
+  \hligne
+  \frametitle{I. Data}
+  \framesubtitle{\vspace{0.3cm}}
+  \begin{enumerate}
+    \item Sources
+    \item Matching procedures
+    \item Imputing top incomes
+    \item Matching-up on aggregate data
+  \end{enumerate}
+\end{frame}
+
+\subsection{Sources}
+
+\begin{frame}
+  \hligne
+  \frametitle{I. Data}
+  \framesubtitle{\vspace{0.3cm}Sources}\pause
+  \begin{itemize}
+    \item \textbf{Micro-data}
+    \begin{itemize}
+      \item Household survey \textit{Revenus fiscaux} (Labour force survey matched to tax and benefit data)
+      \item Household survey \textit{Budget des familles}
+      \item Household survey \textit{Patrimoine}
+      \item Household survey \textit{Logement}
+      \item Administrative tax data on top incomes (Top incomes world database, A. Atkinson and T. Piketty, 2007)
+    \end{itemize}\pause
+    \item \textbf{Aggregate data}
+    \begin{itemize}
+    \item Demographics
+    \item National accounts
+    \item Detailed tax revenues
+    \item Benefits administrative data
+    \end{itemize}
+  \end{itemize}
+\end{frame}
+
+\begin{frame}
+ \hligne
+  \frametitle{I. Data}
+  \framesubtitle{\vspace{0.3cm}Example: tax revenues}\pause
+\end{frame}
+
+
+\subsection{Matching}
+
+\begin{frame}
+  \hligne
+  \frametitle{I. Data}
+  \framesubtitle{\vspace{0.3cm}Matching data sources}\pause
+  \begin{itemize}
+    \item \textbf{Principle}
+    \begin{itemize}
+      \item Literature on data fusion
+      \item Select common variables (age, sex, household composition, income, types of income)
+      \item Create a score and minimize distance
+    \end{itemize}\pause
+    \item \textbf{Practice}
+    \begin{itemize}
+    \item Main source is \textit{Revenus fiscaux 2006}
+    \item Matched with housing data from \textit{Logement 2006}
+    \item Matched with wealth data from \textit{Patrimoine 2005}
+    \item Matched with consumption data from \textit{Budget des familles 2006}
+    \end{itemize}
+  \end{itemize}
+\end{frame}
+
+\subsection{Top incomes}
+
+\begin{frame}
+  \hligne
+  \frametitle{I. Data}
+  \framesubtitle{\vspace{0.3cm}Imputing top incomes}\pause
+  \begin{itemize}
+    \item \textbf{Limitation of survey sources}
+    \begin{itemize}
+      \item Top of the distribution not well represented
+      \item Too few observations, under-reporting
+      \item Generally explains the under estimation of aggregate values
+    \end{itemize}\pause
+    \item \textbf{Solution}
+    \begin{itemize}
+    \item Using tax data from administrative sources
+    \item Estimation of top income distribution (Piketty and Saez, 2001; Atkinson and Piketty, 2010)
+    \item Impute top incomes based on these distributions
+    \end{itemize}
+  \end{itemize}
+\end{frame}
+
+\subsection{Aggregate data}
+
+\begin{frame}
+  \hligne
+  \frametitle{I. Data}
+  \framesubtitle{\vspace{0.3cm}Weighting-up to aggregate data}\pause
+  \begin{itemize}
+  \item \textbf{Principle}
+    \begin{itemize}
+      \item Systematic comparison between aggregates from micro data and macro data
+      \item Run the model to get estimates of tax revenues by type of revenues
+      \item Re-base variables on macro-data
+    \end{itemize} \pause
+  \item \textbf{Discrepancies}
+    \begin{itemize}
+    \item Earnings:
+    \begin{itemize}
+      \item Good fit for private sector
+      \item No identification of bonuses in public sector
+      \item 10\% lower estimate than NA (black market, fringe benefits)
+    \end{itemize}
+    \item Other income: much lower estimate of dividends and other capital income estimates
+    \end{itemize}
+  \end{itemize}
+\end{frame}
+
+\begin{frame}
+  \hligne
+  \frametitle{I. Data}
+  \framesubtitle{\vspace{0.3cm}Weighting-up to aggregate data}\pause
+\footnotesize
+\begin{table}
+\caption{Ratio of simulated gross earnings to aggregate estimates from CSG tax base and national accounts (NA)}
+\begin{tabular}{|c|cccc|}
+\hline
+      & \multicolumn{4}{c|}{\textbf{Gross earnings (simulated) /}}   \\
+Year  & \multicolumn{2}{c}{CSG tax base} & \multicolumn{2}{c|}{NA tax base}  \\
+      & private & public  & private & public   \\
+\hline
+ 2004 &  99,6\%	&  98,9\% &	91,9\% & 89,9\% \\
+ 2005 &  99,4\%	&  99,2\% &	90,9\% & 90,9\% \\
+ 2006 &  99,4\%	& 101,4\% &	90,8\% & 92,4\% \\
+ 2007 &  99,5\%	& 103,0\% &	90,5\% & 93,6\% \\
+ 2008 &  98,5\%	& 105,7\% &	91,0\% & 95,5\% \\
+ 2009 &  97,1\%	& 102,6\% &	91,8\% & 93,0\% \\
+ 2010 & 100,7\%	& 104,1\% &	91,8\% & 93,0\% \\
+\hline
+\end{tabular}
+\end{table}
+\end{frame}
+
+\section{II. Model}
+
+\begin{frame}
+  \hligne
+  \frametitle{II. Model}
+  \framesubtitle{\vspace{0.3cm}}
+  \begin{enumerate}
+    \item Simulating legislation
+    \item Incidence assumptions
+    \item Simulating reforms
+  \end{enumerate}
+\end{frame}
+
+\subsection{Legislation}
+
+\begin{frame}
+  \hligne
+  \frametitle{II. Model}
+  \framesubtitle{\vspace{0.3cm}Legislation}\pause
+  \begin{itemize}
+    \item \textbf{Gathering information}
+    \begin{itemize}
+      \item Complex set of parameters
+      \item Not easy to find for past years
+    \end{itemize} \pause
+    \item \textbf{The components}
+    \begin{itemize}
+      \item Social security contributions
+      \item Income tax
+      \item Local taxes
+      \item Transfers
+      \item Wealth and transfer taxation
+      \item Corporate taxation
+      \item Indirect taxation
+    \end{itemize}
+  \end{itemize}
+\end{frame}
+
+\begin{frame}
+ \hligne
+  \frametitle{II. Model}
+  \framesubtitle{\vspace{0.3cm}Example of tax parameters}\pause
+\end{frame}
+
+\begin{frame}
+  \hligne
+  \frametitle{II. Model}
+  \framesubtitle{\vspace{0.3cm}Legislation}\pause
+  \begin{itemize}
+    \item \textbf{Model}
+    \begin{itemize}
+    \item Set-up tax/transfer functions depending on input variables $x$
+    $$ T = f(x)$$
+    \item $f(x)$ is complex (particularly in France)
+    \item e.g. 35 different SSC
+    \end{itemize} \pause
+    \item \textbf{Simplifications}
+    \begin{itemize}
+    \item Simplify the actual tax code to allow simulation
+    \item e.g. SSC depend on:
+    \begin{itemize}
+      \item postcode of employer (transport tax)
+      \item whether in Alsace-Lorraine or not
+      \item prevalence of work accident by occupation
+      \item size of firm
+      \item share of earnings from bonus (in the public sector)
+    \end{itemize}
+    \end{itemize}
+  \end{itemize}
+\end{frame}
+
+\begin{frame}
+  \hligne
+  \frametitle{II. Model}
+  \framesubtitle{\vspace{0.3cm}Legislation}\pause
+  \begin{table}[ht!]
+\footnotesize
+\caption{Different measures of earnings \label{micro}}
+\vspace{0.2cm}
+\begin{tabular}{|l|c|c|c|c|}
+\hline
+Included & Cost of & Gross & Taxable & Net \\
+         & labour &        & income &  \\
+\hline
+Payroll tax (TS) & $\checkmark$ &\multicolumn{3}{c|}{\ } \\
+\cline{1-2}
+Employer SSC & $\checkmark$ &\multicolumn{3}{c|}{\ } \\
+\cline{1-3}
+Employee SSC & $\checkmark$ & $\checkmark$ &\multicolumn{2}{c|}{\ } \\
+\cline{1-3}
+CSG deductible & $\checkmark$ & $\checkmark$ &\multicolumn{2}{c|}{\ } \\
+\cline{1-4}
+Non ded. CSG and CRDS & $\checkmark$ & $\checkmark$ & $\checkmark$ & \\
+\cline{1-5}
+Net earnings after tax & $\checkmark$ & $\checkmark$ & $\checkmark$ & $\checkmark$ \\
+\hline
+\end{tabular}
+\end{table}
+\end{frame}
+
+
+\subsection{Incidence}
+
+\begin{frame}
+  \hligne
+  \frametitle{II. Model}
+  \framesubtitle{\vspace{0.3cm}Reminder about incidence}
+\vspace{1cm}
+``\emph{One of the most valuable insights that economic analysis has provided in public finance is that the person who effectively \textbf{pays} a tax is not necessarily the person upon whom the tax is levied.\\ To determine the true \textbf{incidence} of
+a tax or a public project is one of the most difficult, and most important, tasks of
+public economics.}'' \\ \vspace{1cm} \hspace{3cm} A. Atkinson and J. Stiglitz
+(1980)
+\end{frame}
+
+\begin{frame}
+  \hligne
+  \frametitle{II. Model}
+  \framesubtitle{\vspace{0.3cm}Statutory incidence}\pause
+\begin{itemize}
+\item \textbf{Who pays taxes?}\\
+The naive answer is that it is obvious, i.e. the person who ``pays the tax''...\pause
+\begin{itemize}
+  \item e.g. employees pay employees' SSC
+  \item e.g. employers pay employers' SSC
+  \item e.g. corporations pay corporation tax
+\end{itemize} \pause
+\item \textbf{Statutory/formal incidence}\\
+It is the legal liability of a tax (what the law says). \pause
+\item \textbf{Legal liability/remittance responsibility}
+\begin{itemize}
+  \item e.g. employees' SSC are paid to the tax authorities by employers
+  \item e.g. income tax can also be withheld by employers
+\end{itemize}
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+  \hligne
+  \frametitle{II. Model}
+  \framesubtitle{\vspace{0.3cm}Economic incidence}\pause
+\begin{itemize}
+\item \textbf{Economic/effective incidence}
+    \begin{itemize}
+    \item It describes who actually bears the tax burden, i.e. who is worse off as a result of the tax. \pause
+    \end{itemize}
+\item \textbf{Who pays taxes in reality?}
+  \begin{itemize}
+  \item Taxes change prices of goods and rewards to factors
+  \item e.g. an increase in employers' SSC \pause
+    \begin{itemize}
+    \item If net wages decrease \\ $\Rightarrow$ employees pay the tax \pause
+    \item If net wages stay the same and profits go down \\$\Rightarrow$ employers pay the tax \pause
+    \item If net wages stay the same and prices go up \\$\Rightarrow$ consumers pay the tax
+    \end{itemize}
+  \end{itemize}
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+  \hligne
+  \frametitle{II. Model}
+  \framesubtitle{\vspace{0.3cm}Economic incidence}\pause
+\begin{itemize}
+\item \textbf{People pay taxes}
+    \begin{itemize}
+    \item Corporations do not pay taxes! \pause
+    \item Corporation tax can affect three groups of \emph{individuals}:
+    \begin{enumerate}
+      \item Those who own the company (through lower profits)
+      \item Those who work for the company (through lower wage)
+      \item Those who consume the products of the company (through higher prices)
+    \end{enumerate}
+    \end{itemize}
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+  \hligne
+  \frametitle{II. Model}
+  \framesubtitle{\vspace{0.3cm}Incidence assumptions in TAXIPP}\pause
+  \begin{itemize}
+    \item \textbf{Employer social security contributions (SSC)}
+    \begin{itemize}
+      \item Debate on whether incident on consumers (higher prices) or employees (lower wages)
+      \item Obvious long vs short term incidence
+      \item TAXIPP: incidence on employees
+      \item It has consequences for analysing policy of reduction of SSC on low earners.
+    \end{itemize} \pause
+    \item \textbf{Indirect taxes}
+    \begin{itemize}
+    \item Usual analysis lead to most indirect taxes are paid by consumers
+    \item Detailed analysis (Carbonnier 2007, 2009) suggest part is paid by factors
+    \item TAXIPP: 70\% on prices, 30\% on factors (labour and capital)
+    \end{itemize}
+  \end{itemize}
+\end{frame}
+
+\begin{frame}
+  \hligne
+  \frametitle{II. Model}
+  \framesubtitle{\vspace{0.3cm}Incidence assumptions in TAXIPP}
+  \begin{itemize}
+    \item \textbf{Corporate income tax}
+    \begin{itemize}
+      \item Standard view: CT paid by shareholders
+      \item Modern finance view: likely to be paid by capital owners at large
+      \item Some studies suggest that CT is paid mostly by consumers
+      \item TAXIPP: incidence on capital owners except regulated interest accounts
+      \item Huge implications in terms of redistribution analysis!
+    \end{itemize} \pause
+    \item \textbf{Undistributed corporate profits}
+    \begin{itemize}
+      \item Undistributed profits are part of national income
+      \item CT is imposed on them
+      \item Problem: who receive this income ?
+      \item Shareholders are the likely recipients
+    \end{itemize}
+  \end{itemize}
+\end{frame}
+
+\begin{frame}
+  \hligne
+  \frametitle{II. Model}
+  \framesubtitle{\vspace{0.3cm}Incidence assumptions in TAXIPP}
+  \begin{itemize}
+    \item \textbf{Payroll tax ``taxe sur les salaires'' (TS)}
+    \begin{itemize}
+      \item TS is a progressive payroll tax on earnings for firms in non VAT sectors (finance, insurance, education, etc.)
+      \item Incidence is not obvious; no empirical studies
+      \item Two options: incidence on consumers or on employees
+      \item TAXIPP: incidence on employees
+      \item But likely to be wrong
+    \end{itemize}
+  \end{itemize}
+\end{frame}
+
+
+\subsection{Reforms}
+
+\begin{frame}
+  \hligne
+  \frametitle{II. Model}
+  \framesubtitle{\vspace{0.3cm}Simulating reforms}\pause
+  \begin{itemize}
+    \item \textbf{Building a baseline}
+    \begin{itemize}
+      \item Assumption about growth rates
+      \item Large implications in terms of tax revenues
+    \end{itemize}\pause
+    \item \textbf{No behavioural case}
+    \begin{itemize}
+      \item Apply the change in tax system
+      \item Make comparative statistics
+    \end{itemize}\pause
+    \item \textbf{With behavioural response}
+    \begin{itemize}
+      \item Imbed an elasticity of the tax base to a change in tax rate
+      \item Currently only done ad hoc for labour supply
+    \end{itemize}
+  \end{itemize}
+\end{frame}
+
+\begin{frame}
+  \hligne
+  \frametitle{II. Model}
+  \framesubtitle{\vspace{0.3cm}Issues}\pause
+  \begin{itemize}
+    \item \textbf{Interactions between tax bases}
+    \begin{itemize}
+      \item Tax bases of one tax depends on other changes
+      \item e.g. increase in SSC $\Rightarrow$ lower taxable income \\
+      $\Rightarrow$ lower income tax
+    \end{itemize} \pause
+    \item \textbf{Inconsistency}
+    \begin{itemize}
+      \item No behavioural response is inconsistent
+      \item e.g. increase in income tax $\Rightarrow$ lower consumption or/and lower savings \\
+      $\Rightarrow$ lower VAT or/and lower capital taxation
+    \end{itemize}
+  \end{itemize}
+\end{frame}
+
+\section{III. Measuring redistribution}
+
+\begin{frame}
+  \hligne
+  \frametitle{III. Measuring redistribution}
+  \framesubtitle{\vspace{0.3cm}}
+  \begin{enumerate}
+    \item Measuring contributive capacity
+    \item Household vs individual
+    \item Life cycle issues
+    \item Representation issues
+  \end{enumerate}
+\end{frame}
+
+\subsection{Contributive capacity}
+
+\begin{frame}
+  \hligne
+  \frametitle{III. Measuring redistribution}
+  \framesubtitle{\vspace{0.3cm}Measuring contributive capacity}\pause
+  \begin{itemize}
+    \item \textbf{Types of income}
+    \begin{itemize}
+      \item Net incomes are not a good measure
+      \item Economic income: income before all taxes
+      \item Need to add all taxes to net income including imputed indirect taxes
+    \end{itemize}\pause
+        \item \textbf{Primary vs secondary income}
+    \begin{itemize}
+      \item Primary income: income before transfer and taxes
+      \item Secondary income: income before all taxes but including transfer income (pensions, unemployment) but net of SSC funding these transfers
+      \item Primary income $\simeq$ national income
+    \end{itemize}
+  \end{itemize}
+\end{frame}
+
+\begin{frame}
+  \hligne
+  \frametitle{III. Measuring redistribution}
+  \framesubtitle{\vspace{0.3cm}Measuring contributive capacity}\pause
+  \begin{itemize}
+    \item \textbf{Income vs consumption}
+    \begin{itemize}
+      \item Income might not be a good measure of permanent income
+      \item Temporary variations in income are frequent\\
+      e.g. unemployment: primary income drops to zero
+      \item Consumption might be a better measure of permanent income
+      \item Except that consumption does not capture systematic difference in savings over the life-cycle
+    \end{itemize}\pause
+    \item \textbf{Income vs wealth}
+    \begin{itemize}
+    \item Income and wealth are not completely correlated
+    \end{itemize}\pause
+    \item \textbf{Philosophical backgrounds}
+    \begin{itemize}
+    \item Social welfare functions depend on utilities
+    \item Is utility derived from income, consumption, wealth...
+    \end{itemize}
+  \end{itemize}
+\end{frame}
+
+\subsection{Household vs individual}
+
+\begin{frame}
+  \hligne
+  \frametitle{III. Measuring redistribution}
+  \framesubtitle{\vspace{0.3cm}Household vs individual}\pause
+  \begin{itemize}
+    \item \textbf{What unit of reference?}
+    \begin{itemize}
+      \item Individuals: income
+      \item Household: income is totally pooled among household members
+      \item Partly a philosophical choice
+    \end{itemize}\pause
+        \item \textbf{How to account for household size?}
+    \begin{itemize}
+      \item Assessment of needs represented by each member
+      \item OECD equivalence scale
+    \end{itemize}
+  \end{itemize}
+\end{frame}
+
+\subsection{Life cycle issues}
+
+\begin{frame}
+  \hligne
+  \frametitle{III. Measuring redistribution}
+  \framesubtitle{\vspace{0.3cm}Life cycle issues}\pause
+  \begin{itemize}
+    \item \textbf{Cross-section is misleading}
+    \begin{itemize}
+      \item Data source essentially cross-section
+      \item Redistribution analysis is misleading
+    \end{itemize}\pause
+    \item \textbf{Life-cycle issues}
+    \begin{itemize}
+    \item Redistribution through contributory pensions/unemployment
+    \item Age earnings profile explains part of the earnings inequality
+    \end{itemize}\pause
+    \item \textbf{Income variability}
+    \begin{itemize}
+    \item Income shocks from one year to the other
+    \item Bottom of the distribution: the ``poor'' are the unemployed or people at the minimum wage?
+    \end{itemize}
+  \end{itemize}
+\end{frame}
+
+\subsection{Representation issues}
+
+\begin{frame}
+  \hligne
+  \frametitle{III. Measuring redistribution}
+  \framesubtitle{\vspace{0.3cm}Representation issues}\pause
+  \begin{itemize}
+    \item \textbf{Choice of redistributive capacity}
+    \begin{itemize}
+      \item Current income
+      \item Measure of permanent income
+      \item Consumption
+    \end{itemize}\pause
+    \item \textbf{Choice of unit of reference}
+    \begin{itemize}
+    \item Individuals, households, consumption unit
+    \end{itemize}\pause
+    \item \textbf{Scale of the distribution}
+    \begin{itemize}
+    \item Quintile, decile, percentile
+    \item Absolute values
+    \end{itemize}
+  \end{itemize}
+\end{frame}
+
+
+\begin{frame}
+  \hligne
+  \frametitle{III. Measuring redistribution}
+  \framesubtitle{\vspace{0.3cm}Representation issues}
+\end{frame}
+
+\begin{frame}
+  \hligne
+  \frametitle{III. Measuring redistribution}
+  \framesubtitle{\vspace{0.3cm}Representation issues}
+\end{frame}
+
+\begin{frame}
+  \hligne
+  \frametitle{III. Measuring redistribution}
+  \framesubtitle{\vspace{0.3cm}Representation issues}
+\frametitle{Taux de prélèvements obligatoires}
+
+\end{frame}
+
+\section{IV. Future developments}
+
+\begin{frame}
+  \hligne
+  \frametitle{IV. Future developments}
+  \begin{itemize}
+      \item \textbf{Part of larger set of models in development}
+      \begin{itemize}
+        \item PENSIPP: dynamic microsimulation model of the French pension system
+        \item TAXIPP-LIFE: over the life-cycle
+      \end{itemize}
+    \item \textbf{Development of data sources}
+    \begin{itemize}
+      \item Setting-up data from different years
+      \item Developing matching procedures for other sources
+    \end{itemize} \pause
+    \item \textbf{Simulating past tax systems}
+    \begin{itemize}
+      \item Going back to the 1970s...
+    \end{itemize} \pause
+     \item \textbf{Developing the behavioural module}
+    \begin{itemize}
+      \item More systematic module of behavioural responses
+      \item Including substitution responses and real responses
+    \end{itemize} \pause
+      \item \textbf{Developing other modules}
+    \begin{itemize}
+      \item Firm side
+      \item Public spending
+      \item TAXIPP-LIFE
+    \end{itemize} \pause
+     \item Translating into R or Python?
+  \end{itemize}
+\end{frame}
+
+\frame{\maketitle}
+
+\end{document}
