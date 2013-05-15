@@ -157,50 +157,65 @@
 \end{frame}
 
 
-\section{I. Data}
+\section{I. Difficultés spécifiques à la microsimulation dynamique}
 
 \begin{frame}
   \hligne
-  \frametitle{I. Data}
+  \frametitle{I. Difficultés spécifiques à la microsimulation dynamique}
   \framesubtitle{\vspace{0.3cm}}
   \begin{enumerate}
-    \item Sources
-    \item Matching procedures
-    \item Imputing top incomes
-    \item Matching-up on aggregate data
+    \item[I.] Base de données
+    \item[II.] Formation des unions
+    \item[III.] Pondérations
+    \item[IV.] Individualisation des transferts
+    \item[V.] Le choix du pas temporel
   \end{enumerate}
 \end{frame}
 
-\subsection{Sources}
-
+\subsection{Base de données}
 \begin{frame}
   \hligne
-  \frametitle{I. Data}
-  \framesubtitle{\vspace{0.3cm}Sources}\pause
+  \frametitle{I. Base de données}
   \begin{itemize}
-    \item \textbf{Micro-data}
+    \item \textbf{Le problème : } Connaitre le passé précisément et avoir autant d'éléments que possible sur le futur.
+    \item Comment \til \ résout ça : 
     \begin{itemize}
-      \item Household survey \textit{Revenus fiscaux} (Labour force survey matched to tax and benefit data)
-      \item Household survey \textit{Budget des familles}
-      \item Household survey \textit{Patrimoine}
-      \item Household survey \textit{Logement}
-      \item Administrative tax data on top incomes (Top incomes world database, A. Atkinson and T. Piketty, 2007)
+      \item Utilisation de l'enquête patrimoine
+      \item Enrichissement par un apariemment avec l'EIR-EIC
+      \item Fermeture de l'échantillon
+      \item Utilisation de différentes études pour les équations de simulations
     \end{itemize}\pause
-    \item \textbf{Aggregate data}
+    \item Ce qu'on pourrait faire de mieux. 
     \begin{itemize}
-    \item Demographics
-    \item National accounts
-    \item Detailed tax revenues
-    \item Benefits administrative data
+    \item Utiliser d'autres enquête comme SIP
+    \item Améliorer les simulations (avec de la validation)
     \end{itemize}
   \end{itemize}
 \end{frame}
 
+\subsection{Formation des unions}
 \begin{frame}
- \hligne
-  \frametitle{I. Data}
-  \framesubtitle{\vspace{0.3cm}Example: tax revenues}\pause
+  \hligne
+  \frametitle{II. Formation des unions}
+  \begin{itemize}
+    \item \textbf{Le problème : } unir des individus en respectant les caractéristiques jointes.
+    En particulier : problème des \og originaux \fg .
+    \item Comment \til \ résout ça : 
+    \begin{itemize}
+      \item distance entre conjoints 
+      \item Algorithme de minimisation
+      \item Fermeture de l'échantillon
+      \item Utilisation de différentes études pour les équations de simulations
+    \end{itemize}\pause
+    \item Ce qu'on pourrait faire de mieux. 
+    \begin{itemize}
+    \item Améliorer l'algorithme de minimisation (méthode hongroise)
+    \item Faire un tirage aléatoire de conjoints potentiel et sélectionner parmi eux.
+    \end{itemize}
+  \end{itemize}
 \end{frame}
+
+
 
 
 \subsection{Matching}
