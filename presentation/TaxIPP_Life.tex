@@ -25,8 +25,8 @@
 
 \usetheme[left]{Goettingen}
 %\setbeamertemplate{background canvas}{\includegraphics[width=\paperwidth]{ippheader.pdf}}
-\setbeamertemplate{background canvas}{\hspace{10.1cm}\includegraphics
-    [width=0.2\paperwidth]{logo_ipp.pdf}}
+%\setbeamertemplate{background canvas}{\hspace{10.1cm}\includegraphics
+%    [width=0.2\paperwidth]{logo_ipp.pdf}}
 \definecolor{ippdark}{RGB}{0,93,116}
 \definecolor{ipplight}{RGB}{0,142,156}
 \useinnertheme[shadow=true]{rounded}
@@ -97,65 +97,6 @@
   \end{itemize}
 \end{frame}
 
-\begin{frame}
-  \hligne
-  \frametitle{Introduction}
-  \framesubtitle{\vspace{0.3cm}Organisation}\pause
-  \begin{itemize}
-    \item \textbf{Language}
-    \begin{itemize}
-    \item Traitement initial des données en R
-    \item Utilisation principale de Python
-    \end{itemize} 
-     \item \textbf{Pourquoi Python} ?\pause
-    \begin{itemize}
-    	\item La microsimulation n'est pas essentiellement statistique, pourquoi se limiter à un langage de stat ?
-    	\item Langage clair. Possibilité d'avoir plusieurs niveaux de lecture, très utile pour la microsimulation 
-   		\item Gratuité
-		\item Performances très intéressantes (important pour \til  voir plus loin)	
-    \end{itemize} 
-	Un choix que d'autres ont fait avant moi (voir plus loin)
- )
-  \end{itemize}
-\end{frame}
-
-\begin{frame}
-  \hligne
-  \frametitle{Introduction}
-  \framesubtitle{\vspace{0.3cm}Organisation}\pause
-  \begin{itemize}
-    \item \textbf{Language}
-    \begin{itemize}
-    \item Traitement initial des données en R
-    \item Utilisation principale de Python
-    \end{itemize} 
-     \item \textbf{Pourquoi Python} ?\pause
-    \begin{itemize}
-    	\item La microsimulation n'est pas essentiellement statistique, pourquoi se limiter à un langage de stat ?
-    	\item Langage clair. Possibilité d'avoir plusieurs niveaux de lecture, très utile pour la microsimulation 
-   		\item Gratuité
-		\item Performances très intéressante	
-    \end{itemize} 
-	Un choix que d'autres ont fait avant moi (voir plus loin)
-
-  \end{itemize}
-\end{frame}
-
-
-
-
-\begin{frame}
-  \hligne
-  \frametitle{Introduction}
-  \framesubtitle{\vspace{0.3cm}Outline}
-  \begin{itemize}
-    \item[I.] Data setup
-    \item[II.] Microsimulation model
-    \item[III.] Measuring redistribution
-    \item[IV.] Ongoing and future developments
-  \end{itemize}
-\end{frame}
-
 
 \section{I. Difficultés spécifiques à la microsimulation dynamique}
 
@@ -178,13 +119,13 @@
   \frametitle{I. Base de données}
   \begin{itemize}
     \item \textbf{Le problème : } Connaitre le passé précisément et avoir autant d'éléments que possible sur le futur.
-    \item Comment \til \ résout ça : 
+    \item\textbf{ La réponse de \til \ :}  \pause
     \begin{itemize}
       \item Utilisation de l'enquête patrimoine
-      \item Enrichissement par un apariemment avec l'EIR-EIC
+      \item Enrichissement par un appariement avec l'EIR-EIC
       \item Fermeture de l'échantillon
       \item Utilisation de différentes études pour les équations de simulations
-    \end{itemize}\pause
+    \end{itemize}
     \item Ce qu'on pourrait faire de mieux. 
     \begin{itemize}
     \item Utiliser d'autres enquête comme SIP
@@ -199,13 +140,10 @@
   \frametitle{II. Formation des unions}
   \begin{itemize}
     \item \textbf{Le problème : } unir des individus en respectant les caractéristiques jointes.
-    En particulier : problème des \og originaux \fg .
-    \item Comment \til \ résout ça : 
+    \item \item\textbf{ La réponse de \til \ :}  \pause
     \begin{itemize}
-      \item distance entre conjoints 
+      \item Distance entre conjoints (pas une préférence)
       \item Algorithme de minimisation
-      \item Fermeture de l'échantillon
-      \item Utilisation de différentes études pour les équations de simulations
     \end{itemize}\pause
     \item Ce qu'on pourrait faire de mieux. 
     \begin{itemize}
@@ -217,284 +155,205 @@
 
 
 
-
-\subsection{Matching}
-
+\subsection{Pondérations}
 \begin{frame}
   \hligne
-  \frametitle{I. Data}
-  \framesubtitle{\vspace{0.3cm}Matching data sources}\pause
+  \frametitle{III. Pondérations}
   \begin{itemize}
-    \item \textbf{Principle}
+    \item \textbf{Le problème : } En simulation dynamique, les liens entre individus changent. Comment relier deux individus de pondérations différentes ?
+    \item \item\textbf{ La réponse de \til \ :}  \pause
     \begin{itemize}
-      \item Literature on data fusion
-      \item Select common variables (age, sex, household composition, income, types of income)
-      \item Create a score and minimize distance
-    \end{itemize}\pause
-    \item \textbf{Practice}
+      \item Travail avec une pondération uniforme
+      \item Duplication des individus selon leur pondération 
+    \end{itemize}
+    \item Ce qu'on pourrait faire de mieux. 
     \begin{itemize}
-    \item Main source is \textit{Revenus fiscaux 2006}
-    \item Matched with housing data from \textit{Logement 2006}
-    \item Matched with wealth data from \textit{Patrimoine 2005}
-    \item Matched with consumption data from \textit{Budget des familles 2006}
+    \item La plus petite pondération de l'enquête patrimoine est 6 ! \\
+    $\rightarrow$ 11 millions d'individus
+    \item  200 comme pondération uniforme et non 6  \\
+    $\rightarrow$ 11 millions d'individus \\
+    \item Augmenter la taille de l'échantillon
     \end{itemize}
   \end{itemize}
 \end{frame}
 
-\subsection{Top incomes}
-
+\subsection{Individualisation des transferts}
 \begin{frame}
   \hligne
-  \frametitle{I. Data}
-  \framesubtitle{\vspace{0.3cm}Imputing top incomes}\pause
+  \frametitle{IV. Individualisation des transferts}
   \begin{itemize}
-    \item \textbf{Limitation of survey sources}
+    \item \textbf{Le problème : } L'unité d'étude ne peut plus être un ménage ou un foyer fiscal mais seulement un individu. Comment individualiser les transferts ?
+    \item \item\textbf{ La réponse de \til \ :}  \pause
     \begin{itemize}
-      \item Top of the distribution not well represented
-      \item Too few observations, under-reporting
-      \item Generally explains the under estimation of aggregate values
-    \end{itemize}\pause
-    \item \textbf{Solution}
+      \item Pour l'instant méthode ad-hoc :
+      \item L'impot sur le revenu est séparé entre déclarant et conjoint...
+      \item sauf l'avantage lié au quotient familial qui est réparti entre les personnes à charge.
+      \item Les prestations familiales sont réparties entre les enfants
+      \item Les autres prestations sont réparties entre les personnes du ménage.
+    \end{itemize}
+    \item Ce qu'on pourrait faire de mieux. 
     \begin{itemize}
-    \item Using tax data from administrative sources
-    \item Estimation of top income distribution (Piketty and Saez, 2001; Atkinson and Piketty, 2010)
-    \item Impute top incomes based on these distributions
+    \item Séparer l'IR au prorata des revenus mais...
+    \item ...la bonne solution c'est le recours à la valeur de Shapley.
     \end{itemize}
   \end{itemize}
 \end{frame}
 
-\subsection{Aggregate data}
-
+\subsection{Le pas temporel}
 \begin{frame}
   \hligne
-  \frametitle{I. Data}
-  \framesubtitle{\vspace{0.3cm}Weighting-up to aggregate data}\pause
+  \frametitle{V. Le choix du pas temporel}
   \begin{itemize}
-  \item \textbf{Principle}
+    \item \textbf{Le problème : } Un trade-off entre précision et temps de simulation.
+    \item \item\textbf{ La réponse de \til \ :}  \pause
     \begin{itemize}
-      \item Systematic comparison between aggregates from micro data and macro data
-      \item Run the model to get estimates of tax revenues by type of revenues
-      \item Re-base variables on macro-data
-    \end{itemize} \pause
-  \item \textbf{Discrepancies}
-    \begin{itemize}
-    \item Earnings:
-    \begin{itemize}
-      \item Good fit for private sector
-      \item No identification of bonuses in public sector
-      \item 10\% lower estimate than NA (black market, fringe benefits)
+      \item Pour l'instant : pas annuel
+      \item Possibilité de ne faire tourner certains éléments qu'à certaines périodes
+      \item Les prestations familiales sont réparties entre les enfants
+      \item Les autres prestations sont réparties entre les personnes du ménage.
     \end{itemize}
-    \item Other income: much lower estimate of dividends and other capital income estimates
+    \item Ce qu'on pourrait faire de mieux. 
+    \begin{itemize}
+    \item Pas mensuel
+    \item ...ou au moins trimestriel
+    \item automatiser les paramètres en fonction du pas.
+    \item Simuler des durées plutôt que des événements ? 
     \end{itemize}
   \end{itemize}
 \end{frame}
 
+\subsection{Alignement}
 \begin{frame}
   \hligne
-  \frametitle{I. Data}
-  \framesubtitle{\vspace{0.3cm}Weighting-up to aggregate data}\pause
-\footnotesize
-\begin{table}
-\caption{Ratio of simulated gross earnings to aggregate estimates from CSG tax base and national accounts (NA)}
-\begin{tabular}{|c|cccc|}
-\hline
-      & \multicolumn{4}{c|}{\textbf{Gross earnings (simulated) /}}   \\
-Year  & \multicolumn{2}{c}{CSG tax base} & \multicolumn{2}{c|}{NA tax base}  \\
-      & private & public  & private & public   \\
-\hline
- 2004 &  99,6\%	&  98,9\% &	91,9\% & 89,9\% \\
- 2005 &  99,4\%	&  99,2\% &	90,9\% & 90,9\% \\
- 2006 &  99,4\%	& 101,4\% &	90,8\% & 92,4\% \\
- 2007 &  99,5\%	& 103,0\% &	90,5\% & 93,6\% \\
- 2008 &  98,5\%	& 105,7\% &	91,0\% & 95,5\% \\
- 2009 &  97,1\%	& 102,6\% &	91,8\% & 93,0\% \\
- 2010 & 100,7\%	& 104,1\% &	91,8\% & 93,0\% \\
-\hline
-\end{tabular}
-\end{table}
+  \frametitle{VI. Alignement}
+  \begin{itemize}
+    \item \textbf{Le problème : } Lors du tirage d'une variable binaire (décès par exmeple), on peut avoir une grand variance du nombre de valeur et donc avoir le "bon" nombre d'occurrences uniquement en moyenne.  \\
+    Comment aligner les tirages.
+    \item \item\textbf{ La réponse de \til \ :}  \pause
+    \begin{itemize}
+      \item Utilisation d'une méthode implémentée dans Liam2 (voir Li et O'Donoghue 2012)
+    \end{itemize}
+    \item Ce qu'on pourrait faire de mieux. 
+    \begin{itemize}
+    \item Tester les différentes méthodes d'alignement.
+    \end{itemize}
+  \end{itemize}
 \end{frame}
 
-\section{II. Model}
+
+\section{II. Présentation du modèle}
 
 \begin{frame}
   \hligne
-  \frametitle{II. Model}
+  \frametitle{II. Présentation du modèle}
   \framesubtitle{\vspace{0.3cm}}
   \begin{enumerate}
-    \item Simulating legislation
-    \item Incidence assumptions
-    \item Simulating reforms
+    \item Le langage de programmation
+    \item Les entités et les liens.
+    \item Les étapes de la simulation
   \end{enumerate}
 \end{frame}
-
-\subsection{Legislation}
+%
+\subsection{Langage de programmation}
 
 \begin{frame}
   \hligne
-  \frametitle{II. Model}
-  \framesubtitle{\vspace{0.3cm}Legislation}\pause
+  \frametitle{I. Langage de programmation}
+  \framesubtitle{\vspace{0.3cm}Organisation}
   \begin{itemize}
-    \item \textbf{Gathering information}
+  \item 
     \begin{itemize}
-      \item Complex set of parameters
-      \item Not easy to find for past years
-    \end{itemize} \pause
-    \item \textbf{The components}
+    \item Traitement initial des données en R
+    \item Utilisation principale de Python
+    \item Interface en YAML
+    \end{itemize} 
+     \item \textbf{Pourquoi Python} ?\pause
     \begin{itemize}
-      \item Social security contributions
-      \item Income tax
-      \item Local taxes
-      \item Transfers
-      \item Wealth and transfer taxation
-      \item Corporate taxation
-      \item Indirect taxation
-    \end{itemize}
+    	\item Langage clair. 
+    	\item Possibilité d'avoir plusieurs niveaux de lecture.
+   		\item Gratuité
+		\item Performances très intéressantes	
+    \end{itemize} 
+	\item Un choix fait par Liam2 et OpenFisca.
+  \end{itemize}
+\end{frame}
+
+
+\begin{frame}
+  \hligne
+  \frametitle{I. Langage de programmation}
+  \framesubtitle{\vspace{0.3cm}Organisation}
+	Mettre une image de YAML. 
+	Un exemple de code. 
+\end{frame}
+
+
+\subsection{Les étapes de la simulation}
+
+\begin{frame}
+  \hligne
+  \frametitle{III. Les étapes de la simulation}
+  \framesubtitle{\vspace{0.3cm}Organisation}
+  La simulations
+  \begin{itemize}
+  	\item naissance
+  	\item éducation
+  	\item indépendance
+  	\item marché du travail
+  	\item consommation, épargne
+  	\item union
+  		\item suivi
+  	\item divorce
+  		\item devenir des enfants
+  	\item décès
+  		\item héritage
+  	\item encore beaucoup à faire dans chaque domaine.
+  	+ santé, mode de garde, choix d'éducation, consommation. Dépendera des demandes
+  \end{itemize}
+  La législation
+  \begin{itemize}
+  \item Le chômage est calculé directement au cours de la simulation
+  \item Pour les autres transferts, on utilise OpenFisca.
+  \end{itemize}	
+\end{frame}
+
+
+\section{Production actuelle et potentielle}
+
+\begin{frame}
+  \hligne
+  \frametitle{I. Langage de programmation}
+  \framesubtitle{\vspace{0.3cm}Organisation}
+  \begin{itemize}
+  \item Conditions de 2009 pour le marché du travail. 
+ 	N'est pas sans poser problème pour l'alignement (si on pense au naissance par exemple).
+  \item Ne simule pas encore les informations manquantes dans le passé.
+   
+   \item  une réforme. 
+   		\item impact
+   		\item Réaction à l'étape d'après ? 
+   		\item Modèle décisionnel.
+   		
+    \item Tourne en ... de temps dont ... pour la législation sur 30 000 individus
+    \item Tourne en ... de temps dont ... pour la législation sur 300 000 individus
   \end{itemize}
 \end{frame}
 
 \begin{frame}
- \hligne
-  \frametitle{II. Model}
-  \framesubtitle{\vspace{0.3cm}Example of tax parameters}\pause
-\end{frame}
-
-\begin{frame}
   \hligne
-  \frametitle{II. Model}
-  \framesubtitle{\vspace{0.3cm}Legislation}\pause
+  \frametitle{Quelques chiffres}
+  \framesubtitle{\vspace{0.3cm}Organisation}
   \begin{itemize}
-    \item \textbf{Model}
-    \begin{itemize}
-    \item Set-up tax/transfer functions depending on input variables $x$
-    $$ T = f(x)$$
-    \item $f(x)$ is complex (particularly in France)
-    \item e.g. 35 different SSC
-    \end{itemize} \pause
-    \item \textbf{Simplifications}
-    \begin{itemize}
-    \item Simplify the actual tax code to allow simulation
-    \item e.g. SSC depend on:
-    \begin{itemize}
-      \item postcode of employer (transport tax)
-      \item whether in Alsace-Lorraine or not
-      \item prevalence of work accident by occupation
-      \item size of firm
-      \item share of earnings from bonus (in the public sector)
-    \end{itemize}
-    \end{itemize}
+  \item Le revenu moyen par an par individu est : 
+  \item Le niveau de vie en moyenne sur la vie calculé par l'Insee est : 
+   
+   \item En regardant au niveau des enfants, on gagne tant...
+   \item En moyenne tant d'impot et tant de prestation
+   \item La retraite.
+   
   \end{itemize}
 \end{frame}
 
-\begin{frame}
-  \hligne
-  \frametitle{II. Model}
-  \framesubtitle{\vspace{0.3cm}Legislation}\pause
-  \begin{table}[ht!]
-\footnotesize
-\caption{Different measures of earnings \label{micro}}
-\vspace{0.2cm}
-\begin{tabular}{|l|c|c|c|c|}
-\hline
-Included & Cost of & Gross & Taxable & Net \\
-         & labour &        & income &  \\
-\hline
-Payroll tax (TS) & $\checkmark$ &\multicolumn{3}{c|}{\ } \\
-\cline{1-2}
-Employer SSC & $\checkmark$ &\multicolumn{3}{c|}{\ } \\
-\cline{1-3}
-Employee SSC & $\checkmark$ & $\checkmark$ &\multicolumn{2}{c|}{\ } \\
-\cline{1-3}
-CSG deductible & $\checkmark$ & $\checkmark$ &\multicolumn{2}{c|}{\ } \\
-\cline{1-4}
-Non ded. CSG and CRDS & $\checkmark$ & $\checkmark$ & $\checkmark$ & \\
-\cline{1-5}
-Net earnings after tax & $\checkmark$ & $\checkmark$ & $\checkmark$ & $\checkmark$ \\
-\hline
-\end{tabular}
-\end{table}
-\end{frame}
-
-
-\subsection{Incidence}
-
-\begin{frame}
-  \hligne
-  \frametitle{II. Model}
-  \framesubtitle{\vspace{0.3cm}Reminder about incidence}
-\vspace{1cm}
-``\emph{One of the most valuable insights that economic analysis has provided in public finance is that the person who effectively \textbf{pays} a tax is not necessarily the person upon whom the tax is levied.\\ To determine the true \textbf{incidence} of
-a tax or a public project is one of the most difficult, and most important, tasks of
-public economics.}'' \\ \vspace{1cm} \hspace{3cm} A. Atkinson and J. Stiglitz
-(1980)
-\end{frame}
-
-\begin{frame}
-  \hligne
-  \frametitle{II. Model}
-  \framesubtitle{\vspace{0.3cm}Statutory incidence}\pause
-\begin{itemize}
-\item \textbf{Who pays taxes?}\\
-The naive answer is that it is obvious, i.e. the person who ``pays the tax''...\pause
-\begin{itemize}
-  \item e.g. employees pay employees' SSC
-  \item e.g. employers pay employers' SSC
-  \item e.g. corporations pay corporation tax
-\end{itemize} \pause
-\item \textbf{Statutory/formal incidence}\\
-It is the legal liability of a tax (what the law says). \pause
-\item \textbf{Legal liability/remittance responsibility}
-\begin{itemize}
-  \item e.g. employees' SSC are paid to the tax authorities by employers
-  \item e.g. income tax can also be withheld by employers
-\end{itemize}
-\end{itemize}
-\end{frame}
-
-\begin{frame}
-  \hligne
-  \frametitle{II. Model}
-  \framesubtitle{\vspace{0.3cm}Economic incidence}\pause
-\begin{itemize}
-\item \textbf{Economic/effective incidence}
-    \begin{itemize}
-    \item It describes who actually bears the tax burden, i.e. who is worse off as a result of the tax. \pause
-    \end{itemize}
-\item \textbf{Who pays taxes in reality?}
-  \begin{itemize}
-  \item Taxes change prices of goods and rewards to factors
-  \item e.g. an increase in employers' SSC \pause
-    \begin{itemize}
-    \item If net wages decrease \\ $\Rightarrow$ employees pay the tax \pause
-    \item If net wages stay the same and profits go down \\$\Rightarrow$ employers pay the tax \pause
-    \item If net wages stay the same and prices go up \\$\Rightarrow$ consumers pay the tax
-    \end{itemize}
-  \end{itemize}
-\end{itemize}
-\end{frame}
-
-\begin{frame}
-  \hligne
-  \frametitle{II. Model}
-  \framesubtitle{\vspace{0.3cm}Economic incidence}\pause
-\begin{itemize}
-\item \textbf{People pay taxes}
-    \begin{itemize}
-    \item Corporations do not pay taxes! \pause
-    \item Corporation tax can affect three groups of \emph{individuals}:
-    \begin{enumerate}
-      \item Those who own the company (through lower profits)
-      \item Those who work for the company (through lower wage)
-      \item Those who consume the products of the company (through higher prices)
-    \end{enumerate}
-    \end{itemize}
-\end{itemize}
-\end{frame}
-
-\begin{frame}
-  \hligne
-  \frametitle{II. Model}
-  \framesubtitle{\vspace{0.3cm}Incidence assumptions in TAXIPP}\pause
-  \begin{itemize}
     \item \textbf{Employer social security contributions (SSC)}
     \begin{itemize}
       \item Debate on whether incident on consumers (higher prices) or employees (lower wages)
