@@ -25,8 +25,8 @@
 
 \usetheme[left]{Goettingen}
 %\setbeamertemplate{background canvas}{\includegraphics[width=\paperwidth]{ippheader.pdf}}
-%\setbeamertemplate{background canvas}{\hspace{10.1cm}\includegraphics
-%    [width=0.2\paperwidth]{logo_ipp.pdf}}
+\setbeamertemplate{background canvas}{\hspace{10.1cm}\includegraphics
+    [width=0.2\paperwidth]{logo_ipp.pdf}}
 \definecolor{ippdark}{RGB}{0,93,116}
 \definecolor{ipplight}{RGB}{0,142,156}
 \useinnertheme[shadow=true]{rounded}
@@ -93,7 +93,6 @@
         \end{itemize} \pause
     \item Possibilité d'arbitrer entre part assurantielle et part redistributive des transferts \pause
     \item Capacité de prédiction \pause
-    \item ...et bien d'autres \pause
   \end{itemize}
 \end{frame}
 
@@ -110,6 +109,7 @@
     \item[III.] Pondérations
     \item[IV.] Individualisation des transferts
     \item[V.] Le choix du pas temporel
+    \item[VI.] Alignement
   \end{enumerate}
 \end{frame}
 
@@ -140,7 +140,7 @@
   \frametitle{II. Formation des unions}
   \begin{itemize}
     \item \textbf{Le problème : } unir des individus en respectant les caractéristiques jointes.
-    \item \item\textbf{ La réponse de \til \ :}  \pause
+    \item \textbf{ La réponse de \til \ :}  \pause
     \begin{itemize}
       \item Distance entre conjoints (pas une préférence)
       \item Algorithme de minimisation
@@ -161,7 +161,7 @@
   \frametitle{III. Pondérations}
   \begin{itemize}
     \item \textbf{Le problème : } En simulation dynamique, les liens entre individus changent. Comment relier deux individus de pondérations différentes ?
-    \item \item\textbf{ La réponse de \til \ :}  \pause
+    \item \textbf{ La réponse de \til \ :}  \pause
     \begin{itemize}
       \item Travail avec une pondération uniforme
       \item Duplication des individus selon leur pondération 
@@ -183,7 +183,7 @@
   \frametitle{IV. Individualisation des transferts}
   \begin{itemize}
     \item \textbf{Le problème : } L'unité d'étude ne peut plus être un ménage ou un foyer fiscal mais seulement un individu. Comment individualiser les transferts ?
-    \item \item\textbf{ La réponse de \til \ :}  \pause
+    \item \textbf{ La réponse de \til \ :}  \pause
     \begin{itemize}
       \item Pour l'instant méthode ad-hoc :
       \item L'impot sur le revenu est séparé entre déclarant et conjoint...
@@ -205,12 +205,10 @@
   \frametitle{V. Le choix du pas temporel}
   \begin{itemize}
     \item \textbf{Le problème : } Un trade-off entre précision et temps de simulation.
-    \item \item\textbf{ La réponse de \til \ :}  \pause
+    \item \textbf{ La réponse de \til \ :}  \pause
     \begin{itemize}
       \item Pour l'instant : pas annuel
       \item Possibilité de ne faire tourner certains éléments qu'à certaines périodes
-      \item Les prestations familiales sont réparties entre les enfants
-      \item Les autres prestations sont réparties entre les personnes du ménage.
     \end{itemize}
     \item Ce qu'on pourrait faire de mieux. 
     \begin{itemize}
@@ -228,8 +226,8 @@
   \frametitle{VI. Alignement}
   \begin{itemize}
     \item \textbf{Le problème : } Lors du tirage d'une variable binaire (décès par exmeple), on peut avoir une grand variance du nombre de valeur et donc avoir le "bon" nombre d'occurrences uniquement en moyenne.  \\
-    Comment aligner les tirages.
-    \item \item\textbf{ La réponse de \til \ :}  \pause
+    Comment aligner les tirages ?
+    \item \textbf{ La réponse de \til \ :}  \pause
     \begin{itemize}
       \item Utilisation d'une méthode implémentée dans Liam2 (voir Li et O'Donoghue 2012)
     \end{itemize}
@@ -261,7 +259,7 @@
   \frametitle{I. Langage de programmation}
   \framesubtitle{\vspace{0.3cm}Organisation}
   \begin{itemize}
-  \item 
+  \item Langages utilisés
     \begin{itemize}
     \item Traitement initial des données en R
     \item Utilisation principale de Python
@@ -279,34 +277,177 @@
 \end{frame}
 
 
-\begin{frame}
-  \hligne
-  \frametitle{I. Langage de programmation}
-  \framesubtitle{\vspace{0.3cm}Organisation}
-	Mettre une image de YAML. 
-	Un exemple de code. 
-\end{frame}
+%\begin{frame}
+%  \hligne
+%  \frametitle{I. Langage de programmation}
+%  \framesubtitle{\vspace{0.3cm}Organisation}
+%	Mettre une image de YAML. 
+%	Un exemple de code. 
+%\end{frame}
 
 
 \subsection{Les étapes de la simulation}
+\subsubsection{Démographie}
 
 \begin{frame}
   \hligne
-  \frametitle{III. Les étapes de la simulation}
+  \frametitle{III. Les étapes de la simulation - démographie}
   \framesubtitle{\vspace{0.3cm}Organisation}
   La simulations
   \begin{itemize}
-  	\item naissance
-  	\item éducation
-  	\item indépendance
-  	\item marché du travail
+  	\item Naissance \\
+  	\begin{itemize}
+  	\item Femme en couple, alignement sur des naissances par âge.
+  	\item Pas de lien avec les études, ni les enfants précédents
+  	\end{itemize}
+  	\item Indépendance
+  	\begin{itemize}
+  	\item Systématique en fonction de l'âge.
+  	\item Pas d'autre type de déménagement
+  	\end{itemize} 
+  \end{itemize} 
+\end{frame}
+  	
+  	
+\begin{frame}
+  \hligne
+  \frametitle{III. Les étapes de la simulation - démographie}
+  \framesubtitle{\vspace{0.3cm}Organisation}
+  La simulations
+  \begin{itemize}
+  	\item Unions \\
+  	\begin{itemize}
+  	\item Inspirées des équations de Destinie
+  	\item Probabilité d'union en fonction de l'âge, de la fin des études, de la date depuis la séparation et du nombre d'enfant
+  	\item Formation des unions en fonction des âges et du niveau d'études
+  	\item Les enfants suivent leur parent (pour le logement ou la déclaration)
+  	\end{itemize}
+  	\item Séparations
+  	\begin{itemize}
+  	\item Probabilité en fonction de la durée du couple, du nombre d'enfant et de la différence d'âge. 
+  	\item Les enfants sur la déclaration du père et dans le ménage de la mère.
+  	\end{itemize}
+  \end{itemize} 
+\end{frame}
+
+
+\begin{frame}
+  \hligne
+  \frametitle{III. Les étapes de la simulation - démographie}
+  \framesubtitle{\vspace{0.3cm}Organisation}
+  La simulations
+  \begin{itemize}
+  	\item Décès \\
+  	\begin{itemize}
+  	\item Alignement en fonction de l'âge et du sexe
+  	\item Pas de prise en compte des revenus ou du diplôme.
+  	\item Héritage (y compris de deuxième rang)
+  	\item Droit de succession (en cours)
+  	\item Pas d'accident de voiture...
+  	\end{itemize}
+  \end{itemize} 
+\end{frame}
+  
+\subsubsection{Activité}
+\begin{frame}
+  \hligne
+  \frametitle{III. Les étapes de la simulation - activité }
+  \framesubtitle{\vspace{0.3cm}Organisation}
+  La simulations
+  \begin{itemize}
+	\item Éducation
+  	\begin{itemize}
+  	\item Détermination à la naissance en fonction des parents.
+  	\item Niveau (rudimentaire) lié à l'âge
+  	\end{itemize}
+  	\item Marché du travail
+  	\begin{itemize}
+  	\item Équation simplifiée et alignement grossier
+  	\item Salaire en fonction d'une équation de Mincer... 
+  	\item ... et d'une productivité plus ou moins observée
+  	\item Pas de temps partiel
+  	\end{itemize}
+  	\item Retraite 
+  	\begin{itemize}
+  	\item Départ systématique en fonction de l'âge
+  	\item Niveau de retraite à partir du dernier salaire  
+	\item Utilisation de PENSIPP pour cette partie (?)
+  	\end{itemize}
+  	\item Chômage 
+  	\begin{itemize}
+  	\item Calcul implémenté...
+  	\item ...mais la simulation annuelle limite  
+  	\end{itemize}
+  \end{itemize} 
+\end{frame}  
+  
+\begin{frame}
+  \hligne
+  \frametitle{III. Les étapes de la simulation - Revenus }
+  \framesubtitle{\vspace{0.3cm}Organisation}
+  La simulations
+  \begin{itemize}
+  	\item Actifs occupés
+  	\begin{itemize}
+  	\item Salaire en fonction d'une équation de Mincer... 
+  	\item ... et d'une productivité plus ou moins observée
+  	\item Pas de temps partiel
+  	\end{itemize}
+  	\item Retraite 
+  	\begin{itemize}
+  	\item Départ systématique en fonction de l'âge
+  	\item Niveau de retraite à partir du dernier salaire  
+	\item Utilisation de PENSIPP pour cette partie (?)
+  	\end{itemize}
+  	\item Chômage 
+  	\begin{itemize}
+  	\item Calcul implémenté...
+  	\item ...mais la simulation annuelle limite  
+  	\end{itemize}
+  \end{itemize} 
+\end{frame}    
+  
+ 
+\subsubsection{Consommation et épargne}
+\begin{frame}
+  \hligne
+  \frametitle{III. Les étapes de la simulation - activité }
+  \framesubtitle{\vspace{0.3cm}Organisation}
+  La simulations
+  \begin{itemize}
+	\item Éducation
+  	\begin{itemize}
+  	\item Détermination à la naissance en fonction des parents.
+  	\item Niveau (rudimentaire) lié à l'âge
+  	\end{itemize}
+  	\item Marché du travail
+  	\begin{itemize}
+  	\item Équation simplifiée et alignement grossier
+  	\item Salaire en fonction d'une équation de Mincer... 
+  	\item ... et d'une productivité plus ou moins observée
+  	\item Pas de temps partiel
+  	\end{itemize}
+  	\item Retraite 
+  	\begin{itemize}
+  	\item Départ systématique en fonction de l'âge
+  	\item Niveau de retraite à partir du dernier salaire  
+	\item Utilisation de PENSIPP pour cette partie (?)
+  	\end{itemize}
+  	\item Chômage 
+  	\begin{itemize}
+  	\item Calcul implémenté...
+  	\item ...mais la simulation annuelle limite  
+  	\end{itemize}
+  \end{itemize} 
+\end{frame}  
+
+    	
+    	
   	\item consommation, épargne
   	\item union
   		\item suivi
-  	\item divorce
-  		\item devenir des enfants
-  	\item décès
-  		\item héritage
+
+
   	\item encore beaucoup à faire dans chaque domaine.
   	+ santé, mode de garde, choix d'éducation, consommation. Dépendera des demandes
   \end{itemize}
@@ -315,10 +456,10 @@
   \item Le chômage est calculé directement au cours de la simulation
   \item Pour les autres transferts, on utilise OpenFisca.
   \end{itemize}	
-\end{frame}
 
 
-\section{Production actuelle et potentielle}
+
+\section{III. Production actuelle et potentielle}
 
 \begin{frame}
   \hligne
@@ -339,6 +480,9 @@
   \end{itemize}
 \end{frame}
 
+
+
+
 \begin{frame}
   \hligne
   \frametitle{Quelques chiffres}
@@ -354,60 +498,7 @@
   \end{itemize}
 \end{frame}
 
-    \item \textbf{Employer social security contributions (SSC)}
-    \begin{itemize}
-      \item Debate on whether incident on consumers (higher prices) or employees (lower wages)
-      \item Obvious long vs short term incidence
-      \item TAXIPP: incidence on employees
-      \item It has consequences for analysing policy of reduction of SSC on low earners.
-    \end{itemize} \pause
-    \item \textbf{Indirect taxes}
-    \begin{itemize}
-    \item Usual analysis lead to most indirect taxes are paid by consumers
-    \item Detailed analysis (Carbonnier 2007, 2009) suggest part is paid by factors
-    \item TAXIPP: 70\% on prices, 30\% on factors (labour and capital)
-    \end{itemize}
-  \end{itemize}
-\end{frame}
 
-\begin{frame}
-  \hligne
-  \frametitle{II. Model}
-  \framesubtitle{\vspace{0.3cm}Incidence assumptions in TAXIPP}
-  \begin{itemize}
-    \item \textbf{Corporate income tax}
-    \begin{itemize}
-      \item Standard view: CT paid by shareholders
-      \item Modern finance view: likely to be paid by capital owners at large
-      \item Some studies suggest that CT is paid mostly by consumers
-      \item TAXIPP: incidence on capital owners except regulated interest accounts
-      \item Huge implications in terms of redistribution analysis!
-    \end{itemize} \pause
-    \item \textbf{Undistributed corporate profits}
-    \begin{itemize}
-      \item Undistributed profits are part of national income
-      \item CT is imposed on them
-      \item Problem: who receive this income ?
-      \item Shareholders are the likely recipients
-    \end{itemize}
-  \end{itemize}
-\end{frame}
-
-\begin{frame}
-  \hligne
-  \frametitle{II. Model}
-  \framesubtitle{\vspace{0.3cm}Incidence assumptions in TAXIPP}
-  \begin{itemize}
-    \item \textbf{Payroll tax ``taxe sur les salaires'' (TS)}
-    \begin{itemize}
-      \item TS is a progressive payroll tax on earnings for firms in non VAT sectors (finance, insurance, education, etc.)
-      \item Incidence is not obvious; no empirical studies
-      \item Two options: incidence on consumers or on employees
-      \item TAXIPP: incidence on employees
-      \item But likely to be wrong
-    \end{itemize}
-  \end{itemize}
-\end{frame}
 
 
 \subsection{Reforms}
@@ -435,213 +526,7 @@
   \end{itemize}
 \end{frame}
 
-\begin{frame}
-  \hligne
-  \frametitle{II. Model}
-  \framesubtitle{\vspace{0.3cm}Issues}\pause
-  \begin{itemize}
-    \item \textbf{Interactions between tax bases}
-    \begin{itemize}
-      \item Tax bases of one tax depends on other changes
-      \item e.g. increase in SSC $\Rightarrow$ lower taxable income \\
-      $\Rightarrow$ lower income tax
-    \end{itemize} \pause
-    \item \textbf{Inconsistency}
-    \begin{itemize}
-      \item No behavioural response is inconsistent
-      \item e.g. increase in income tax $\Rightarrow$ lower consumption or/and lower savings \\
-      $\Rightarrow$ lower VAT or/and lower capital taxation
-    \end{itemize}
-  \end{itemize}
-\end{frame}
 
-\section{III. Measuring redistribution}
-
-\begin{frame}
-  \hligne
-  \frametitle{III. Measuring redistribution}
-  \framesubtitle{\vspace{0.3cm}}
-  \begin{enumerate}
-    \item Measuring contributive capacity
-    \item Household vs individual
-    \item Life cycle issues
-    \item Representation issues
-  \end{enumerate}
-\end{frame}
-
-\subsection{Contributive capacity}
-
-\begin{frame}
-  \hligne
-  \frametitle{III. Measuring redistribution}
-  \framesubtitle{\vspace{0.3cm}Measuring contributive capacity}\pause
-  \begin{itemize}
-    \item \textbf{Types of income}
-    \begin{itemize}
-      \item Net incomes are not a good measure
-      \item Economic income: income before all taxes
-      \item Need to add all taxes to net income including imputed indirect taxes
-    \end{itemize}\pause
-        \item \textbf{Primary vs secondary income}
-    \begin{itemize}
-      \item Primary income: income before transfer and taxes
-      \item Secondary income: income before all taxes but including transfer income (pensions, unemployment) but net of SSC funding these transfers
-      \item Primary income $\simeq$ national income
-    \end{itemize}
-  \end{itemize}
-\end{frame}
-
-\begin{frame}
-  \hligne
-  \frametitle{III. Measuring redistribution}
-  \framesubtitle{\vspace{0.3cm}Measuring contributive capacity}\pause
-  \begin{itemize}
-    \item \textbf{Income vs consumption}
-    \begin{itemize}
-      \item Income might not be a good measure of permanent income
-      \item Temporary variations in income are frequent\\
-      e.g. unemployment: primary income drops to zero
-      \item Consumption might be a better measure of permanent income
-      \item Except that consumption does not capture systematic difference in savings over the life-cycle
-    \end{itemize}\pause
-    \item \textbf{Income vs wealth}
-    \begin{itemize}
-    \item Income and wealth are not completely correlated
-    \end{itemize}\pause
-    \item \textbf{Philosophical backgrounds}
-    \begin{itemize}
-    \item Social welfare functions depend on utilities
-    \item Is utility derived from income, consumption, wealth...
-    \end{itemize}
-  \end{itemize}
-\end{frame}
-
-\subsection{Household vs individual}
-
-\begin{frame}
-  \hligne
-  \frametitle{III. Measuring redistribution}
-  \framesubtitle{\vspace{0.3cm}Household vs individual}\pause
-  \begin{itemize}
-    \item \textbf{What unit of reference?}
-    \begin{itemize}
-      \item Individuals: income
-      \item Household: income is totally pooled among household members
-      \item Partly a philosophical choice
-    \end{itemize}\pause
-        \item \textbf{How to account for household size?}
-    \begin{itemize}
-      \item Assessment of needs represented by each member
-      \item OECD equivalence scale
-    \end{itemize}
-  \end{itemize}
-\end{frame}
-
-\subsection{Life cycle issues}
-
-\begin{frame}
-  \hligne
-  \frametitle{III. Measuring redistribution}
-  \framesubtitle{\vspace{0.3cm}Life cycle issues}\pause
-  \begin{itemize}
-    \item \textbf{Cross-section is misleading}
-    \begin{itemize}
-      \item Data source essentially cross-section
-      \item Redistribution analysis is misleading
-    \end{itemize}\pause
-    \item \textbf{Life-cycle issues}
-    \begin{itemize}
-    \item Redistribution through contributory pensions/unemployment
-    \item Age earnings profile explains part of the earnings inequality
-    \end{itemize}\pause
-    \item \textbf{Income variability}
-    \begin{itemize}
-    \item Income shocks from one year to the other
-    \item Bottom of the distribution: the ``poor'' are the unemployed or people at the minimum wage?
-    \end{itemize}
-  \end{itemize}
-\end{frame}
-
-\subsection{Representation issues}
-
-\begin{frame}
-  \hligne
-  \frametitle{III. Measuring redistribution}
-  \framesubtitle{\vspace{0.3cm}Representation issues}\pause
-  \begin{itemize}
-    \item \textbf{Choice of redistributive capacity}
-    \begin{itemize}
-      \item Current income
-      \item Measure of permanent income
-      \item Consumption
-    \end{itemize}\pause
-    \item \textbf{Choice of unit of reference}
-    \begin{itemize}
-    \item Individuals, households, consumption unit
-    \end{itemize}\pause
-    \item \textbf{Scale of the distribution}
-    \begin{itemize}
-    \item Quintile, decile, percentile
-    \item Absolute values
-    \end{itemize}
-  \end{itemize}
-\end{frame}
-
-
-\begin{frame}
-  \hligne
-  \frametitle{III. Measuring redistribution}
-  \framesubtitle{\vspace{0.3cm}Representation issues}
-\end{frame}
-
-\begin{frame}
-  \hligne
-  \frametitle{III. Measuring redistribution}
-  \framesubtitle{\vspace{0.3cm}Representation issues}
-\end{frame}
-
-\begin{frame}
-  \hligne
-  \frametitle{III. Measuring redistribution}
-  \framesubtitle{\vspace{0.3cm}Representation issues}
-\frametitle{Taux de prélèvements obligatoires}
-
-\end{frame}
-
-\section{IV. Future developments}
-
-\begin{frame}
-  \hligne
-  \frametitle{IV. Future developments}
-  \begin{itemize}
-      \item \textbf{Part of larger set of models in development}
-      \begin{itemize}
-        \item PENSIPP: dynamic microsimulation model of the French pension system
-        \item TAXIPP-LIFE: over the life-cycle
-      \end{itemize}
-    \item \textbf{Development of data sources}
-    \begin{itemize}
-      \item Setting-up data from different years
-      \item Developing matching procedures for other sources
-    \end{itemize} \pause
-    \item \textbf{Simulating past tax systems}
-    \begin{itemize}
-      \item Going back to the 1970s...
-    \end{itemize} \pause
-     \item \textbf{Developing the behavioural module}
-    \begin{itemize}
-      \item More systematic module of behavioural responses
-      \item Including substitution responses and real responses
-    \end{itemize} \pause
-      \item \textbf{Developing other modules}
-    \begin{itemize}
-      \item Firm side
-      \item Public spending
-      \item TAXIPP-LIFE
-    \end{itemize} \pause
-     \item Translating into R or Python?
-  \end{itemize}
-\end{frame}
 
 \frame{\maketitle}
 
