@@ -1,4 +1,4 @@
-\documentclass[xcolor=table,ignorenonframetext,12pt]{beamer}
+\documentclass[xcolor=table,ignorenonframetext,12pt]{beamer}% , handout
 %\documentclass[xcolor=table,handout,12pt]{beamer}
 \usepackage[frenchb]{babel}
 \usepackage[latin1]{inputenc}
@@ -67,7 +67,7 @@
 \makeatother
 
 \title{Simuler le cycle de vie\\ Le modèle \til}
-\author{Alexis Eidelman}
+\author{Béatrice Boutchenik et Alexis Eidelman}
 \institute{\emph{Institut des politiques publiques}}
 \subject{PSE - microsimulation}
 
@@ -75,27 +75,16 @@
 
 \begin{document}
 
-\frame{\maketitle}
-
-
-\section{Introduction}
-
 \begin{frame}
   \hligne
-  \frametitle{Introduction}
-  \framesubtitle{\vspace{0.3cm} Pourquoi faire des simulations sur le cycle de vie ?}
-  \begin{itemize}
-    \item  mesure d'un \og meilleur \fg \ niveau de vie
-        \begin{itemize}
-          \item Variabilité des revenus
-          \item Équité dans le traitement des individus vis-à-vis de leur âge. 
-          \item Prise en compte du patrimoine
-        \end{itemize} \pause
-    \item Possibilité d'arbitrer entre part assurantielle et part redistributive des transferts \pause
-    \item Capacité de prédiction \pause
-  \end{itemize}
+  \frametitle{Plan intermédiaire}
+  \framesubtitle{\vspace{0.3cm}}
+  \begin{enumerate}
+    \item I. Difficultés spécifiques à la microsimulation dynamique
+    \item II. Présentation du modèle
+    \item III. Développements
+  \end{enumerate}
 \end{frame}
-
 
 \section{I. Difficultés spécifiques à la microsimulation dynamique}
 
@@ -104,7 +93,7 @@
   \frametitle{I. Difficultés spécifiques à la microsimulation dynamique}
   \framesubtitle{\vspace{0.3cm}}
   \begin{enumerate}
-    \item[I.] Base de données
+    \item[I.] Sources d'information
     \item[II.] Formation des unions
     \item[III.] Pondérations
     \item[IV.] Individualisation des transferts
@@ -113,12 +102,12 @@
   \end{enumerate}
 \end{frame}
 
-\subsection{Base de données}
+\subsection{Source d'information}
 \begin{frame}
   \hligne
-  \frametitle{I. Base de données}
+  \frametitle{I. Source d'information}
   \begin{itemize}
-    \item \textbf{Le problème : } Connaitre le passé précisément et avoir autant d'éléments que possible sur le futur.
+    \item \textbf{Le problème : } Connaître le passé précisément et avoir autant d'éléments que possible sur le futur.
     \item\textbf{ La réponse de \til \ :}  \pause
     \begin{itemize}
       \item Utilisation de l'enquête patrimoine
@@ -126,9 +115,9 @@
       \item Fermeture de l'échantillon
       \item Utilisation de différentes études pour les équations de simulations
     \end{itemize}
-    \item Ce qu'on pourrait faire de mieux. 
+    \item \textbf{Ce qu'on pourrait faire de mieux : }
     \begin{itemize}
-    \item Utiliser d'autres enquête comme SIP
+    \item Utiliser d'autres enquêtes comme SIP
     \item Améliorer les simulations (avec de la validation)
     \end{itemize}
   \end{itemize}
@@ -144,8 +133,8 @@
     \begin{itemize}
       \item Distance entre conjoints (pas une préférence)
       \item Algorithme de minimisation
-    \end{itemize}\pause
-    \item Ce qu'on pourrait faire de mieux. 
+    \end{itemize}
+    \item \textbf{Ce qu'on pourrait faire de mieux : }
     \begin{itemize}
     \item Améliorer l'algorithme de minimisation (méthode hongroise)
     \item Faire un tirage aléatoire de conjoints potentiel et sélectionner parmi eux.
@@ -166,12 +155,12 @@
       \item Travail avec une pondération uniforme
       \item Duplication des individus selon leur pondération 
     \end{itemize}
-    \item Ce qu'on pourrait faire de mieux. 
+    \item \textbf{Ce qu'on pourrait faire de mieux : }
     \begin{itemize}
     \item La plus petite pondération de l'enquête patrimoine est 6 ! \\
     $\rightarrow$ 11 millions d'individus
     \item  200 comme pondération uniforme et non 6  \\
-    $\rightarrow$ 11 millions d'individus \\
+    $\rightarrow$ 300 000 individus \\
     \item Augmenter la taille de l'échantillon
     \end{itemize}
   \end{itemize}
@@ -185,13 +174,12 @@
     \item \textbf{Le problème : } L'unité d'étude ne peut plus être un ménage ou un foyer fiscal mais seulement un individu. Comment individualiser les transferts ?
     \item \textbf{ La réponse de \til \ :}  \pause
     \begin{itemize}
-      \item Pour l'instant méthode ad-hoc :
       \item L'impot sur le revenu est séparé entre déclarant et conjoint...
       \item sauf l'avantage lié au quotient familial qui est réparti entre les personnes à charge.
       \item Les prestations familiales sont réparties entre les enfants
       \item Les autres prestations sont réparties entre les personnes du ménage.
     \end{itemize}
-    \item Ce qu'on pourrait faire de mieux. 
+    \item \textbf{Ce qu'on pourrait faire de mieux : }
     \begin{itemize}
     \item Séparer l'IR au prorata des revenus mais...
     \item ...la bonne solution c'est le recours à la valeur de Shapley.
@@ -210,7 +198,7 @@
       \item Pour l'instant : pas annuel
       \item Possibilité de ne faire tourner certains éléments qu'à certaines périodes
     \end{itemize}
-    \item Ce qu'on pourrait faire de mieux. 
+    \item \textbf{Ce qu'on pourrait faire de mieux : }
     \begin{itemize}
     \item Pas mensuel
     \item ...ou au moins trimestriel
@@ -225,13 +213,13 @@
   \hligne
   \frametitle{VI. Alignement}
   \begin{itemize}
-    \item \textbf{Le problème : } Lors du tirage d'une variable binaire (décès par exmeple), on peut avoir une grand variance du nombre de valeur et donc avoir le "bon" nombre d'occurrences uniquement en moyenne.  \\
-    Comment aligner les tirages ?
+    \item \textbf{Le problème : } Le nombre d'événements (de décès par exemple) prédits par le tirage d'une variable binaire est trop volatile.\\
+    Comment maitriser le nombre d'occurrences ?
     \item \textbf{ La réponse de \til \ :}  \pause
     \begin{itemize}
       \item Utilisation d'une méthode implémentée dans Liam2 (voir Li et O'Donoghue 2012)
     \end{itemize}
-    \item Ce qu'on pourrait faire de mieux. 
+    \item \textbf{Ce qu'on pourrait faire de mieux : }
     \begin{itemize}
     \item Tester les différentes méthodes d'alignement.
     \end{itemize}
@@ -253,26 +241,26 @@
 \end{frame}
 %
 \subsection{Langage de programmation}
-
 \begin{frame}
   \hligne
   \frametitle{I. Langage de programmation}
   \framesubtitle{\vspace{0.3cm}Organisation}
   \begin{itemize}
-  \item Langages utilisés
+  \item \textbf{Langages utilisés}
     \begin{itemize}
     \item Traitement initial des données en R
     \item Utilisation principale de Python
-    \item Interface en YAML
+    \item Interface texte agréable (YAML)
     \end{itemize} 
      \item \textbf{Pourquoi Python} ?\pause
     \begin{itemize}
     	\item Langage clair. 
     	\item Possibilité d'avoir plusieurs niveaux de lecture.
-   		\item Gratuité
 		\item Performances très intéressantes	
     \end{itemize} 
 	\item Un choix fait par Liam2 et OpenFisca.
+	\item Simulation \ 30 000 individus : \  6 s/période 
+	\item Simulation sur 300 000 individus : 70 s/période 
   \end{itemize}
 \end{frame}
 
@@ -284,6 +272,28 @@
 %	Mettre une image de YAML. 
 %	Un exemple de code. 
 %\end{frame}
+\subsection{Les entités et les liens.}
+\begin{frame}
+  \hligne
+  \frametitle{II. Les entités et les liens.}
+  \framesubtitle{\vspace{0.3cm}Organisation}
+  \begin{itemize}
+  \item \textbf{Les entités} \\
+  4 entités (dont non indispensable), et un \textbf{registre}
+    \begin{itemize}
+    \item Individus
+    \item Logement
+    \item Déclaration fiscale
+    \item Entreprise
+    \end{itemize} 
+     \item \textbf{Les liens}
+    \begin{itemize}
+    	\item Lien entre individus : conjoint et parents. 
+    	\item Lien des individus vers les entités auxquelles ils appartiennent
+   		\item Lien des entités vers les individus auxquels elles appartiennent
+    \end{itemize} 
+  \end{itemize}
+\end{frame}
 
 
 \subsection{Les étapes de la simulation}
@@ -291,9 +301,7 @@
 
 \begin{frame}
   \hligne
-  \frametitle{III. Les étapes de la simulation - démographie}
-  \framesubtitle{\vspace{0.3cm}Organisation}
-  La simulations
+  \frametitle{III. Les étapes de la simulation - Démographie - 1}
   \begin{itemize}
   	\item Naissance \\
   	\begin{itemize}
@@ -311,9 +319,7 @@
   	
 \begin{frame}
   \hligne
-  \frametitle{III. Les étapes de la simulation - démographie}
-  \framesubtitle{\vspace{0.3cm}Organisation}
-  La simulations
+  \frametitle{III. Les étapes de la simulation \\ Démographie - 2}
   \begin{itemize}
   	\item Unions \\
   	\begin{itemize}
@@ -325,7 +331,7 @@
   	\item Séparations
   	\begin{itemize}
   	\item Probabilité en fonction de la durée du couple, du nombre d'enfant et de la différence d'âge. 
-  	\item Les enfants sur la déclaration du père et dans le ménage de la mère.
+  	\item Les enfants sont affectés aléatoirement aux pères ou à la mère
   	\end{itemize}
   \end{itemize} 
 \end{frame}
@@ -333,15 +339,13 @@
 
 \begin{frame}
   \hligne
-  \frametitle{III. Les étapes de la simulation - démographie}
-  \framesubtitle{\vspace{0.3cm}Organisation}
-  La simulations
+  \frametitle{III. Les étapes de la simulation \\ Démographie - 3}
   \begin{itemize}
   	\item Décès \\
   	\begin{itemize}
   	\item Alignement en fonction de l'âge et du sexe
   	\item Pas de prise en compte des revenus ou du diplôme.
-  	\item Héritage (y compris de deuxième rang)
+  	\item \textbf{Héritage} (y compris de deuxième rang)
   	\item Droit de succession (en cours)
   	\item Pas d'accident de voiture...
   	\end{itemize}
@@ -351,9 +355,7 @@
 \subsubsection{Activité}
 \begin{frame}
   \hligne
-  \frametitle{III. Les étapes de la simulation - activité }
-  \framesubtitle{\vspace{0.3cm}Organisation}
-  La simulations
+  \frametitle{III. Les étapes de la simulation - \\ Activité }
   \begin{itemize}
 	\item Éducation
   	\begin{itemize}
@@ -364,28 +366,21 @@
   	\begin{itemize}
   	\item Équation simplifiée et alignement grossier
   	\item Salaire en fonction d'une équation de Mincer... 
-  	\item ... et d'une productivité plus ou moins observée
+  	\item ... et d'une productivité observée ou imputée
   	\item Pas de temps partiel
   	\end{itemize}
   	\item Retraite 
   	\begin{itemize}
   	\item Départ systématique en fonction de l'âge
   	\item Niveau de retraite à partir du dernier salaire  
-	\item Utilisation de PENSIPP pour cette partie (?)
-  	\end{itemize}
-  	\item Chômage 
-  	\begin{itemize}
-  	\item Calcul implémenté...
-  	\item ...mais la simulation annuelle limite  
+	\item Lien avec PENSIPP
   	\end{itemize}
   \end{itemize} 
 \end{frame}  
   
 \begin{frame}
   \hligne
-  \frametitle{III. Les étapes de la simulation - Revenus }
-  \framesubtitle{\vspace{0.3cm}Organisation}
-  La simulations
+  \frametitle{III. Les étapes de la simulation \\ Revenus }
   \begin{itemize}
   	\item Actifs occupés
   	\begin{itemize}
@@ -402,7 +397,7 @@
   	\item Chômage 
   	\begin{itemize}
   	\item Calcul implémenté...
-  	\item ...mais la simulation annuelle limite  
+  	\item ...mais le pas de la simulation est une limite  
   	\end{itemize}
   \end{itemize} 
 \end{frame}    
@@ -411,123 +406,92 @@
 \subsubsection{Consommation et épargne}
 \begin{frame}
   \hligne
-  \frametitle{III. Les étapes de la simulation - activité }
-  \framesubtitle{\vspace{0.3cm}Organisation}
-  La simulations
+  \frametitle{III. Les étapes de la simulation \\ Consommation et épargne }
   \begin{itemize}
-	\item Éducation
-  	\begin{itemize}
-  	\item Détermination à la naissance en fonction des parents.
-  	\item Niveau (rudimentaire) lié à l'âge
-  	\end{itemize}
-  	\item Marché du travail
-  	\begin{itemize}
-  	\item Équation simplifiée et alignement grossier
-  	\item Salaire en fonction d'une équation de Mincer... 
-  	\item ... et d'une productivité plus ou moins observée
-  	\item Pas de temps partiel
-  	\end{itemize}
-  	\item Retraite 
-  	\begin{itemize}
-  	\item Départ systématique en fonction de l'âge
-  	\item Niveau de retraite à partir du dernier salaire  
-	\item Utilisation de PENSIPP pour cette partie (?)
-  	\end{itemize}
-  	\item Chômage 
-  	\begin{itemize}
-  	\item Calcul implémenté...
-  	\item ...mais la simulation annuelle limite  
+	\item De nouvelles estimations à produire
+	 \begin{itemize}
+  	\item en tenant compte du cycle de vie
+  	\item en essayant de rester au niveau individuel 
   	\end{itemize}
   \end{itemize} 
 \end{frame}  
 
-    	
-    	
-  	\item consommation, épargne
-  	\item union
-  		\item suivi
+%\subsubsection{Développements futurs}
+%\begin{frame}
+%  \hligne
+%  \frametitle{III. Les étapes de la simulation - activité }
+%  \begin{itemize}
+%	\item Il y a encore beaucoup de champs qui pourrait être travaillés
+%  	\begin{itemize}
+%	\item Santé et dépendance
+%	\item Mode de garde
+%	\item Choix d'éducation
+%  	\end{itemize} 
+%  \end{itemize} 
+%\end{frame} 
 
 
-  	\item encore beaucoup à faire dans chaque domaine.
-  	+ santé, mode de garde, choix d'éducation, consommation. Dépendera des demandes
-  \end{itemize}
-  La législation
-  \begin{itemize}
-  \item Le chômage est calculé directement au cours de la simulation
-  \item Pour les autres transferts, on utilise OpenFisca.
-  \end{itemize}	
-
-
-
-\section{III. Production actuelle et potentielle}
+\section{III. Développements}
 
 \begin{frame}
   \hligne
-  \frametitle{I. Langage de programmation}
-  \framesubtitle{\vspace{0.3cm}Organisation}
+  \frametitle{III. Développements}
+  \framesubtitle{\vspace{0.3cm}Temps figé}
   \begin{itemize}
-  \item Conditions de 2009 pour le marché du travail. 
- 	N'est pas sans poser problème pour l'alignement (si on pense au naissance par exemple).
-  \item Ne simule pas encore les informations manquantes dans le passé.
-   
-   \item  une réforme. 
-   		\item impact
-   		\item Réaction à l'étape d'après ? 
-   		\item Modèle décisionnel.
-   		
-    \item Tourne en ... de temps dont ... pour la législation sur 30 000 individus
-    \item Tourne en ... de temps dont ... pour la législation sur 300 000 individus
+  \item Un temps figé en 2009
+    \begin{itemize}
+	\item Pas de croissance (ou de tendance)
+	\item Revalorisation des revenus passés
+	\item La législation de 2009 est appliquée tous les ans
+  \end{itemize} 
+  \item Ne simule pas encore les trajectoires matrimoniale dans le passé (en cours).
   \end{itemize}
-\end{frame}
+\end{frame}  
 
+ \begin{frame}
+  \hligne
+  \frametitle{III. Développements}
+  \framesubtitle{\vspace{0.3cm} Réponse comportementale}
+  \begin{itemize}
+  \item On peut appliquer la législation et une réforme \textit{ex post}
+  \item En appliquant la législation à chaque période on a aussi des réactions comportementales.
+   \item Il reste à rendre possible le modèle de décision.
+  \end{itemize}
+\end{frame}  
+% 
+% \begin{frame}
+%  \hligne
+%  
+%  \hligne
+%  \frametitle{III. Production actuelle et potentielle}
+%  \framesubtitle{\vspace{0.3cm} Quelques chiffres}
+%    \begin{itemize}
+%  \item Le revenu moyen par an par individu est : 
+%  \item Le niveau de vie en moyenne sur la vie calculé par l'Insee est : 
+%   \item En regardant au niveau des enfants, on gagne tant...
+%   \item En moyenne tant d'impot et tant de prestation
+%   \item La retraite.
+%  \end{itemize}
+% \end{frame}   
 
+ 
 
+\section{Motivations - Conclusion}
 
 \begin{frame}
   \hligne
-  \frametitle{Quelques chiffres}
-  \framesubtitle{\vspace{0.3cm}Organisation}
+  \frametitle{Introduction}
+  \framesubtitle{\vspace{0.3cm} Pourquoi faire des simulations sur le cycle de vie ?}
   \begin{itemize}
-  \item Le revenu moyen par an par individu est : 
-  \item Le niveau de vie en moyenne sur la vie calculé par l'Insee est : 
-   
-   \item En regardant au niveau des enfants, on gagne tant...
-   \item En moyenne tant d'impot et tant de prestation
-   \item La retraite.
-   
+    \item  mesure d'un \og meilleur \fg \ niveau de vie
+        \begin{itemize}
+          \item Variabilité des revenus
+          \item Équité dans le traitement des individus vis-à-vis de leur âge. 
+          \item Prise en compte du patrimoine
+        \end{itemize}
+    \item Possibilité d'arbitrer entre part assurantielle et part redistributive des transferts
+    \item Capacité de prédiction
   \end{itemize}
 \end{frame}
-
-
-
-
-\subsection{Reforms}
-
-\begin{frame}
-  \hligne
-  \frametitle{II. Model}
-  \framesubtitle{\vspace{0.3cm}Simulating reforms}\pause
-  \begin{itemize}
-    \item \textbf{Building a baseline}
-    \begin{itemize}
-      \item Assumption about growth rates
-      \item Large implications in terms of tax revenues
-    \end{itemize}\pause
-    \item \textbf{No behavioural case}
-    \begin{itemize}
-      \item Apply the change in tax system
-      \item Make comparative statistics
-    \end{itemize}\pause
-    \item \textbf{With behavioural response}
-    \begin{itemize}
-      \item Imbed an elasticity of the tax base to a change in tax rate
-      \item Currently only done ad hoc for labour supply
-    \end{itemize}
-  \end{itemize}
-\end{frame}
-
-
-
-\frame{\maketitle}
 
 \end{document}
