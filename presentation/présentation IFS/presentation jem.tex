@@ -1,0 +1,802 @@
+\documentclass[xcolor=table,ignorenonframetext,12pt,handout]{beamer}
+%\documentclass[xcolor=table,handout,12pt]{beamer}
+\usepackage[frenchb]{babel}
+\usepackage[latin1]{inputenc}
+\usepackage{amsmath,amssymb}
+\usepackage{graphicx}
+\usepackage{pgfarrows,pgfnodes}
+\usepackage{url}
+\usepackage{textcomp}
+\usepackage[vcentermath]{youngtab}
+\usepackage{epstopdf}
+\usepackage{hhline}
+\usepackage{xmpmulti}
+\usepackage{subfigure}
+\usepackage{tikz}
+\usepackage{multirow}
+
+\mode<article> {
+  \usepackage{fullpage}
+  \usepackage{pgf}
+  \usepackage{hyperref}
+}
+\newcommand{\til}{TaxIPP-Life}
+
+\mode<presentation>
+
+%\usetheme[left]{Goettingen}
+%\setbeamertemplate{background canvas}{\includegraphics[width=\paperwidth]{ippheader.pdf}}
+\setbeamertemplate{background canvas}{\hspace{10.1cm}\includegraphics
+    [width=0.2\paperwidth]{logo_ipp.pdf}}
+\definecolor{ippdark}{RGB}{0,93,116}
+\definecolor{ipplight}{RGB}{0,142,156}
+\useinnertheme[shadow=true]{rounded}
+\setbeamertemplate{items}[circle]
+\setbeamercolor{title}{bg=ipplight, fg=black}
+\setbeamercolor{structure}{fg=ipplight}
+%\setbeamertemplate{sidebar canvas left}{} % pour supprimer le fond de couleur de la barre latérale	
+\setbeamertemplate{sidebar canvas left}[vertical shading][top=structure.fg!20,bottom=structure.fg!15]
+\setbeamertemplate{caption}[numbered]
+\setlength{\leftmargini}{12pt}
+\setbeamerfont{framesubtitle}{size=\large}
+
+%\usepackage[latin1]{inputenc}
+%\usepackage[english]{babel}
+
+\newenvironment{checklist}[1]{\begin{list}{$\surd$}{}#1}{\end{list}}%
+\newcommand{\graphique}[2][1]{\begin{minipage}{\linewidth}\begin{center}\includegraphics[width=#1\linewidth,clip]{#2}\end{center}\end{minipage}}%
+\newcommand{\os}[2]{\onslide+<#1->{#2}}%
+
+\newcommand{\m}[2]{\multicolumn{#1}{c}{#2}}%
+\newcommand{\ml}[2]{\multicolumn{#1}{l}{#2}}%
+\newcommand{\tth}{\textsuperscript{th}}%
+\newcommand{\nde}{\textsuperscript{nde}}
+\newcommand{\hligne}{\begin{tikzpicture}[remember picture,overlay]\node[shift={(-10.5 cm,-1.2cm)}]at(current page.north east){\begin{tikzpicture}{\draw[line width=0.2mm,color=ipplight,overlay](0,0)--(8,0);}\end{tikzpicture}};\end{tikzpicture}\vspace{-0.8cm}}
+\newcommand{\hlignee}{\begin{tikzpicture}[remember picture,overlay]\node[shift={(-10.5 cm,-1.2cm)}]at(current page.north east){\begin{tikzpicture}{\draw[line width=0.2mm,color=ipplight,overlay](0,0)--(8,0);}\end{tikzpicture}};\end{tikzpicture}}
+
+% MTABLE: macro for tables %
+\newenvironment{mfigure}[4][1]{\def\TMP{#3}\newdimen\TMPsize\settowidth{\TMPsize}{\TMP}
+\begin{figure}\caption{#2}\begin{center}\begin{tiny}
+\begin{minipage}{#1\textwidth}\resizebox{\textwidth}{!}{#3}\end{minipage}
+\if!#4!\empty \else \\
+\resizebox{#1\textwidth}{!}{\begin{minipage}{\TMPsize}\begin{tiny}\smallskip\par
+#4 \end{tiny}\end{minipage}} \fi}
+{\end{tiny}\end{center}\end{figure}}
+
+\makeatletter
+\def\TAXIPP{TAX\kern-.05em\lower-.19ex\hbox{${\color{BlueGreen} \scalebox{1.4}{\underarc[1]{\overarc[1]{\textcolor{black}{\scalebox{0.7}{ipp}}}}}}\hspace{0.5ex}$}\@}
+\makeatother
+
+\title{TAXIPP-LIFE microsimulation model\\ A life-cycle point of view}
+\author{Alexis Eidelman}
+\institute{\emph{Institut des politiques publiques}}
+\subject{Redistribution ; microsimulation ; Life-Cycle}
+
+\date{IFS informal seminar \\London -- 20th of June 2013}
+
+\begin{document}
+
+\frame{\maketitle}
+
+\section{Introduction}
+
+\begin{frame}
+
+  \frametitle{Introduction}
+  \framesubtitle{\vspace{0.3cm}General overview of \til}
+  \begin{itemize}
+    \item Dynamic microsimulation model développed by \textit{Institut des politiques publiques} (IPP)
+  \item Ageing and legislation \pause
+  \item Reforms
+  \item \textbf{Work in progress} \pause
+%\item \textbf{Importance de la perspective de cycle de vie}
+%    \begin{enumerate}
+%      \item Pour l'étude des niveaux de vie et des inégalités
+%\item Pour l'étude de la redistribution opérée par les systèmes fiscalo-sociaux
+%    \end{enumerate} \pause
+%    \item \textbf{Structure du modèle}
+%    \begin{itemize}
+%    \item Données rétrospectives réellement observées
+%    \item Simulation des trajectoires futures
+    \end{itemize}
+
+  \end{itemize}
+\end{frame}
+
+\begin{frame}
+
+  \frametitle{Roadmap}
+  \framesubtitle{\vspace{0.3cm}Plan}
+  \begin{enumerate}
+    \item Why to be interested in Life-Cycle ? 
+    \item Some issues of a dynamic microsimulation model
+    \item How \til \ simulate for now
+    \item Becoming of \til
+  \end{enumerate}
+\end{frame}
+
+
+
+\section{Why to be interested in Life-Cycle ?}
+
+\subsection{Inequalities}
+
+\begin{frame}
+
+  \frametitle{Why to be interested in Life-Cycle ?}
+  \framesubtitle{\vspace{0.3cm} Evaluation inequalities} \pause
+  \begin{itemize}
+\item \textbf{Variability of incomes and living standards over life-cycle}
+ \begin{enumerate}
+\item Analyse canonique du cycle de vie
+\item Chocs imprévisibles : situations de chômage, de maladie, d'inactivité, etc. \\ \pause
+
+\end{enumerate}
+$\Rightarrow$ Mobilité dans l'échelle des revenus (eg. Slemrod 1992) \\ \pause
+
+  \item \textbf{Vision tronquée des inégalités} \\ \pause
+$\Rightarrow$ Distinguer entre inégalités intra- et inter- personnelles
+  \end{itemize}
+\end{frame}
+
+\begin{frame}
+
+  \frametitle{Les enjeux du cycle de vie}
+  \framesubtitle{\vspace{0.3cm}Inégalités sur le cycle de vie : éléments empiriques}
+  \begin{itemize}
+\item \textbf{Décomposition entre inégalités intra- et inter-individuelles} \pause
+ \begin{itemize}
+\item Björklund et Palme (1997) : 40 à 50 \% des inégalités de revenus sont intra-personnelles  \pause
+ \end{itemize}
+\item \textbf{Mesure des inégalités en coupe vs. sur le cycle de vie}
+\begin{itemize}
+\item Björklund (1993) : diminution du coefficient de Gini de 35 à 40 \%
+\item Dépend de la durée considérée
+\end{itemize}
+  \end{itemize}
+\end{frame}
+
+\subsection{Redistribution}
+
+\begin{frame}
+
+  \frametitle{Les enjeux du cycle de vie}
+  \framesubtitle{\vspace{0.3cm}Importance pour l'étude de la redistribution} \pause
+  \begin{itemize}
+\item \textbf{Distinction entre redistribution intra- et inter-personnelle}
+	 \begin{itemize}
+	\item Redistribution intra-individuelle $\Rightarrow$ reflète une logique d'assurance \pause
+	 \end{itemize}
+\item \textbf{Deux cas-types extrêmes}
+ 	\begin{itemize}
+	\item Individus aux revenus constants au cours du cycle de vie, différents entre eux\\
+ $\Rightarrow$ Redistribution inter-personnelle principalement \pause
+	\item Individus parfaitement identiques, aux revenus affectés par des variations au cours du temps \\
+ $\Rightarrow$ Pas besoin de redistribution si l'accès au marché du crédit et à  l'assurance est parfait
+
+	\end{itemize}
+\end{itemize}
+\end{frame}
+
+
+\begin{frame}
+
+  \frametitle{Les enjeux du cycle de vie}
+  \begin{itemize}
+\item \textbf{Mesure de la redistribution en coupe vs. sur le cycle de vie}
+ 	\begin{itemize}
+	\item Bengtsson et al. (2012) : faible effet redistributif du système de taxation suédois \pause
+	\item Impact de la perspective de cycle de vie inégalement réparti dans la distribution des revenus \pause
+	\end{itemize}
+ \end{itemize}
+ \footnotesize
+\begin{table}	
+\caption{Part de redistribution inter-personnelle dans la redistribution totale}
+ \begin{tabular}{|c|c|c|}
+\hline
+Pettersson et Pettersson (2007) &      Suède &  18-32 \% \\
+\hline
+Hussenius et Selen (1994) &      Suède &  24-32 \% \\
+\hline
+Falkingham et Harding (1996) &  Australie &  48-63 \% \\
+\hline
+Falkingham et Harding (1996) & Royaume-Uni &  29-38 \% \\
+\hline
+O'Donoghue &    Irlande &     45 \% \\
+\hline
+O'Donoghue &     Italie &     24 \% \\
+\hline
+\end{tabular}
+\end{table}
+\end{frame}
+
+\begin{frame}
+
+  \frametitle{Les enjeux du cycle de vie}
+  \framesubtitle{\vspace{0.3cm}Importance dans le débat public}
+  \begin{itemize}
+\item \textbf{Comparaisons des systèmes redistributifs de différents pays}
+	 \begin{itemize}
+	\item La fonction d'assurance peut être plus ou moins prise en charge par l'Etat \pause
+ 	\end{itemize}
+\item \textbf{La part assurantielle de la redistribution profite inégalement aux individus}
+ 	\begin{itemize}
+	\item Hoynes et Luttmer (2011) : composante assurantielle d'autant plus grande que le revenu est élevé \pause
+	\end{itemize}
+\item \textbf{Comparer les propriétés redistributives de différents instruments des systèmes fiscalo-sociaux}
+  \end{itemize}
+\end{frame}
+
+\section{Données et résultats préliminaires}
+
+\subsection{Base de données rétrospective}
+
+\begin{frame}
+
+  \frametitle{Base de données rétrospective}
+  \framesubtitle{\vspace{0.3cm}Choix des données}
+  \begin{itemize}
+\item \textbf{Importance des trajectoires salariales effectivement observées}
+	 \begin{itemize}
+	\item Reflètent la réelle variabilité des revenus au cours du temps \\ \pause
+	$\Rightarrow$ Emploi de données administratives (EIC-DADS-UNEDIC) : trajectoires salariales de 1976 à 2001 \pause
+ 	\end{itemize}
+\item \textbf{Peu de variables annexes}
+ 	\begin{itemize}
+	\item Important notamment concernant les structures des ménages, trajectoires matrimoniales...\\ \pause
+     $\Rightarrow$ Appariement avec les données de l'Enquête Patrimoine (2010)
+	\end{itemize}
+  \end{itemize}
+\end{frame}
+
+\begin{frame}
+
+  \frametitle{Base de données rétrospective}
+  \framesubtitle{\vspace{0.3cm}Appariement statistique des données EIC-DADS-UNEDIC avec l'Enquête Patrimoine} \pause
+ \begin{itemize}
+\item \textbf{Appariement exact}
+	\begin{enumerate}
+	\item Sexe
+	\item Date de naissance (par tranches de 4 ans)
+	\item PCS à 1 chiffre
+	\item Tranche de revenus d'activité et de remplacement (réévalués) \pause
+ 	\end{enumerate}
+\item \textbf{Appariement en termes de plus proche voisin}
+	\begin{enumerate}
+	\item Revenus d'activité et de remplacement
+	\item Trajectoire en termes de statut vis-à-vis de l'emploi
+		\begin{itemize}
+		\item Méthode d'appariement optimal (définition d'un coût de suppression et d'une matrice de coûts de substitution) \pause
+		\end{itemize}
+	\end{enumerate}
+ 	\begin{itemize}
+	\item $\Rightarrow$ Pondération de ces deux distances
+	\end{itemize}
+  \end{itemize}
+\end{frame}
+
+\begin{frame}
+
+  \frametitle{Base de données rétrospective}
+  \framesubtitle{\vspace{0.3cm}Champ des individus appariés et traitement des trajectoires salariales}
+ \begin{itemize}
+\item \textbf{Champ des individus appariés}
+	\begin{itemize}
+	\item Individus ayant entre 30 et 59 ans en 2001
+	\item Ni agriculteurs, ni indépendants, ni retraités au moment de l'Enquête Patrimoine
+	\item Ayant été présents au moins une fois dans le champ DADS-UNEDIC \pause
+ 	\end{itemize}
+\item \textbf{Traitement des trajectoires salariales}
+ 	\begin{itemize}
+	\item Imputation des années 1981, 1983 et 1990 manquantes dans le secteur privé
+	\item Imputation des années 1979, 1981 et 1987 (plus 1976-1977) manquantes pour la Fonction Publique d'Etat
+	\end{itemize}
+  \end{itemize}
+\end{frame}
+
+\subsection{Résultats préliminaires}
+
+\begin{frame}
+
+  \frametitle{Résultats préliminaires} \pause
+
+	\begin{itemize}
+	\item \textbf{Décomposition de l'indice de Theil} \\
+
+ $I=\sum_{i=1}^{n}[\frac{Y_{i}}{\sum_{i=1}^{n}Y_{i}}]I_{i}^{W} + I^{B}$ \pause
+	\end{itemize}
+\footnotesize
+\begin{table}
+\caption{Part intra-personnelle des inégalités de revenus salariaux de 1976 à 2001}
+\begin{tabular}{|c|c|}
+\hline
+           & \% d'inégalités intra-individuelles \\
+\hline
+Niveau individuel &      47,4  \\
+\hline
+Niveau du couple &      48,5  \\
+\hline
+Prise en compte des enfants &       47,0  \\
+\hline
+\end{tabular}
+{\tiny{\textbf{SOURCE}: TAXIPP LIFE 0.0.} \tiny{\textbf{CHAMP}: Echantillon de 8903 individus appariés de l'Enquête Patrimoine, nés entre 1941 et 1960, dont le conjoint ou concubin éventuel est également né entre 1941 et 1960.}
+}
+\end{table}
+\pause
+\begin{itemize}
+	\item \textbf{Rappel} : Björklund et Palme (1997) $\Rightarrow$ 40 à 50 \%
+	\end{itemize}
+\end{frame}
+
+
+\begin{frame}
+ \frametitle{Résultats préliminaires}
+\framesubtitle{\vspace{0.3cm}Variabilité inter-temporelle des revenus}
+\footnotesize
+\begin{itemize}
+	\item \textbf{Björklund et Palme (1997)}
+	\end{itemize}
+$\Rightarrow$ Relation décroissante, non-linéaire, entre variabilité des revenus et revenus totaux sur le cycle de vie \pause
+
+\begin{table}
+\caption{Indices de Theil intra-individuels moyens selon le quartile de revenu salarial total entre 1976 et 2001}
+\begin{center}
+{\begin{tabular}{|c|c|c|c|c|}
+\hline
+           &   P0-25 &  P25-50 &  P50-75 & P75-100 \\
+\hline
+Indice de &  \multirow{2}{*}{1.25} & \multirow{2}{*}{0.44} & \multirow{2}{*}{0.20} & \multirow{2}{*}{0.13} \\
+Theil moyen & & & & \\
+\hline
+\end{tabular}}
+\
+\end{center}
+\vspace{0.2cm}
+{\tiny{\textbf{SOURCE}: TAXIPP LIFE 0.0.} \tiny{\textbf{CHAMP}: Echantillon de 8903 individus appariés de l'Enquête Patrimoine, nés entre 1941 et 1960, dont le conjoint ou concubin éventuel est également né entre 1941 et 1960.}
+}
+\end{table}
+\end{frame}
+
+
+
+
+\begin{frame}
+
+  \frametitle{Variabilité des revenus}
+\begin{mfigure}{Indices de Theil moyens selon le décile de revenu salarial total entre 1976 et 2001 et par année de naissance}
+  {\graphique[0.8]{theil_intra_eic.jpg}}{\tiny{\textbf{SOURCE}: TAXIPP LIFE 0.0.} \tiny{\textbf{CHAMP}: Echantillon de 93198 trajectoires salariales d'individus nés entre 1942 et 1958 et apparaissant au moins une fois dans le champ EIC-DADS entre 1976 et 2001.}
+  }
+  \end{mfigure}
+\end{frame}
+
+
+
+
+\begin{frame}
+
+  \frametitle{Plan intermédiaire}
+  \framesubtitle{\vspace{0.3cm}}
+  \begin{enumerate}
+    \item Difficultés spécifiques à la microsimulation dynamique
+    \item  Présentation du modèle
+    \item  Développements
+  \end{enumerate}
+\end{frame}
+
+\section{1. Difficultés spécifiques à la microsimulation dynamique}
+
+\begin{frame}
+
+  \frametitle{1. Microsimulation dynamique}
+  \framesubtitle{\vspace{0.3cm}}
+  \begin{enumerate}
+    \item[I.] Sources d'information
+    \item[II.] Formation des unions
+    \item[III.] Pondérations
+    \item[IV.] Individualisation des transferts
+    \item[V.] Le choix du pas temporel
+    \item[VI.] Alignement
+  \end{enumerate}
+\end{frame}
+
+\subsection{Sources d'information}
+\begin{frame}
+
+  \frametitle{I. Sources d'information}
+  \begin{itemize}
+    \item \textbf{Le problème : } Connaître le passé précisément et avoir autant d'éléments que possible sur le futur.
+    \item\textbf{ La réponse de \til \ :}  \pause
+    \begin{itemize}
+      \item Utilisation de l'enquête patrimoine
+      \item Enrichissement par un appariement avec l'EIR-EIC
+      \item Fermeture de l'échantillon
+      \item Utilisation de différentes études pour les équations de simulations
+    \end{itemize}
+    \item \textbf{Ce qu'on pourrait faire de mieux : }
+    \begin{itemize}
+    \item Utiliser d'autres enquêtes comme SIP
+    \item Améliorer les simulations (avec de la validation)
+    \end{itemize}
+  \end{itemize}
+\end{frame}
+
+\subsection{Formation des unions}
+\begin{frame}
+
+  \frametitle{II. Formation des unions}
+  \begin{itemize}
+    \item \textbf{Le problème : } unir des individus en respectant les caractéristiques jointes.
+    \item \textbf{ La réponse de \til \ :}  \pause
+    \begin{itemize}
+      \item Distance entre conjoints (pas une préférence)
+      \item Algorithme de minimisation
+    \end{itemize}
+    \item \textbf{Ce qu'on pourrait faire de mieux : }
+    \begin{itemize}
+    \item Améliorer l'algorithme de minimisation (méthode hongroise)
+    \item Faire un tirage aléatoire de conjoints potentiel et sélectionner parmi eux.
+    \end{itemize}
+  \end{itemize}
+\end{frame}
+
+
+
+\subsection{Pondérations}
+\begin{frame}
+
+  \frametitle{III. Pondérations}
+  \begin{itemize}
+    \item \textbf{Le problème : } En simulation dynamique, les liens entre individus changent. Comment relier deux individus de pondérations différentes ?
+    \item \textbf{ La réponse de \til \ :}  \pause
+    \begin{itemize}
+      \item Travail avec une pondération uniforme
+      \item Duplication des individus selon leur pondération
+    \end{itemize}
+    \item \textbf{Ce qu'on pourrait faire de mieux : }
+    \begin{itemize}
+    \item La plus petite pondération de l'enquête patrimoine est 6 ! \\
+    $\rightarrow$ 11 millions d'individus
+    \item  200 comme pondération uniforme et non 6  \\
+    $\rightarrow$ 300 000 individus \\
+    \item Augmenter la taille de l'échantillon
+    \end{itemize}
+  \end{itemize}
+\end{frame}
+
+\subsection{Individualisation des transferts}
+\begin{frame}
+
+  \frametitle{IV. Individualisation des transferts}
+  \begin{itemize}
+    \item \textbf{Le problème : } L'unité d'étude ne peut plus être un ménage ou un foyer fiscal mais seulement un individu. Comment individualiser les transferts ?
+    \item \textbf{ La réponse de \til \ :}  \pause
+    \begin{itemize}
+      \item L'impôt sur le revenu est séparé entre déclarant et conjoint...
+      \item sauf l'avantage lié au quotient familial qui est réparti entre les personnes à charge.
+      \item Les prestations familiales sont réparties entre les enfants
+      \item Les autres prestations sont réparties entre les personnes du ménage.
+    \end{itemize}
+    \item \textbf{Ce qu'on pourrait faire de mieux : }
+    \begin{itemize}
+    \item Séparer l'IR au prorata des revenus mais...
+    \item ...la bonne solution c'est le recours à la valeur de Shapley.
+    \end{itemize}
+  \end{itemize}
+\end{frame}
+
+\subsection{Le pas temporel}
+\begin{frame}
+
+  \frametitle{V. Le choix du pas temporel}
+  \begin{itemize}
+    \item \textbf{Le problème : } Un trade-off entre précision et temps de simulation.
+    \item \textbf{ La réponse de \til \ :}  \pause
+    \begin{itemize}
+      \item Pour l'instant : pas annuel
+      \item Possibilité de ne faire tourner certains éléments qu'à certaines périodes
+    \end{itemize}
+    \item \textbf{Ce qu'on pourrait faire de mieux : }
+    \begin{itemize}
+    \item Pas mensuel
+    \item ...ou au moins trimestriel
+    \item automatiser les paramètres en fonction du pas.
+    \item Simuler des durées plutôt que des événements ?
+    \end{itemize}
+  \end{itemize}
+\end{frame}
+
+\subsection{Alignement}
+\begin{frame}
+
+  \frametitle{VI. Alignement}
+  \begin{itemize}
+    \item \textbf{Le problème : } Le nombre d'événements (de décès par exemple) prédits par le tirage d'une variable binaire est trop volatil.\\
+    Comment maîtriser le nombre d'occurrences ?
+    \item \textbf{ La réponse de \til \ :}  \pause
+    \begin{itemize}
+      \item Utilisation d'une méthode implémentée dans Liam2 (voir Li et O'Donoghue 2012)
+    \end{itemize}
+    \item \textbf{Ce qu'on pourrait faire de mieux : }
+    \begin{itemize}
+    \item Tester les différentes méthodes d'alignement.
+    \end{itemize}
+  \end{itemize}
+\end{frame}
+
+
+\section{2. Présentation du modèle}
+
+\begin{frame}
+
+  \frametitle{2. Présentation du modèle}
+  \framesubtitle{\vspace{0.3cm}}
+  \begin{itemize}
+    \item I. Le langage de programmation
+    \item II. Les entités et les liens.
+    \item III. Les étapes de la simulation
+  \end{itemize}
+\end{frame}
+%
+\subsection{Langage de programmation}
+\begin{frame}
+
+  \frametitle{I. Langage de programmation}
+  \framesubtitle{\vspace{0.3cm}Organisation}
+  \begin{itemize}
+  \item \textbf{Langages utilisés}
+    \begin{itemize}
+    \item Traitement initial des données en R
+    \item Utilisation principale de Python
+    \item Interface texte agréable (YAML)
+    \end{itemize}
+     \item \textbf{Pourquoi Python} ?\pause
+    \begin{itemize}
+    	\item Langage clair.
+    	\item Possibilité d'avoir plusieurs niveaux de lecture.
+		\item Performances très intéressantes	
+    \end{itemize}
+	\item Un choix fait par Liam2 et OpenFisca.
+	\item Simulation \ 30 000 individus : \  6 s/période
+	\item Simulation sur 300 000 individus : 70 s/période
+  \end{itemize}
+\end{frame}
+
+
+%\begin{frame}
+%  \hligne
+%  \frametitle{I. Langage de programmation}
+%  \framesubtitle{\vspace{0.3cm}Organisation}
+%	Mettre une image de YAML.
+%	Un exemple de code.
+%\end{frame}
+\subsection{Les entités et les liens}
+\begin{frame}
+
+  \frametitle{II. Les entités et les liens.}
+  \framesubtitle{\vspace{0.3cm}Organisation}
+  \begin{itemize}
+  \item \textbf{Les entités} \\
+  4 entités (dont non indispensable), et un \textbf{registre}
+    \begin{itemize}
+    \item Individus
+    \item Logement
+    \item Déclaration fiscale
+    \item Entreprise
+    \end{itemize}
+     \item \textbf{Les liens}
+    \begin{itemize}
+    	\item Lien entre individus : conjoint et parents.
+    	\item Lien des individus vers les entités auxquelles ils appartiennent
+   		\item Lien des entités vers les individus auxquels elles appartiennent
+    \end{itemize}
+  \end{itemize}
+\end{frame}
+
+
+\subsection{Les étapes de la simulation}
+\subsubsection{Démographie}
+
+\begin{frame}
+
+  \frametitle{III. Les étapes de la simulation}
+  \framesubtitle{Démographie - 1}
+  \begin{itemize}
+  	\item Naissance \\
+  	\begin{itemize}
+  	\item Femme en couple, alignement sur des naissances par âge.
+  	\item Pas de lien avec les études, ni les enfants précédents
+  	\end{itemize}
+  	\item Indépendance
+  	\begin{itemize}
+  	\item Systématique en fonction de l'âge.
+  	\item Pas d'autre type de déménagement
+  	\end{itemize}
+  \end{itemize}
+\end{frame}
+  	
+  	
+\begin{frame}
+
+  \frametitle{III. Les étapes de la simulation}
+   \framesubtitle{Démographie - 2}
+  \begin{itemize}
+  	\item Unions \\
+  	\begin{itemize}
+  	\item Inspirées des équations de Destinie
+  	\item Probabilité d'union en fonction de l'âge, de la fin des études, de la date depuis la séparation et du nombre d'enfants
+  	\item Formation des unions en fonction des âges et du niveau d'études
+  	\item Les enfants suivent leur parent (pour le logement ou la déclaration)
+  	\end{itemize}
+  	\item Séparations
+  	\begin{itemize}
+  	\item Probabilité en fonction de la durée du couple, du nombre d'enfants et de la différence d'âge.
+  	\item Les enfants sont affectés aléatoirement au père ou à la mère
+  	\end{itemize}
+  \end{itemize}
+\end{frame}
+
+
+\begin{frame}
+
+  \frametitle{III. Les étapes de la simulation}
+   \framesubtitle{Démographie - 3}
+  \begin{itemize}
+  	\item Décès \\
+  	\begin{itemize}
+  	\item Alignement en fonction de l'âge et du sexe
+  	\item Pas de prise en compte des revenus ou du diplôme.
+  	\item \textbf{Héritage} (y compris de deuxième rang)
+  	\item Droit de succession (en cours)
+  	\item Pas d'accident de voiture...
+  	\end{itemize}
+  \end{itemize}
+\end{frame}
+
+\subsubsection{Activité}
+\begin{frame}
+
+  \frametitle{III. Les étapes de la simulation}
+   \framesubtitle{Activité}
+  \begin{itemize}
+	\item Éducation
+  	\begin{itemize}
+  	\item Détermination à la naissance en fonction des parents.
+  	\item Niveau (rudimentaire) lié à l'âge
+  	\end{itemize}
+  	\item Marché du travail
+  	\begin{itemize}
+  	\item Équation simplifiée et alignement grossier
+  	\item Salaire en fonction d'une équation de Mincer...
+  	\item ... et d'une productivité observée ou imputée
+  	\item Pas de temps partiel
+  	\end{itemize}
+  	\item Retraite
+  	\begin{itemize}
+  	\item Départ systématique en fonction de l'âge
+  	\item Niveau de retraite à partir du dernier salaire
+	\item Lien avec PENSIPP
+  	\end{itemize}
+  \end{itemize}
+\end{frame}
+
+\begin{frame}
+
+  \frametitle{III. Les étapes de la simulation}
+   \framesubtitle{Revenus}
+  \begin{itemize}
+  	\item Actifs occupés
+  	\begin{itemize}
+  	\item Salaire en fonction d'une équation de Mincer...
+  	\item ... et d'une productivité plus ou moins observée
+  	\item Pas de temps partiel
+  	\end{itemize}
+  	\item Retraite
+  	\begin{itemize}
+  	\item Départ systématique en fonction de l'âge
+  	\item Niveau de retraite à partir du dernier salaire
+	\item Utilisation de PENSIPP pour cette partie
+  	\end{itemize}
+  	\item Chômage
+  	\begin{itemize}
+  	\item Calcul implémenté...
+  	\item ...mais le pas de la simulation est une limite
+  	\end{itemize}
+  \end{itemize}
+\end{frame}
+
+
+\subsubsection{Consommation et épargne}
+\begin{frame}
+
+  \frametitle{III. Les étapes de la simulation}
+   \framesubtitle{Consommation et épargne}
+  \begin{itemize}
+	\item De nouvelles estimations à produire
+	 \begin{itemize}
+  	\item en tenant compte du cycle de vie
+  	\item en essayant de rester au niveau individuel
+  	\end{itemize}
+  \end{itemize}
+\end{frame}
+
+%\subsubsection{Développements futurs}
+%\begin{frame}
+%  \hligne
+%  \frametitle{III. Les étapes de la simulation - activité }
+%  \begin{itemize}
+%	\item Il y a encore beaucoup de champs qui pourrait être travaillés
+%  	\begin{itemize}
+%	\item Santé et dépendance
+%	\item Mode de garde
+%	\item Choix d'éducation
+%  	\end{itemize}
+%  \end{itemize}
+%\end{frame}
+
+
+\section{3. Développements}
+
+\begin{frame}
+
+  \frametitle{3. Développements}
+  \framesubtitle{\vspace{0.3cm}Temps figé}
+  \begin{itemize}
+  \item Un temps figé en 2009
+    \begin{itemize}
+	\item Pas de croissance (ou de tendance)
+	\item Revalorisation des revenus passés
+	\item La législation de 2009 est appliquée tous les ans
+  \end{itemize}
+  \item Ne simule pas encore les trajectoires matrimoniales dans le passé (en cours).
+  \end{itemize}
+\end{frame}
+
+ \begin{frame}
+
+  \frametitle{3. Développements}
+  \framesubtitle{\vspace{0.3cm} Réponse comportementale}
+  \begin{itemize}
+  \item On peut appliquer la législation et une réforme \textit{ex post}
+  \item En appliquant la législation à chaque période on a aussi des réactions comportementales.
+   \item Il reste à rendre possible le modèle de décision.
+  \end{itemize}
+\end{frame}
+%
+% \begin{frame}
+%  \hligne
+%
+%  \hligne
+%  \frametitle{III. Production actuelle et potentielle}
+%  \framesubtitle{\vspace{0.3cm} Quelques chiffres}
+%    \begin{itemize}
+%  \item Le revenu moyen par an par individu est :
+%  \item Le niveau de vie en moyenne sur la vie calculé par l'Insee est :
+%   \item En regardant au niveau des enfants, on gagne tant...
+%   \item En moyenne tant d'impot et tant de prestation
+%   \item La retraite.
+%  \end{itemize}
+% \end{frame}
+
+
+
+\section{Motivations - Conclusion}
+
+\begin{frame}
+
+  \frametitle{Conclusion}
+  \framesubtitle{\vspace{0.3cm} Pourquoi faire des simulations sur le cycle de vie ?}
+  \begin{itemize}
+    \item  mesure d'un \og meilleur \fg \ niveau de vie
+        \begin{itemize}
+          \item Variabilité des revenus
+          \item Équité dans le traitement des individus vis-à-vis de leur âge.
+          \item Prise en compte du patrimoine
+        \end{itemize}
+    \item Possibilité d'arbitrer entre part assurantielle et part redistributive des transferts
+    \item Capacité de prédiction
+  \end{itemize}
+\end{frame}
+
+\frame{\maketitle}
+
+\end{document}
