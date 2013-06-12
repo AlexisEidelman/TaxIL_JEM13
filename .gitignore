@@ -175,3 +175,6 @@ pip-log.txt
 *.bak
 *.bbl
 *.out
+presentation\*.snm
+presentation\*.nav
+presentation\*.toc
