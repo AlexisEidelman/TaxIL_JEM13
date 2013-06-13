@@ -78,17 +78,15 @@
 
 \frame{\maketitle}
 
-\section{Introduction}
-
+\section*{Introduction}
 \begin{frame}
-
-  \frametitle{Introduction}
-  \framesubtitle{\vspace{0.3cm}General overview of \til}
-  \begin{itemize}
-    \item Dynamic microsimulation model développed by \textit{Institut des politiques publiques} (IPP)
-  \item Ageing and legislation \pause
-  \item Reforms
-  \item \textbf{Work in progress} \pause
+\frametitle{Introduction}
+\framesubtitle{\vspace{0.3cm}General overview of \til}
+\begin{itemize}
+	\item Dynamic microsimulation model développed by \textit{Institut des politiques publiques} (IPP)
+	\item Ageing and legislation \pause
+	\item Reforms
+	\item \textbf{Work in progress} \pause
 %\item \textbf{Importance de la perspective de cycle de vie}
 %    \begin{enumerate}
 %      \item Pour l'étude des niveaux de vie et des inégalités
@@ -99,147 +97,174 @@
 %    \item Données rétrospectives réellement observées
 %    \item Simulation des trajectoires futures
 %    \end{itemize}
-
-  \end{itemize}
+\end{itemize}
 \end{frame}
 
 \begin{frame}
+\frametitle{Roadmap}
+  \tableofcontents[hideothersubsections] 
+\end{frame} 
 
-  \frametitle{Roadmap}
+\begin{frame}
+\frametitle{Roadmap}
 %  \framesubtitle{\vspace{0.3cm}Plan}
-  \begin{enumerate}
-    \item Why to be interested in Life-Cycle ? 
-    \item Some issues of a dynamic microsimulation model
-    \item How \til \ simulate for now
-    \item Becoming of \til
-  \end{enumerate}
+\begin{enumerate}
+	\item Why to be interested in Life-Cycle ? 
+	\item Some issues of a dynamic microsimulation model
+	\item How \til \ simulate for now
+	\item Becoming of \til
+\end{enumerate}
 \end{frame}
-
 
 \section{Why to be interested in Life-Cycle ?}
-
 \subsection{Inequalities}
+\begin{frame}
+\frametitle{Roadmap}
+  \tableofcontents[currentsection, hideothersubsections] 
+\end{frame} 
 
 \begin{frame}
-  \frametitle{Why to be interested in Life-Cycle ?}
-  \framesubtitle{\vspace{0.3cm} Evaluation inequalities} \pause
-  \begin{itemize}
-\item Annual income doesn't measure utility (or living standard)
- \begin{enumerate}
-\item Income chocks (plus value, unemplyement, child care, bad harvest)
-\item Different period of life (studies, retirement)
-\item Wealth (and inheritance) can't be ignored
-\end{enumerate}
-On administrative (Swedish) data, it was measured that 40 \% \ of Gini-inequlities are intra-personnal. 
-  \end{itemize}
+\frametitle{Why to be interested in Life-Cycle ?}
+\framesubtitle{\vspace{0.3cm} Evaluation inequalities} \pause
+\begin{itemize}
+	\item Annual income doesn't measure utility (or living standard)
+		\begin{enumerate}
+		\item Income chocks (plus value, unemplyement, child care, bad harvest)
+		\item Different period of life (studies, retirement)
+		\item Wealth (and inheritance) can't be ignored
+		\end{enumerate}
+	On administrative (Swedish) data, it was measured that 40 \% \ of Gini-inequlities are intra-personnal. 
+\end{itemize}
 \end{frame}
 
 \subsection{Redistribution}
 
-
 \begin{frame}
-  \frametitle{Why to be interested in Life-Cycle ?}
-
-  \begin{itemize}
-\item Who is rich and who is poor is different at a given time and over life cycle.
-\item Who is a contributor and who benefits is also different 
-  \end{itemize}
-\end{frame}
-
-\begin{frame}
-  \frametitle{Why to be interested in Life-Cycle ?}
-  \framesubtitle{\vspace{0.3cm} Redistribution} \pause
-  \begin{itemize}
-\item 
-\item  
- \begin{enumerate}
-\item 
-\item Assurance
+\frametitle{Why to be interested in Life-Cycle ?}
+\begin{enumerate}
+\item Who is rich and who is poor ?
+\item Who does give money to whom ?
 \end{enumerate}
-On administrative (Swedish) data, it was measured that 40 \% \ of Gini-inequlities are intra-personnal. 
-  \end{itemize}
 \end{frame}
 
 \begin{frame}
-  \frametitle{Athlete struggling with a python}
-\includegraphics[0.1]{struggling_with_Python.jpg}
-\end{frame}
-
-\begin{frame}
-
-  \frametitle{Les enjeux du cycle de vie}
-  \framesubtitle{\vspace{0.3cm}Importance pour l'étude de la redistribution} \pause
-  \begin{itemize}
-\item \textbf{Distinction entre redistribution intra- et inter-personnelle}
-	 \begin{itemize}
-	\item Redistribution intra-individuelle $\Rightarrow$ reflète une logique d'assurance \pause
-	 \end{itemize}
-\item \textbf{Deux cas-types extrêmes}
- 	\begin{itemize}
-	\item Individus aux revenus constants au cours du cycle de vie, différents entre eux\\
- $\Rightarrow$ Redistribution inter-personnelle principalement \pause
-	\item Individus parfaitement identiques, aux revenus affectés par des variations au cours du temps \\
- $\Rightarrow$ Pas besoin de redistribution si l'accès au marché du crédit et à  l'assurance est parfait
-
-	\end{itemize}
+\frametitle{Why to be interested in Life-Cycle ?}
+\framesubtitle{\vspace{0.3cm} Redistribution} 
+\begin{itemize}
+	\item People may contribute and benefit from the tax and benefit system at different periods. \\
+	
+	 \ House benefit for students (or others state services) \pause
+	\item Assurance issue
+		\begin{enumerate}
+		\item unemployment benefit, health care, pension system
+		\item Forced consumption? \\	
+		\ 	$\longrightarrow$ no redistribution
+		\item But a contribution may not equal risk expectancy \\
+		\	$\longrightarrow$ redistribution
+	\end{enumerate}
 \end{itemize}
-\end{frame}
+\end{frame} 
 
 
 \begin{frame}
-
-  \frametitle{Les enjeux du cycle de vie}
-  \begin{itemize}
-\item \textbf{Mesure de la redistribution en coupe vs. sur le cycle de vie}
- 	\begin{itemize}
-	\item Bengtsson et al. (2012) : faible effet redistributif du système de taxation suédois \pause
-	\item Impact de la perspective de cycle de vie inégalement réparti dans la distribution des revenus \pause
+\frametitle{Why to be interested in Life-Cycle ?}
+\framesubtitle{\vspace{0.3cm} Redistribution} 
+\begin{itemize}
+\item \textbf{Two extreme cases}
+	\begin{itemize}
+	\item People with same income during their whole life \\
+	$\Rightarrow$ Redistribution between people \pause
+	\item Same individuals with variation in income but born at different times \\
+	$\Rightarrow$ Redistribution "within" people only \\
+	(Useless if credit and assurance market are perfect)
 	\end{itemize}
- \end{itemize}
+\end{itemize} \pause
  \footnotesize
 \begin{table}	
-\caption{Part de redistribution inter-personnelle dans la redistribution totale}
+\caption{Share of within redistribution in whole redistribution}
  \begin{tabular}{|c|c|c|}
 \hline
-Pettersson et Pettersson (2007) &      Suède &  18-32 \% \\
+Pettersson et Pettersson (2007) &      Sweden &  18-32 \% \\
 \hline
-Hussenius et Selen (1994) &      Suède &  24-32 \% \\
+Hussenius et Selen (1994) &      Sweden &  24-32 \% \\
 \hline
-Falkingham et Harding (1996) &  Australie &  48-63 \% \\
+Falkingham et Harding (1996) &  Australia &  48-63 \% \\
 \hline
-Falkingham et Harding (1996) & Royaume-Uni &  29-38 \% \\
+Falkingham et Harding (1996) & United-Kingdom &  29-38 \% \\
 \hline
-O'Donoghue &    Irlande &     45 \% \\
+O'Donoghue &    Ireland &     45 \% \\
 \hline
-O'Donoghue &     Italie &     24 \% \\
+O'Donoghue &     Italy &     24 \% \\
 \hline
 \end{tabular}
 \end{table}
 \end{frame}
 
-\begin{frame}
 
-  \frametitle{Les enjeux du cycle de vie}
-  \framesubtitle{\vspace{0.3cm}Importance dans le débat public}
-  \begin{itemize}
-\item \textbf{Comparaisons des systèmes redistributifs de différents pays}
-	 \begin{itemize}
-	\item La fonction d'assurance peut être plus ou moins prise en charge par l'Etat \pause
- 	\end{itemize}
-\item \textbf{La part assurantielle de la redistribution profite inégalement aux individus}
- 	\begin{itemize}
-	\item Hoynes et Luttmer (2011) : composante assurantielle d'autant plus grande que le revenu est élevé \pause
-	\end{itemize}
-\item \textbf{Comparer les propriétés redistributives de différents instruments des systèmes fiscalo-sociaux}
-  \end{itemize}
+\subsection{Getting more general}
+
+\begin{frame}
+\frametitle{Why to be interested in Life-Cycle ?}
+\begin{enumerate}
+\item Who is rich and who is poor ?
+\item Who does give money to whom ?
+\end{enumerate}
 \end{frame}
 
-\section{Données et résultats préliminaires}
+\begin{frame}
+\frametitle{Why to be interested in Life-Cycle ?}
+\framesubtitle{\vspace{0.3cm} Redistribution} 
+\begin{itemize}
+	\item People may contribute and benefit from the tax and benefit system at different periods. \\
+	
+	 \ House benefit for students (or others state services) \pause
+	\item Assurance issue
+		\begin{enumerate}
+		\item unemployment benefit, health care, pension system
+		\item Forced consumption? \\	
+		\ 	$\longrightarrow$ no redistribution
+		\item But a contribution may not equal risk expectancy \\
+		\	$\longrightarrow$ redistribution
+	\end{enumerate}
+\end{itemize}
+\end{frame} 
 
-\subsection{Base de données rétrospective}
+\subsection{Particular fields}
+\begin{frame}
+\frametitle{Why to be interested in Life-Cycle ?}
+\framesubtitle{\vspace{0.3cm} Particular fields} 
+\begin{itemize}
+	\item A life-cycle perspective is unavoidable when careers is a major point   \\
+	\	$\longrightarrow$ pension, educational choice
+	\item Can add very interesting point in particular when demography is at stake. 
+	\	$\longrightarrow$ Female labour, health (end of life)	
+\end{itemize}
+The aim of \til \ is to be as general as possible and not focused on a specific topic.
+\begin{itemize}
+	\item Enable to study reform at upper level
+	 \begin{itemize}
+		\item Impact of pension reform on age departure and educational choice
+		\item Impact of health on (maison de retraite) and on house pricing (and housing benefits)
+	 \end{itemize}
+	\item Objective to have a complete economic informations on people 
+	\item Requires an organisation and some organisation	
+\end{itemize}
+\end{frame} 
+
+
+\begin{frame}[plain,t]
+\frametitle{Athlete struggling with a python}
+\begin{center}
+\includegraphics[0.8]{struggling_with_Python.jpg}
+\end{center}
+\end{frame}
+
+
+
+
+\subsection{Retrospective data}
 
 \begin{frame}
-
   \frametitle{Base de données rétrospective}
   \framesubtitle{\vspace{0.3cm}Choix des données}
   \begin{itemize}
@@ -390,7 +415,12 @@ Theil moyen & & & & \\
   \end{enumerate}
 \end{frame}
 
-\section{1. Difficultés spécifiques à la microsimulation dynamique}
+\section{Some issues for a dynamic microsimulation model}
+
+\begin{frame}
+\frametitle{Roadmap}
+  \tableofcontents[currentsection, hideothersubsections] 
+\end{frame} 
 
 \begin{frame}
 
@@ -531,7 +561,11 @@ Theil moyen & & & & \\
 \end{frame}
 
 
-\section{2. Présentation du modèle}
+\section{How \til \ simulate for now}
+\begin{frame}
+\frametitle{Roadmap}
+  \tableofcontents[currentsection, hideothersubsections] 
+\end{frame} 
 
 \begin{frame}
 
@@ -741,7 +775,11 @@ Theil moyen & & & & \\
 %\end{frame}
 
 
-\section{3. Développements}
+\section{Becoming of \til}
+\begin{frame}
+\frametitle{Roadmap}
+  \tableofcontents[currentsection, hideothersubsections] 
+\end{frame} 
 
 \begin{frame}
 
@@ -786,7 +824,7 @@ Theil moyen & & & & \\
 
 
 
-\section{Motivations - Conclusion}
+\section*{Motivations - Conclusion}
 
 \begin{frame}
 
