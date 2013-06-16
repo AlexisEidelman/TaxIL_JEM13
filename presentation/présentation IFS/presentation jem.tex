@@ -133,7 +133,7 @@
 		\item Different period of life (studies, retirement)
 		\item Wealth (and inheritance) can't be ignored
 		\end{enumerate}
-	On administrative (Swedish) data, it was measured that 40 \% \ of Gini-inequlities are intra-personnal. 
+	On administrative (Swedish) data, it was measured that 40\% \ of Gini-inequlities are intra-personnal. 
 \end{itemize}
 \end{frame}
 
@@ -200,35 +200,6 @@ O'Donoghue &     Italy &     24 \% \\
 \end{table}
 \end{frame}
 
-
-\subsection{Getting more general}
-
-\begin{frame}
-\frametitle{Why to be interested in Life-Cycle ?}
-\begin{enumerate}
-\item Who is rich and who is poor ?
-\item Who does give money to whom ?
-\end{enumerate}
-\end{frame}
-
-\begin{frame}
-\frametitle{Why to be interested in Life-Cycle ?}
-\framesubtitle{\vspace{0.3cm} Redistribution} 
-\begin{itemize}
-	\item People may contribute and benefit from the tax and benefit system at different periods. \\
-	
-	 \ House benefit for students (or others state services) \pause
-	\item Assurance issue
-		\begin{enumerate}
-		\item unemployment benefit, health care, pension system
-		\item Forced consumption? \\	
-		\ 	$\longrightarrow$ no redistribution
-		\item But a contribution may not equal risk expectancy \\
-		\	$\longrightarrow$ redistribution
-	\end{enumerate}
-\end{itemize}
-\end{frame} 
-
 \subsection{Particular fields}
 \begin{frame}
 \frametitle{Why to be interested in Life-Cycle ?}
@@ -236,10 +207,18 @@ O'Donoghue &     Italy &     24 \% \\
 \begin{itemize}
 	\item A life-cycle perspective is unavoidable when careers is a major point   \\
 	\	$\longrightarrow$ pension, educational choice
-	\item Can add very interesting point in particular when demography is at stake. 
+	\item Can add very interesting point in particular when demography is at stake. \\
 	\	$\longrightarrow$ Female labour, health (end of life)	
 \end{itemize}
 The aim of \til \ is to be as general as possible and not focused on a specific topic.
+
+\end{frame} 
+
+\subsection{Getting more general}
+
+\begin{frame}
+\frametitle{Why to be interested in Life-Cycle ?}
+\framesubtitle{\vspace{0.3cm}Getting more general } 
 \begin{itemize}
 	\item Enable to study reform at upper level
 	 \begin{itemize}
@@ -252,168 +231,6 @@ The aim of \til \ is to be as general as possible and not focused on a specific 
 \end{frame} 
 
 
-\begin{frame}[plain,t]
-\frametitle{Athlete struggling with a python}
-\begin{center}
-\includegraphics[0.8]{struggling_with_Python.jpg}
-\end{center}
-\end{frame}
-
-
-
-
-\subsection{Retrospective data}
-
-\begin{frame}
-  \frametitle{Base de données rétrospective}
-  \framesubtitle{\vspace{0.3cm}Choix des données}
-  \begin{itemize}
-\item \textbf{Importance des trajectoires salariales effectivement observées}
-	 \begin{itemize}
-	\item Reflètent la réelle variabilité des revenus au cours du temps \\ \pause
-	$\Rightarrow$ Emploi de données administratives (EIC-DADS-UNEDIC) : trajectoires salariales de 1976 à 2001 \pause
- 	\end{itemize}
-\item \textbf{Peu de variables annexes}
- 	\begin{itemize}
-	\item Important notamment concernant les structures des ménages, trajectoires matrimoniales...\\ \pause
-     $\Rightarrow$ Appariement avec les données de l'Enquête Patrimoine (2010)
-	\end{itemize}
-  \end{itemize}
-\end{frame}
-
-\begin{frame}
-
-  \frametitle{Base de données rétrospective}
-  \framesubtitle{\vspace{0.3cm}Appariement statistique des données EIC-DADS-UNEDIC avec l'Enquête Patrimoine} \pause
- \begin{itemize}
-\item \textbf{Appariement exact}
-	\begin{enumerate}
-	\item Sexe
-	\item Date de naissance (par tranches de 4 ans)
-	\item PCS à 1 chiffre
-	\item Tranche de revenus d'activité et de remplacement (réévalués) \pause
- 	\end{enumerate}
-\item \textbf{Appariement en termes de plus proche voisin}
-	\begin{enumerate}
-	\item Revenus d'activité et de remplacement
-	\item Trajectoire en termes de statut vis-à-vis de l'emploi
-		\begin{itemize}
-		\item Méthode d'appariement optimal (définition d'un coût de suppression et d'une matrice de coûts de substitution) \pause
-		\end{itemize}
-	\end{enumerate}
- 	\begin{itemize}
-	\item $\Rightarrow$ Pondération de ces deux distances
-	\end{itemize}
-  \end{itemize}
-\end{frame}
-
-\begin{frame}
-
-  \frametitle{Base de données rétrospective}
-  \framesubtitle{\vspace{0.3cm}Champ des individus appariés et traitement des trajectoires salariales}
- \begin{itemize}
-\item \textbf{Champ des individus appariés}
-	\begin{itemize}
-	\item Individus ayant entre 30 et 59 ans en 2001
-	\item Ni agriculteurs, ni indépendants, ni retraités au moment de l'Enquête Patrimoine
-	\item Ayant été présents au moins une fois dans le champ DADS-UNEDIC \pause
- 	\end{itemize}
-\item \textbf{Traitement des trajectoires salariales}
- 	\begin{itemize}
-	\item Imputation des années 1981, 1983 et 1990 manquantes dans le secteur privé
-	\item Imputation des années 1979, 1981 et 1987 (plus 1976-1977) manquantes pour la Fonction Publique d'Etat
-	\end{itemize}
-  \end{itemize}
-\end{frame}
-
-\subsection{Résultats préliminaires}
-
-\begin{frame}
-
-  \frametitle{Résultats préliminaires} \pause
-
-	\begin{itemize}
-	\item \textbf{Décomposition de l'indice de Theil} \\
-
- $I=\sum_{i=1}^{n}[\frac{Y_{i}}{\sum_{i=1}^{n}Y_{i}}]I_{i}^{W} + I^{B}$ \pause
-	\end{itemize}
-\footnotesize
-\begin{table}
-\caption{Part intra-personnelle des inégalités de revenus salariaux de 1976 à 2001}
-\begin{tabular}{|c|c|}
-\hline
-           & \% d'inégalités intra-individuelles \\
-\hline
-Niveau individuel &      47,4  \\
-\hline
-Niveau du couple &      48,5  \\
-\hline
-Prise en compte des enfants &       47,0  \\
-\hline
-\end{tabular}
-{\tiny{\textbf{SOURCE}: TAXIPP LIFE 0.0.} \tiny{\textbf{CHAMP}: Echantillon de 8903 individus appariés de l'Enquête Patrimoine, nés entre 1941 et 1960, dont le conjoint ou concubin éventuel est également né entre 1941 et 1960.}
-}
-\end{table}
-\pause
-\begin{itemize}
-	\item \textbf{Rappel} : Björklund et Palme (1997) $\Rightarrow$ 40 à 50 \%
-	\end{itemize}
-\end{frame}
-
-
-\begin{frame}
- \frametitle{Résultats préliminaires}
-\framesubtitle{\vspace{0.3cm}Variabilité inter-temporelle des revenus}
-\footnotesize
-\begin{itemize}
-	\item \textbf{Björklund et Palme (1997)}
-	\end{itemize}
-$\Rightarrow$ Relation décroissante, non-linéaire, entre variabilité des revenus et revenus totaux sur le cycle de vie \pause
-
-\begin{table}
-\caption{Indices de Theil intra-individuels moyens selon le quartile de revenu salarial total entre 1976 et 2001}
-\begin{center}
-{\begin{tabular}{|c|c|c|c|c|}
-\hline
-           &   P0-25 &  P25-50 &  P50-75 & P75-100 \\
-\hline
-Indice de &  \multirow{2}{*}{1.25} & \multirow{2}{*}{0.44} & \multirow{2}{*}{0.20} & \multirow{2}{*}{0.13} \\
-Theil moyen & & & & \\
-\hline
-\end{tabular}}
-\
-\end{center}
-\vspace{0.2cm}
-{\tiny{\textbf{SOURCE}: TAXIPP LIFE 0.0.} \tiny{\textbf{CHAMP}: Echantillon de 8903 individus appariés de l'Enquête Patrimoine, nés entre 1941 et 1960, dont le conjoint ou concubin éventuel est également né entre 1941 et 1960.}
-}
-\end{table}
-\end{frame}
-
-
-
-
-\begin{frame}
-
-  \frametitle{Variabilité des revenus}
-\begin{mfigure}{Indices de Theil moyens selon le décile de revenu salarial total entre 1976 et 2001 et par année de naissance}
-  {\graphique[0.8]{theil_intra_eic.jpg}}{\tiny{\textbf{SOURCE}: TAXIPP LIFE 0.0.} \tiny{\textbf{CHAMP}: Echantillon de 93198 trajectoires salariales d'individus nés entre 1942 et 1958 et apparaissant au moins une fois dans le champ EIC-DADS entre 1976 et 2001.}
-  }
-  \end{mfigure}
-\end{frame}
-
-
-
-
-\begin{frame}
-
-  \frametitle{Plan intermédiaire}
-  \framesubtitle{\vspace{0.3cm}}
-  \begin{enumerate}
-    \item Difficultés spécifiques à la microsimulation dynamique
-    \item  Présentation du modèle
-    \item  Développements
-  \end{enumerate}
-\end{frame}
 
 \section{Some issues for a dynamic microsimulation model}
 
@@ -422,144 +239,141 @@ Theil moyen & & & & \\
   \tableofcontents[currentsection, hideothersubsections] 
 \end{frame} 
 
-\begin{frame}
 
-  \frametitle{1. Microsimulation dynamique}
-  \framesubtitle{\vspace{0.3cm}}
-  \begin{enumerate}
-    \item[I.] Sources d'information
-    \item[II.] Formation des unions
-    \item[III.] Pondérations
-    \item[IV.] Individualisation des transferts
-    \item[V.] Le choix du pas temporel
-    \item[VI.] Alignement
-  \end{enumerate}
+\subsection{Data}
+\begin{frame}
+\frametitle{Data}
+\begin{itemize}
+\item \textbf{Issue: } To know people's past and on carreers (administrative data) and on marital status (survey data).
+\item \textbf{How \til \ deals with:}  \pause
+	\begin{itemize}
+	\item Wealth survey
+	\item Administrative data (pension)
+	\item Statistical matching 
+	\begin{itemize}
+	\item  Exact matching on sex, age, kind of work
+	\item  Distance for income in 2009
+	\item  Optimal matching for carreer(replacement, insertion, deletion cost)\\
+	$\longrightarrow$ closest neighbourg
+	\end{itemize}	
+	\item Survey closure
+	\end{itemize}
+\item \textbf{How to get better: }
+	\begin{itemize}
+	\item Other surveys (Health survey)
+	\item Joint selection for parents
+	\end{itemize}
+\end{itemize}
 \end{frame}
 
-\subsection{Sources d'information}
+\subsection{Survey weight}
 \begin{frame}
-
-  \frametitle{I. Sources d'information}
-  \begin{itemize}
-    \item \textbf{Le problème : } Connaître le passé précisément et avoir autant d'éléments que possible sur le futur.
-    \item\textbf{ La réponse de \til \ :}  \pause
-    \begin{itemize}
-      \item Utilisation de l'enquête patrimoine
-      \item Enrichissement par un appariement avec l'EIR-EIC
-      \item Fermeture de l'échantillon
-      \item Utilisation de différentes études pour les équations de simulations
-    \end{itemize}
-    \item \textbf{Ce qu'on pourrait faire de mieux : }
-    \begin{itemize}
-    \item Utiliser d'autres enquêtes comme SIP
-    \item Améliorer les simulations (avec de la validation)
-    \end{itemize}
-  \end{itemize}
+\frametitle{Survey weight}
+\begin{itemize}
+\item \textbf{Issue: } Links between people change in a dynamic simulation. How link two individuals with different weight.
+\item \textbf{How \til \ deals with:}  \pause
+	\begin{itemize}
+	  \item Work with uniform weight
+	  \item Replication according to weight
+	  \item Increase variability
+	  \item No real other option
+	\end{itemize}
+\item \textbf{How to get better: }
+	\begin{itemize}
+	\item Smallest weight in wealth survey is 6 ! \\
+	$\rightarrow$ 11 millions individuals
+	\item  200 is our constant weight insted of 6  \\
+	$\rightarrow$ 300 000 individuals \\
+	\item Go further in survey size
+	\end{itemize}
+\end{itemize}
 \end{frame}
 
-\subsection{Formation des unions}
+\subsection{Time scale}
 \begin{frame}
-
-  \frametitle{II. Formation des unions}
-  \begin{itemize}
-    \item \textbf{Le problème : } unir des individus en respectant les caractéristiques jointes.
-    \item \textbf{ La réponse de \til \ :}  \pause
-    \begin{itemize}
-      \item Distance entre conjoints (pas une préférence)
-      \item Algorithme de minimisation
-    \end{itemize}
-    \item \textbf{Ce qu'on pourrait faire de mieux : }
-    \begin{itemize}
-    \item Améliorer l'algorithme de minimisation (méthode hongroise)
-    \item Faire un tirage aléatoire de conjoints potentiel et sélectionner parmi eux.
-    \end{itemize}
-  \end{itemize}
+\frametitle{Time scale}
+\begin{itemize}
+\item \textbf{Issue: } A trade-off between precision and calculus time.
+\item \textbf{How \til \ deals with:}  \pause
+	\begin{itemize}
+	\item So far : annual scale
+	\item Possibility to run some process on a longer basis
+	\end{itemize}
+\item \textbf{How to get better: }
+	\begin{itemize}
+	\item Month scale
+	\item ...or at least trim scale
+	\item Simulate durations more than transitions
+	\end{itemize}
+\end{itemize}
 \end{frame}
 
-
-
-\subsection{Pondérations}
+\subsection{Marriage}
 \begin{frame}
-
-  \frametitle{III. Pondérations}
-  \begin{itemize}
-    \item \textbf{Le problème : } En simulation dynamique, les liens entre individus changent. Comment relier deux individus de pondérations différentes ?
-    \item \textbf{ La réponse de \til \ :}  \pause
-    \begin{itemize}
-      \item Travail avec une pondération uniforme
-      \item Duplication des individus selon leur pondération
-    \end{itemize}
-    \item \textbf{Ce qu'on pourrait faire de mieux : }
-    \begin{itemize}
-    \item La plus petite pondération de l'enquête patrimoine est 6 ! \\
-    $\rightarrow$ 11 millions d'individus
-    \item  200 comme pondération uniforme et non 6  \\
-    $\rightarrow$ 300 000 individus \\
-    \item Augmenter la taille de l'échantillon
-    \end{itemize}
-  \end{itemize}
+\frametitle{Marriage}
+\begin{itemize}
+\item \textbf{Issue: } Marry people with verifying a given joint distribution of caracteristics. A trade-off between optimality and computational intensity.
+\item \textbf{How \til \ deals with:}  \pause
+	\begin{itemize}
+	\item no marriage market
+	\item Distance between people
+	\item Minimization Algorithm
+	\end{itemize}
+\item \textbf{How to get better: }
+	\begin{itemize}
+	\item Improve minimisation algorithm (Hungarian method)
+	\item Randomly select some potential match and run the optimisation on that subset
+	\end{itemize}
+\end{itemize}
 \end{frame}
 
-\subsection{Individualisation des transferts}
+\subsection{Individualisation}
 \begin{frame}
-
-  \frametitle{IV. Individualisation des transferts}
-  \begin{itemize}
-    \item \textbf{Le problème : } L'unité d'étude ne peut plus être un ménage ou un foyer fiscal mais seulement un individu. Comment individualiser les transferts ?
-    \item \textbf{ La réponse de \til \ :}  \pause
-    \begin{itemize}
-      \item L'impôt sur le revenu est séparé entre déclarant et conjoint...
-      \item sauf l'avantage lié au quotient familial qui est réparti entre les personnes à charge.
-      \item Les prestations familiales sont réparties entre les enfants
-      \item Les autres prestations sont réparties entre les personnes du ménage.
-    \end{itemize}
-    \item \textbf{Ce qu'on pourrait faire de mieux : }
-    \begin{itemize}
-    \item Séparer l'IR au prorata des revenus mais...
-    \item ...la bonne solution c'est le recours à la valeur de Shapley.
-    \end{itemize}
-  \end{itemize}
-\end{frame}
-
-\subsection{Le pas temporel}
-\begin{frame}
-
-  \frametitle{V. Le choix du pas temporel}
-  \begin{itemize}
-    \item \textbf{Le problème : } Un trade-off entre précision et temps de simulation.
-    \item \textbf{ La réponse de \til \ :}  \pause
-    \begin{itemize}
-      \item Pour l'instant : pas annuel
-      \item Possibilité de ne faire tourner certains éléments qu'à certaines périodes
-    \end{itemize}
-    \item \textbf{Ce qu'on pourrait faire de mieux : }
-    \begin{itemize}
-    \item Pas mensuel
-    \item ...ou au moins trimestriel
-    \item automatiser les paramètres en fonction du pas.
-    \item Simuler des durées plutôt que des événements ?
-    \end{itemize}
-  \end{itemize}
+\frametitle{Individualisation}
+\begin{itemize}
+\item \textbf{Issue: } In a life-cycle point of view, the lonely pertinent entitiy is the individual. But living standards, benefits and sometimes taxes are calculated at a bigger level (household, couple, family). How individualize?
+\item \textbf{How \til \ deals with:}  \pause
+\begin{itemize}
+\item L'impôt sur le revenu est séparé entre déclarant et conjoint...
+\item sauf l'avantage lié au quotient familial qui est réparti entre les personnes à charge.
+\item Les prestations familiales sont réparties entre les enfants
+\item Les autres prestations sont réparties entre les personnes du ménage.
+\end{itemize}
+\item \textbf{How to get better: }
+\begin{itemize}
+\item Séparer l'IR au prorata des revenus mais...
+\item ...la bonne solution c'est le recours à la valeur de Shapley.
+\end{itemize}
+\end{itemize}
 \end{frame}
 
 \subsection{Alignement}
 \begin{frame}
 
-  \frametitle{VI. Alignement}
-  \begin{itemize}
-    \item \textbf{Le problème : } Le nombre d'événements (de décès par exemple) prédits par le tirage d'une variable binaire est trop volatil.\\
-    Comment maîtriser le nombre d'occurrences ?
-    \item \textbf{ La réponse de \til \ :}  \pause
-    \begin{itemize}
-      \item Utilisation d'une méthode implémentée dans Liam2 (voir Li et O'Donoghue 2012)
-    \end{itemize}
-    \item \textbf{Ce qu'on pourrait faire de mieux : }
-    \begin{itemize}
-    \item Tester les différentes méthodes d'alignement.
-    \end{itemize}
-  \end{itemize}
+\frametitle{VI. Alignement}
+\begin{itemize}
+\item \textbf{Issue: } Le nombre d'événements (de décès par exemple) prédits par le tirage d'une variable binaire est trop volatil.\\
+Comment maîtriser le nombre d'occurrences ?
+\item \textbf{How \til \ deals with:}  \pause
+\begin{itemize}
+\item Utilisation d'une méthode implémentée dans Liam2 (voir Li et O'Donoghue 2012)
+\end{itemize}
+\item \textbf{How to get better: }
+\begin{itemize}
+\item Tester les différentes méthodes d'alignement.
+\end{itemize}
+\end{itemize}
 \end{frame}
 
+
+\subsection{Progammation language}
+
+\begin{frame}[plain,t]
+\frametitle{Athlete struggling with a python}
+\begin{center}
+\includegraphics[0.8]{struggling_with_Python.jpg}
+\end{center}
+\end{frame}
 
 \section{How \til \ simulate for now}
 \begin{frame}
