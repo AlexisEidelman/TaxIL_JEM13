@@ -312,10 +312,10 @@ The aim of \til \ is to be as general as possible and not focused on a specific 
 \begin{frame}
 \frametitle{Marriage}
 \begin{itemize}
-\item \textbf{Issue: } Marry people with verifying a given joint distribution of caracteristics. A trade-off between optimality and computational intensity.
+\item \textbf{Issue: } Marry people verifying a given joint distribution of characteristics. A trade-off between optimality and computational intensity.
 \item \textbf{How \til \ deals with:}  \pause
 	\begin{itemize}
-	\item no marriage market
+	\item Not a marriage market
 	\item Distance between people
 	\item Minimization Algorithm
 	\end{itemize}
@@ -327,46 +327,70 @@ The aim of \til \ is to be as general as possible and not focused on a specific 
 \end{itemize}
 \end{frame}
 
+\subsection{Alignment}
+\begin{frame}
+\frametitle{Alignment}
+\begin{itemize}
+\item \textbf{Issue: } Le nombre d'événements (de décès par exemple) prédits par le tirage d'une variable binaire est trop volatil.\\
+Comment maîtriser le nombre d'occurrences ?
+\item \textbf{How \til \ deals with:}  \pause
+	\begin{itemize}
+	\item Use an already implemented technique of Liam2 (see Li et O'Donoghue 2012)
+	\end{itemize}
+\item \textbf{How to get better: }
+	\begin{itemize}
+	\item Try other techniques.
+	\end{itemize}
+\end{itemize}
+\end{frame}
+
+
 \subsection{Individualisation}
 \begin{frame}
 \frametitle{Individualisation}
 \begin{itemize}
 \item \textbf{Issue: } In a life-cycle point of view, the lonely pertinent entitiy is the individual. But living standards, benefits and sometimes taxes are calculated at a bigger level (household, couple, family). How individualize?
 \item \textbf{How \til \ deals with:}  \pause
-\begin{itemize}
-\item L'impôt sur le revenu est séparé entre déclarant et conjoint...
-\item sauf l'avantage lié au quotient familial qui est réparti entre les personnes à charge.
-\item Les prestations familiales sont réparties entre les enfants
-\item Les autres prestations sont réparties entre les personnes du ménage.
-\end{itemize}
+	\begin{itemize}
+	\item Income tax split between spouse.
+	\item but tax reduction related to children which is split between children.
+	\item Family benefit split between children.
+	\item Other benefits split between all household members.
+	\end{itemize}
 \item \textbf{How to get better: }
-\begin{itemize}
-\item Séparer l'IR au prorata des revenus mais...
-\item ...la bonne solution c'est le recours à la valeur de Shapley.
-\end{itemize}
+	\begin{itemize}
+	\item Be more precise but...
+	\item ...is not the Shapley Value the lonely solution?
+	\end{itemize}
 \end{itemize}
 \end{frame}
 
-\subsection{Alignement}
-\begin{frame}
 
-\frametitle{VI. Alignement}
-\begin{itemize}
-\item \textbf{Issue: } Le nombre d'événements (de décès par exemple) prédits par le tirage d'une variable binaire est trop volatil.\\
-Comment maîtriser le nombre d'occurrences ?
-\item \textbf{How \til \ deals with:}  \pause
-\begin{itemize}
-\item Utilisation d'une méthode implémentée dans Liam2 (voir Li et O'Donoghue 2012)
-\end{itemize}
-\item \textbf{How to get better: }
-\begin{itemize}
-\item Tester les différentes méthodes d'alignement.
-\end{itemize}
-\end{itemize}
-\end{frame}
 
 
 \subsection{Progammation language}
+\begin{frame}
+
+  \frametitle{Progammation language}
+  \framesubtitle{\vspace{0.3cm}Organisation}
+  \begin{itemize}
+  \item \textbf{Langages}
+    \begin{itemize}
+    \item Initial work on data in R
+    \item Motor in Python
+    \item User-friendly Text Interface (YAML)
+    \end{itemize}
+     \item \textbf{Why Python} ?\pause
+    \begin{itemize}
+    	\item Clear
+    	\item Possibility to see only what you're interested in.
+		\item Way much faster than statistical language.
+    \end{itemize}
+	\item A choice made by Liam2 et OpenFisca.
+	\item Simulation \ 30 000 individus : \  6 s/period
+	\item Simulation sur 300 000 individus : 70 s/period
+  \end{itemize}
+\end{frame}
 
 \begin{frame}[plain,t]
 \frametitle{Athlete struggling with a python}
@@ -375,203 +399,148 @@ Comment maîtriser le nombre d'occurrences ?
 \end{center}
 \end{frame}
 
-\section{How \til \ simulate for now}
+\section{How \til \ simulate}
 \begin{frame}
 \frametitle{Roadmap}
   \tableofcontents[currentsection, hideothersubsections] 
 \end{frame} 
 
-\begin{frame}
 
-  \frametitle{2. Présentation du modèle}
-  \framesubtitle{\vspace{0.3cm}}
-  \begin{itemize}
-    \item I. Le langage de programmation
-    \item II. Les entités et les liens.
-    \item III. Les étapes de la simulation
-  \end{itemize}
-\end{frame}
-%
-\subsection{Langage de programmation}
-\begin{frame}
-
-  \frametitle{I. Langage de programmation}
-  \framesubtitle{\vspace{0.3cm}Organisation}
-  \begin{itemize}
-  \item \textbf{Langages utilisés}
-    \begin{itemize}
-    \item Traitement initial des données en R
-    \item Utilisation principale de Python
-    \item Interface texte agréable (YAML)
-    \end{itemize}
-     \item \textbf{Pourquoi Python} ?\pause
-    \begin{itemize}
-    	\item Langage clair.
-    	\item Possibilité d'avoir plusieurs niveaux de lecture.
-		\item Performances très intéressantes	
-    \end{itemize}
-	\item Un choix fait par Liam2 et OpenFisca.
-	\item Simulation \ 30 000 individus : \  6 s/période
-	\item Simulation sur 300 000 individus : 70 s/période
-  \end{itemize}
-\end{frame}
-
-
-%\begin{frame}
-%  \hligne
-%  \frametitle{I. Langage de programmation}
-%  \framesubtitle{\vspace{0.3cm}Organisation}
-%	Mettre une image de YAML.
-%	Un exemple de code.
-%\end{frame}
 \subsection{Les entités et les liens}
 \begin{frame}
-
-  \frametitle{II. Les entités et les liens.}
-  \framesubtitle{\vspace{0.3cm}Organisation}
-  \begin{itemize}
-  \item \textbf{Les entités} \\
-  4 entités (dont non indispensable), et un \textbf{registre}
-    \begin{itemize}
-    \item Individus
-    \item Logement
-    \item Déclaration fiscale
-    \item Entreprise
-    \end{itemize}
-     \item \textbf{Les liens}
-    \begin{itemize}
-    	\item Lien entre individus : conjoint et parents.
-    	\item Lien des individus vers les entités auxquelles ils appartiennent
-   		\item Lien des entités vers les individus auxquels elles appartiennent
-    \end{itemize}
-  \end{itemize}
+\frametitle{Entities and links}
+\framesubtitle{\vspace{0.3cm}Organisation}
+\begin{itemize}
+\item \textbf{Entities} \\
+4 entities (one is not indispensable) and a \textbf{register}
+	\begin{itemize}
+	\item Individuals
+	\item House
+	\item Income Declaration
+	\item Companies
+	\item Region
+	\end{itemize}
+\item \textbf{Links}
+	\begin{itemize}
+	\item Links between persons : spouse and parents.
+	\item Links from persons to their entities
+	\item Links from entities to their owners
+	\end{itemize}
+\end{itemize}
 \end{frame}
 
 
-\subsection{Les étapes de la simulation}
-\subsubsection{Démographie}
-
+\subsection{Simulation Processes}
+\subsubsection{Demography}
 \begin{frame}
-
-  \frametitle{III. Les étapes de la simulation}
-  \framesubtitle{Démographie - 1}
-  \begin{itemize}
-  	\item Naissance \\
-  	\begin{itemize}
-  	\item Femme en couple, alignement sur des naissances par âge.
-  	\item Pas de lien avec les études, ni les enfants précédents
-  	\end{itemize}
-  	\item Indépendance
-  	\begin{itemize}
-  	\item Systématique en fonction de l'âge.
-  	\item Pas d'autre type de déménagement
-  	\end{itemize}
-  \end{itemize}
+\frametitle{Simulation Processes}
+\framesubtitle{Demography - 1}
+\begin{itemize}
+\item Birth \\
+\begin{itemize}
+\item Women in a couple, alignment on birth per age.
+\item No (direct) correlation with studies, nor previous children
+\end{itemize}
+\item Independance
+\begin{itemize}
+\item At a deterministic age given studies level
+\item No other moving
+\end{itemize}
+\end{itemize}
 \end{frame}
-  	
-  	
-\begin{frame}
 
-  \frametitle{III. Les étapes de la simulation}
-   \framesubtitle{Démographie - 2}
-  \begin{itemize}
-  	\item Unions \\
-  	\begin{itemize}
-  	\item Inspirées des équations de Destinie
-  	\item Probabilité d'union en fonction de l'âge, de la fin des études, de la date depuis la séparation et du nombre d'enfants
-  	\item Formation des unions en fonction des âges et du niveau d'études
-  	\item Les enfants suivent leur parent (pour le logement ou la déclaration)
-  	\end{itemize}
-  	\item Séparations
-  	\begin{itemize}
-  	\item Probabilité en fonction de la durée du couple, du nombre d'enfants et de la différence d'âge.
-  	\item Les enfants sont affectés aléatoirement au père ou à la mère
-  	\end{itemize}
-  \end{itemize}
+\begin{frame}
+\frametitle{Simulation Processes}
+\framesubtitle{Demography - 2}
+\begin{itemize}
+\item Marriage \\
+	\begin{itemize}
+	\item Taken from Destinie microsimulation model
+	\item Probability to look for a spouse depends on age, leaving studies age, ti;e since previous union and number of child
+	\item Matching depends only on age and education
+	\item Children follow their parents (in household and income declaration)
+	\end{itemize}
+\item Divorce
+	\begin{itemize}
+	\item Depends on couple's duration, number of children and age difference.
+	\item Children follow randomly mother or father.
+	\end{itemize}
+\end{itemize}
 \end{frame}
 
 
 \begin{frame}
-
-  \frametitle{III. Les étapes de la simulation}
-   \framesubtitle{Démographie - 3}
-  \begin{itemize}
-  	\item Décès \\
-  	\begin{itemize}
-  	\item Alignement en fonction de l'âge et du sexe
-  	\item Pas de prise en compte des revenus ou du diplôme.
-  	\item \textbf{Héritage} (y compris de deuxième rang)
-  	\item Droit de succession (en cours)
-  	\item Pas d'accident de voiture...
-  	\end{itemize}
-  \end{itemize}
+\frametitle{Simulation Processes}
+\framesubtitle{Demography - 3}
+\begin{itemize}
+\item Death \\
+	\begin{itemize}
+	\item Alignment according to age and sex
+	\item Income and education are noe taken into account
+	\item \textbf{Inheritance} (including second order inheritance)
+	\item Tax on inheritance 
+	\item No car accident
+	\end{itemize}
+\end{itemize}
 \end{frame}
 
-\subsubsection{Activité}
+\subsubsection{Job market}
 \begin{frame}
-
-  \frametitle{III. Les étapes de la simulation}
-   \framesubtitle{Activité}
-  \begin{itemize}
-	\item Éducation
-  	\begin{itemize}
-  	\item Détermination à la naissance en fonction des parents.
-  	\item Niveau (rudimentaire) lié à l'âge
-  	\end{itemize}
-  	\item Marché du travail
-  	\begin{itemize}
-  	\item Équation simplifiée et alignement grossier
-  	\item Salaire en fonction d'une équation de Mincer...
-  	\item ... et d'une productivité observée ou imputée
-  	\item Pas de temps partiel
-  	\end{itemize}
-  	\item Retraite
-  	\begin{itemize}
-  	\item Départ systématique en fonction de l'âge
-  	\item Niveau de retraite à partir du dernier salaire
-	\item Lien avec PENSIPP
-  	\end{itemize}
-  \end{itemize}
+\frametitle{Simulation Processes}
+\framesubtitle{Status}
+\begin{itemize}
+\item Education
+	\begin{itemize}
+	\item Depends only on parent educational background.
+	\item Class (basic) just depends on age
+	\end{itemize}
+\item Job market
+	\begin{itemize}
+	\item Simple equations et rough alignment
+	\item No part-time job.
+	\end{itemize}
+\item Retirement
+	\begin{itemize}
+	\item Systematic with age
+	\item PENSIPP could do the job
+	\end{itemize}
+\end{itemize}
 \end{frame}
 
 \begin{frame}
-
-  \frametitle{III. Les étapes de la simulation}
-   \framesubtitle{Revenus}
-  \begin{itemize}
-  	\item Actifs occupés
-  	\begin{itemize}
-  	\item Salaire en fonction d'une équation de Mincer...
-  	\item ... et d'une productivité plus ou moins observée
-  	\item Pas de temps partiel
-  	\end{itemize}
-  	\item Retraite
-  	\begin{itemize}
-  	\item Départ systématique en fonction de l'âge
-  	\item Niveau de retraite à partir du dernier salaire
-	\item Utilisation de PENSIPP pour cette partie
-  	\end{itemize}
-  	\item Chômage
-  	\begin{itemize}
-  	\item Calcul implémenté...
-  	\item ...mais le pas de la simulation est une limite
-  	\end{itemize}
-  \end{itemize}
+\frametitle{Simulation Processes}
+\framesubtitle{Income}
+\begin{itemize}
+\item In work
+	\begin{itemize}
+		\item Salary on a Mincer equation...
+		\item ... and an observed or simulated personal productivity
+	\end{itemize}
+\item Pension
+	\begin{itemize}
+		\item Pension depends only on last salary
+		\item PENSIPP could do the job
+	\end{itemize}
+\item Unemployment benefit
+	\begin{itemize}
+	\item Code written
+	\item but not very relevant with year time scale
+	\end{itemize}
+\end{itemize}
 \end{frame}
 
 
-\subsubsection{Consommation et épargne}
+\subsubsection{Consumption and savings}
 \begin{frame}
-
-  \frametitle{III. Les étapes de la simulation}
-   \framesubtitle{Consommation et épargne}
-  \begin{itemize}
-	\item De nouvelles estimations à produire
-	 \begin{itemize}
-  	\item en tenant compte du cycle de vie
-  	\item en essayant de rester au niveau individuel
-  	\end{itemize}
-  \end{itemize}
+\frametitle{Simulation Processes}
+\framesubtitle{Consumption and savings}
+\begin{itemize}
+\item Need new estimation
+	\begin{itemize}
+	\item taking life-cycle as a parameter
+	\item individualisation 
+	\end{itemize}
+\end{itemize}
 \end{frame}
 
 %\subsubsection{Développements futurs}
@@ -592,33 +561,32 @@ Comment maîtriser le nombre d'occurrences ?
 \section{Becoming of \til}
 \begin{frame}
 \frametitle{Roadmap}
-  \tableofcontents[currentsection, hideothersubsections] 
+\tableofcontents[currentsection, hideothersubsections] 
 \end{frame} 
 
 \begin{frame}
-
-  \frametitle{3. Développements}
-  \framesubtitle{\vspace{0.3cm}Temps figé}
-  \begin{itemize}
-  \item Un temps figé en 2009
-    \begin{itemize}
-	\item Pas de croissance (ou de tendance)
-	\item Revalorisation des revenus passés
-	\item La législation de 2009 est appliquée tous les ans
-  \end{itemize}
-  \item Ne simule pas encore les trajectoires matrimoniales dans le passé (en cours).
-  \end{itemize}
+\frametitle{3. Développements}
+\framesubtitle{\vspace{0.3cm}Temps figé}
+\begin{itemize}
+\item Un temps figé en 2009
+\begin{itemize}
+\item Pas de croissance (ou de tendance)
+\item Revalorisation des revenus passés
+\item La législation de 2009 est appliquée tous les ans
+\end{itemize}
+\item Ne simule pas encore les trajectoires matrimoniales dans le passé (en cours).
+\end{itemize}
 \end{frame}
 
- \begin{frame}
+\begin{frame}
 
-  \frametitle{3. Développements}
-  \framesubtitle{\vspace{0.3cm} Réponse comportementale}
-  \begin{itemize}
-  \item On peut appliquer la législation et une réforme \textit{ex post}
-  \item En appliquant la législation à chaque période on a aussi des réactions comportementales.
-   \item Il reste à rendre possible le modèle de décision.
-  \end{itemize}
+\frametitle{3. Développements}
+\framesubtitle{\vspace{0.3cm} Réponse comportementale}
+\begin{itemize}
+\item On peut appliquer la législation et une réforme \textit{ex post}
+\item En appliquant la législation à chaque période on a aussi des réactions comportementales.
+\item Il reste à rendre possible le modèle de décision.
+\end{itemize}
 \end{frame}
 %
 % \begin{frame}
@@ -637,23 +605,19 @@ Comment maîtriser le nombre d'occurrences ?
 % \end{frame}
 
 
-
-\section*{Motivations - Conclusion}
-
 \begin{frame}
-
-  \frametitle{Conclusion}
-  \framesubtitle{\vspace{0.3cm} Pourquoi faire des simulations sur le cycle de vie ?}
-  \begin{itemize}
-    \item  mesure d'un \og meilleur \fg \ niveau de vie
-        \begin{itemize}
-          \item Variabilité des revenus
-          \item Équité dans le traitement des individus vis-à-vis de leur âge.
-          \item Prise en compte du patrimoine
-        \end{itemize}
-    \item Possibilité d'arbitrer entre part assurantielle et part redistributive des transferts
-    \item Capacité de prédiction
-  \end{itemize}
+\frametitle{Conclusion}
+\framesubtitle{\vspace{0.3cm} Pourquoi faire des simulations sur le cycle de vie ?}
+\begin{itemize}
+\item  mesure d'un \og meilleur \fg \ niveau de vie
+\begin{itemize}
+\item Variabilité des revenus
+\item Équité dans le traitement des individus vis-à-vis de leur âge.
+\item Prise en compte du patrimoine
+\end{itemize}
+\item Possibilité d'arbitrer entre part assurantielle et part redistributive des transferts
+\item Capacité de prédiction
+\end{itemize}
 \end{frame}
 
 \frame{\maketitle}
