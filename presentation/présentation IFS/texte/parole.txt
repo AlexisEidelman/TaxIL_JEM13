@@ -10,14 +10,16 @@ Frame 1 : Inequalities
 There is different good reaon we want to have a lifetime income more than a annual one even just to look at inequlities. 
 We must remember that what is interesting in inequalities is not income but utility or living standard. The income is usualy considered as the best proxy we have (and also one that can be affected by public policies) but in that sense, in my view it's not enought). 
 * First an annual income may differ from the previous or the next year. You can encounter unemployment, bas harvest, bonus, a capital gain and so long. 
-* Then, your income is a very bad prox when you are not in your production time. When you're a student and with no income you're supposed to accumulate human capital and when you're retired and you're suppose to consume your savings. Note that if a student is supported by her or his parents, that student is considered as poorer than a student working part-time because she or he doesn't recieve any parental assistance.
-Usualy, student are removed from inequalities survey. It's a good way not qnswering the issue of student income. 
+* Then, your income is a very bad proxy when you are not in your production time. When you're a student and with no income you're supposed to accumulate human capital and when you're retired and you're suppose to consume your savings. Note that if a student is supported by her or his parents, that student is considered as poorer than a student working part-time because she or he doesn't recieve any parental assistance.
+Usualy, student are removed from inequalities survey. It's a good way not answering the issue of student income. 
 Pensioner remains even if there is some reason we can find in justice theory to remove them. 
 * And, an other very instersting point in using the whole life cycle, is that wealth and inheritance can be considered as income at a given time. That way we solve the issue of the poor wealthy people, I mean people with big savings but low income. 
+Of course cross section are much more easy and it's better to use an annual proxy than not doing anything. And also as credit and assurance market are not perfect, the situation a given year must also be sutdied
 
 
 Frame 2 - 1 : Redistribution
 * As income can fluctuate during life-cycle, contibution and benefit from the tax and benfit system can also change. Your position as a contributor or a beneficiary (recipient) can be evaluate only at the end of your life and taking into account that a part of what you give from one hand your recieve in the other hand at an other moment and vice versa.
+* if people earns the same income during their whole life, and it's basically the situation we create when evaluating people's life-cycle income and claiming that their living standard. 
 * life cycle is also important to evaluate redistribution of assurantial state system. 
 You can't consider these transfers as a tax or as a benefit because benefit are tested and because contribution give you a gain in expectancy. So it can be seen as a consumption (even if a forced consumption) and so not as a redistribution mean. 
 But, in the life-cycle and contibution and benefits are counted and evaluating net contribution (net from benefits) is enabled. And you can test if these state assurance are neutral and if not also say who benefits and who contribute.  
@@ -26,9 +28,12 @@ But, in the life-cycle and contibution and benefits are counted and evaluating n
 Frame 2 -2 : Redistribution
 and with no growth assumption
 
+I hope you're convince of the interst of studying life cycle. 
+Now I'll detail some issue specific of a dynamic microimulation model
 
 
-
+Programming 
+I like the idea og having separated the model and the motor. 
 
 
 

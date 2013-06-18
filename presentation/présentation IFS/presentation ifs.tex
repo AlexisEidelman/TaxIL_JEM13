@@ -1,4 +1,4 @@
-\documentclass[xcolor=table,ignorenonframetext,12pt,handout]{beamer}
+\documentclass[xcolor=table,ignorenonframetext,12pt,handout]{beamer} %,handout
 %\documentclass[xcolor=table,handout,12pt]{beamer}
 \usepackage[frenchb]{babel}
 \usepackage[latin1]{inputenc}
@@ -83,7 +83,7 @@
 \frametitle{Introduction}
 \framesubtitle{\vspace{0.3cm}General overview of \til}
 \begin{itemize}
-	\item Dynamic microsimulation model développed by \textit{Institut des politiques publiques} (IPP)
+	\item Dynamic microsimulation model developed by \textit{Institut des politiques publiques} (IPP)
 	\item Ageing and legislation \pause
 	\item Reforms
 	\item \textbf{Work in progress} \pause
@@ -105,17 +105,6 @@
   \tableofcontents[hideothersubsections] 
 \end{frame} 
 
-\begin{frame}
-\frametitle{Roadmap}
-%  \framesubtitle{\vspace{0.3cm}Plan}
-\begin{enumerate}
-	\item Why to be interested in Life-Cycle ? 
-	\item Some issues of a dynamic microsimulation model
-	\item How \til \ simulate for now
-	\item Becoming of \til
-\end{enumerate}
-\end{frame}
-
 \section{Why to be interested in Life-Cycle ?}
 \subsection{Inequalities}
 \begin{frame}
@@ -129,11 +118,11 @@
 \begin{itemize}
 	\item Annual income doesn't measure utility (or living standard)
 		\begin{enumerate}
-		\item Income chocks (plus value, unemplyement, child care, bad harvest)
+		\item Income chocks (plus value, unemployment, child care, bad harvest)
 		\item Different period of life (studies, retirement)
 		\item Wealth (and inheritance) can't be ignored
 		\end{enumerate}
-	On administrative (Swedish) data, it was measured that 40\% \ of Gini-inequlities are intra-personnal. 
+	On administrative (Swedish) data, it was measured that 40\% \ of Gini-inequalities are intra-personal. 
 \end{itemize}
 \end{frame}
 
@@ -143,8 +132,42 @@
 \frametitle{Why to be interested in Life-Cycle ?}
 \begin{enumerate}
 \item Who is rich and who is poor ?
-\item Who does give money to whom ?
+\item Who does give money to whom through redistibution ?
 \end{enumerate}
+\end{frame}
+
+\begin{frame}
+\frametitle{Why to be interested in Life-Cycle ?}
+\framesubtitle{\vspace{0.3cm} Redistribution} 
+\begin{itemize}
+\item \textbf{Two extreme cases}
+	\begin{itemize}
+	\item People with same income during their whole life \\
+	$\Rightarrow$ Redistribution between people \pause
+	\item Same individuals with variation in income but born at different times \\
+	$\Rightarrow$ Redistribution "within" people only \\
+	(Useless if credit and assurance market are perfect)
+	\end{itemize}
+\end{itemize} \pause
+ \footnotesize
+\begin{table}	
+\caption{Share of within redistribution in whole redistribution}
+ \begin{tabular}{|c|c|c|}
+\hline
+Pettersson and Pettersson (2007) &      Sweden &  18-32 \% \\
+\hline
+Hussenius and Selen (1994) &      Sweden &  24-32 \% \\
+\hline
+Falkingham and Harding (1996) &  Australia &  48-63 \% \\
+\hline
+Falkingham and Harding (1996) & United-Kingdom &  29-38 \% \\
+\hline
+O'Donoghue &    Ireland &     45 \% \\
+\hline
+O'Donoghue &     Italy &     24 \% \\
+\hline
+\end{tabular}
+\end{table}
 \end{frame}
 
 \begin{frame}
@@ -165,41 +188,6 @@
 \end{itemize}
 \end{frame} 
 
-
-\begin{frame}
-\frametitle{Why to be interested in Life-Cycle ?}
-\framesubtitle{\vspace{0.3cm} Redistribution} 
-\begin{itemize}
-\item \textbf{Two extreme cases}
-	\begin{itemize}
-	\item People with same income during their whole life \\
-	$\Rightarrow$ Redistribution between people \pause
-	\item Same individuals with variation in income but born at different times \\
-	$\Rightarrow$ Redistribution "within" people only \\
-	(Useless if credit and assurance market are perfect)
-	\end{itemize}
-\end{itemize} \pause
- \footnotesize
-\begin{table}	
-\caption{Share of within redistribution in whole redistribution}
- \begin{tabular}{|c|c|c|}
-\hline
-Pettersson et Pettersson (2007) &      Sweden &  18-32 \% \\
-\hline
-Hussenius et Selen (1994) &      Sweden &  24-32 \% \\
-\hline
-Falkingham et Harding (1996) &  Australia &  48-63 \% \\
-\hline
-Falkingham et Harding (1996) & United-Kingdom &  29-38 \% \\
-\hline
-O'Donoghue &    Ireland &     45 \% \\
-\hline
-O'Donoghue &     Italy &     24 \% \\
-\hline
-\end{tabular}
-\end{table}
-\end{frame}
-
 \subsection{Particular fields}
 \begin{frame}
 \frametitle{Why to be interested in Life-Cycle ?}
@@ -209,7 +197,7 @@ O'Donoghue &     Italy &     24 \% \\
 	\	$\longrightarrow$ pension, educational choice
 	\item Can add very interesting point in particular when demography is at stake. \\
 	\	$\longrightarrow$ Female labour, health (end of life)	
-\end{itemize}
+\end{itemize} \pause
 The aim of \til \ is to be as general as possible and not focused on a specific topic.
 
 \end{frame} 
@@ -218,18 +206,31 @@ The aim of \til \ is to be as general as possible and not focused on a specific 
 
 \begin{frame}
 \frametitle{Why to be interested in Life-Cycle ?}
-\framesubtitle{\vspace{0.3cm}Getting more general } 
+\framesubtitle{\vspace{0.3cm}Getting more general-1} 
 \begin{itemize}
 	\item Enable to study reform at upper level
 	 \begin{itemize}
 		\item Impact of pension reform on age departure and educational choice
-		\item Impact of health on (maison de retraite) and on house pricing (and housing benefits)
+		\item Impact of ageing population on retirement home supply and on house pricing (and housing benefits)
 	 \end{itemize}
-	\item Objective to have a complete economic informations on people 
+	\item Objective to have a complete economic informations on people \pause
 	\item Requires an organisation and some organisation	
-\end{itemize}
+\end{itemize} 
 \end{frame} 
 
+\begin{frame}
+\frametitle{Why to be interested in Life-Cycle ?}
+\framesubtitle{\vspace{0.3cm}Getting more general-2} 
+\begin{itemize}
+	\item Evaluate a reform not in a cross section framework
+	 \begin{itemize}
+		\item Already done for pensions for example
+		\item But what about tax income on pension ? Or family benefit.
+		\item Number of impacted people ? 
+	 \end{itemize}
+	\item Interest in hypothetical past reforms.
+\end{itemize} 
+\end{frame} 
 
 
 \section{Some issues for a dynamic microsimulation model}
@@ -244,25 +245,26 @@ The aim of \til \ is to be as general as possible and not focused on a specific 
 \begin{frame}
 \frametitle{Data}
 \begin{itemize}
-\item \textbf{Issue: } To know people's past and on carreers (administrative data) and on marital status (survey data).
+\item \textbf{Issue: } To know people's past and on careers (administrative data) and on marital status (survey data).
 \item \textbf{How \til \ deals with:}  \pause
 	\begin{itemize}
-	\item Wealth survey
+	\item French wealth survey
 	\item Administrative data (pension)
 	\item Statistical matching 
 	\begin{itemize}
 	\item  Exact matching on sex, age, kind of work
 	\item  Distance for income in 2009
-	\item  Optimal matching for carreer(replacement, insertion, deletion cost)\\
-	$\longrightarrow$ closest neighbourg
-	\end{itemize}	
+	\item  Optimal matching for career (replacement, insertion, deletion cost)\\
+		$\longrightarrow$ closest neighbour
+	\end{itemize}	\pause
 	\item Survey closure
-	\end{itemize}
+	\end{itemize} \pause
 \item \textbf{How to get better: }
 	\begin{itemize}
 	\item Other surveys (Health survey)
 	\item Joint selection for parents
-	\end{itemize}
+	\end{itemize} \pause 
+\item \textbf{Issue: } To know people's future	
 \end{itemize}
 \end{frame}
 
@@ -270,19 +272,19 @@ The aim of \til \ is to be as general as possible and not focused on a specific 
 \begin{frame}
 \frametitle{Survey weight}
 \begin{itemize}
-\item \textbf{Issue: } Links between people change in a dynamic simulation. How link two individuals with different weight.
-\item \textbf{How \til \ deals with:}  \pause
+\item \textbf{Issue: } Links between people change in a dynamic simulation. How link two individuals with different weight. \pause
+\item \textbf{How \til \ deals with:} 
 	\begin{itemize}
 	  \item Work with uniform weight
 	  \item Replication according to weight
-	  \item Increase variability
+	  \item Increase variability \pause
 	  \item No real other option
 	\end{itemize}
-\item \textbf{How to get better: }
-	\begin{itemize}
+\item \textbf{How to get better: } \pause
+	\begin{itemize} \pause
 	\item Smallest weight in wealth survey is 6 ! \\
 	$\rightarrow$ 11 millions individuals
-	\item  200 is our constant weight insted of 6  \\
+	\item  200 is our constant weight  \\
 	$\rightarrow$ 300 000 individuals \\
 	\item Go further in survey size
 	\end{itemize}
@@ -298,7 +300,7 @@ The aim of \til \ is to be as general as possible and not focused on a specific 
 	\begin{itemize}
 	\item So far : annual scale
 	\item Possibility to run some process on a longer basis
-	\end{itemize}
+	\end{itemize} 
 \item \textbf{How to get better: }
 	\begin{itemize}
 	\item Month scale
@@ -312,14 +314,14 @@ The aim of \til \ is to be as general as possible and not focused on a specific 
 \begin{frame}
 \frametitle{Marriage}
 \begin{itemize}
-\item \textbf{Issue: } Marry people verifying a given joint distribution of characteristics. A trade-off between optimality and computational intensity.
-\item \textbf{How \til \ deals with:}  \pause
+\item \textbf{Issue: } To marry people verifying a given joint distribution of characteristics. A trade-off between optimality and computational intensity. \pause
+\item \textbf{How \til \ deals with:}  
 	\begin{itemize}
 	\item Not a marriage market
 	\item Distance between people
-	\item Minimization Algorithm
-	\end{itemize}
-\item \textbf{How to get better: }
+	\item Minimisation Algorithm
+	\end{itemize} \pause
+\item \textbf{How to get better: } \pause
 	\begin{itemize}
 	\item Improve minimisation algorithm (Hungarian method)
 	\item Randomly select some potential match and run the optimisation on that subset
@@ -331,13 +333,12 @@ The aim of \til \ is to be as general as possible and not focused on a specific 
 \begin{frame}
 \frametitle{Alignment}
 \begin{itemize}
-\item \textbf{Issue: } Le nombre d'événements (de décès par exemple) prédits par le tirage d'une variable binaire est trop volatil.\\
-Comment maîtriser le nombre d'occurrences ?
+\item \textbf{Issue: } High volatility for number of events simulated by a binary model. \pause
 \item \textbf{How \til \ deals with:}  \pause
 	\begin{itemize}
-	\item Use an already implemented technique of Liam2 (see Li et O'Donoghue 2012)
-	\end{itemize}
-\item \textbf{How to get better: }
+	\item Use an already implemented technique of Liam2 (see Li and O'Donoghue 2012)
+	\end{itemize} \pause
+\item \textbf{How to get better: } 
 	\begin{itemize}
 	\item Try other techniques.
 	\end{itemize}
@@ -349,14 +350,14 @@ Comment maîtriser le nombre d'occurrences ?
 \begin{frame}
 \frametitle{Individualisation}
 \begin{itemize}
-\item \textbf{Issue: } In a life-cycle point of view, the lonely pertinent entitiy is the individual. But living standards, benefits and sometimes taxes are calculated at a bigger level (household, couple, family). How individualize?
-\item \textbf{How \til \ deals with:}  \pause
+\item \textbf{Issue: } In a life-cycle point of view, the lonely pertinent entitiy is the individual. But living standards, benefits and sometimes taxes are calculated at a bigger level (household, couple, family). How individualize? \pause
+\item \textbf{How \til \ deals with:}  
 	\begin{itemize}
 	\item Income tax split between spouse.
 	\item but tax reduction related to children which is split between children.
 	\item Family benefit split between children.
 	\item Other benefits split between all household members.
-	\end{itemize}
+	\end{itemize} \pause
 \item \textbf{How to get better: }
 	\begin{itemize}
 	\item Be more precise but...
@@ -368,10 +369,10 @@ Comment maîtriser le nombre d'occurrences ?
 
 
 
-\subsection{Progammation language}
+\subsection{Programming language}
 \begin{frame}
 
-  \frametitle{Progammation language}
+  \frametitle{Programming language}
   \framesubtitle{\vspace{0.3cm}Organisation}
   \begin{itemize}
   \item \textbf{Langages}
@@ -383,12 +384,12 @@ Comment maîtriser le nombre d'occurrences ?
      \item \textbf{Why Python} ?\pause
     \begin{itemize}
     	\item Clear
-    	\item Possibility to see only what you're interested in.
+    	\item Possibility to look at a particular point.
 		\item Way much faster than statistical language.
     \end{itemize}
 	\item A choice made by Liam2 et OpenFisca.
-	\item Simulation \ 30 000 individus : \  6 s/period
-	\item Simulation sur 300 000 individus : 70 s/period
+	\item Simulation on 30 000 individuals : \  6 s/period
+	\item Simulation on 300 000 individuals : 70 s/period
   \end{itemize}
 \end{frame}
 
@@ -406,26 +407,26 @@ Comment maîtriser le nombre d'occurrences ?
 \end{frame} 
 
 
-\subsection{Les entités et les liens}
+\subsection{Entities and links}
 \begin{frame}
 \frametitle{Entities and links}
 \framesubtitle{\vspace{0.3cm}Organisation}
 \begin{itemize}
 \item \textbf{Entities} \\
-4 entities (one is not indispensable) and a \textbf{register}
+4 entities (one is not vital)
 	\begin{itemize}
 	\item Individuals
 	\item House
 	\item Income Declaration
-	\item Companies
-	\item Region
-	\end{itemize}
+	\item Companies 
+	\end{itemize} \pause
+\item + a \textbf{register} \pause
 \item \textbf{Links}
 	\begin{itemize}
 	\item Links between persons : spouse and parents.
 	\item Links from persons to their entities
 	\item Links from entities to their owners
-	\end{itemize}
+	\end{itemize} 
 \end{itemize}
 \end{frame}
 
@@ -439,11 +440,11 @@ Comment maîtriser le nombre d'occurrences ?
 \item Birth \\
 \begin{itemize}
 \item Women in a couple, alignment on birth per age.
-\item No (direct) correlation with studies, nor previous children
+\item No (direct) correlation with education, nor previous children
 \end{itemize}
-\item Independance
+\item Independence
 \begin{itemize}
-\item At a deterministic age given studies level
+\item At a deterministic age given education level
 \item No other moving
 \end{itemize}
 \end{itemize}
@@ -455,8 +456,8 @@ Comment maîtriser le nombre d'occurrences ?
 \begin{itemize}
 \item Marriage \\
 	\begin{itemize}
-	\item Taken from Destinie microsimulation model
-	\item Probability to look for a spouse depends on age, leaving studies age, ti;e since previous union and number of child
+	\item Equations taken from Destinie microsimulation model
+	\item Probability to look for a spouse depends on age, leaving eduction age, time since previous union and number of child
 	\item Matching depends only on age and education
 	\item Children follow their parents (in household and income declaration)
 	\end{itemize}
@@ -476,7 +477,7 @@ Comment maîtriser le nombre d'occurrences ?
 \item Death \\
 	\begin{itemize}
 	\item Alignment according to age and sex
-	\item Income and education are noe taken into account
+	\item Income and education are not taken into account
 	\item \textbf{Inheritance} (including second order inheritance)
 	\item Tax on inheritance 
 	\item No car accident
@@ -491,12 +492,12 @@ Comment maîtriser le nombre d'occurrences ?
 \begin{itemize}
 \item Education
 	\begin{itemize}
-	\item Depends only on parent educational background.
-	\item Class (basic) just depends on age
+	\item Depends only on parental educational background.
+	\item Classes just depends on age
 	\end{itemize}
 \item Job market
 	\begin{itemize}
-	\item Simple equations et rough alignment
+	\item Simple equations and rough alignment
 	\item No part-time job.
 	\end{itemize}
 \item Retirement
@@ -565,58 +566,39 @@ Comment maîtriser le nombre d'occurrences ?
 \end{frame} 
 
 \begin{frame}
-\frametitle{3. Développements}
-\framesubtitle{\vspace{0.3cm}Temps figé}
+\frametitle{Becoming of \til}
+\framesubtitle{\vspace{0.3cm} First stage: a suspended time}
 \begin{itemize}
-\item Un temps figé en 2009
+\item Legislation and population of 2009
 \begin{itemize}
-\item Pas de croissance (ou de tendance)
-\item Revalorisation des revenus passés
-\item La législation de 2009 est appliquée tous les ans
+\item No growth ( nor trend)
+\item Revaluation of past income
+\item Only 2009 legislation is applied
 \end{itemize}
-\item Ne simule pas encore les trajectoires matrimoniales dans le passé (en cours).
+\item Not deal with past union and divorce (in progress).
 \end{itemize}
 \end{frame}
 
 \begin{frame}
-
-\frametitle{3. Développements}
-\framesubtitle{\vspace{0.3cm} Réponse comportementale}
+\frametitle{Becoming of \til}
+\framesubtitle{\vspace{0.3cm} Response}
 \begin{itemize}
-\item On peut appliquer la législation et une réforme \textit{ex post}
-\item En appliquant la législation à chaque période on a aussi des réactions comportementales.
-\item Il reste à rendre possible le modèle de décision.
+\item Reform can be implemented after the simulation \pause
+\item But also after each period \\
+	$\rightarrow$ Response \pause
+\item A midterm goal is to have a decision model
 \end{itemize}
 \end{frame}
-%
-% \begin{frame}
-%  \hligne
-%
-%  \hligne
-%  \frametitle{III. Production actuelle et potentielle}
-%  \framesubtitle{\vspace{0.3cm} Quelques chiffres}
-%    \begin{itemize}
-%  \item Le revenu moyen par an par individu est :
-%  \item Le niveau de vie en moyenne sur la vie calculé par l'Insee est :
-%   \item En regardant au niveau des enfants, on gagne tant...
-%   \item En moyenne tant d'impot et tant de prestation
-%   \item La retraite.
-%  \end{itemize}
-% \end{frame}
-
 
 \begin{frame}
-\frametitle{Conclusion}
-\framesubtitle{\vspace{0.3cm} Pourquoi faire des simulations sur le cycle de vie ?}
+\frametitle{Becoming of \til}
+\framesubtitle{\vspace{0.3cm} Development}
 \begin{itemize}
-\item  mesure d'un \og meilleur \fg \ niveau de vie
-\begin{itemize}
-\item Variabilité des revenus
-\item Équité dans le traitement des individus vis-à-vis de leur âge.
-\item Prise en compte du patrimoine
-\end{itemize}
-\item Possibilité d'arbitrer entre part assurantielle et part redistributive des transferts
-\item Capacité de prédiction
+\item OpenFisca can deal with other countries \\ \pause
+	$\rightarrow$ Is French legislation different or are French different? \pause
+\item Becoming of \til \ linked to becoming of IPP \pause
+\item Becoming of \til \ \textbf{not} \ linked with mine, I hope.
+\item To be continued...
 \end{itemize}
 \end{frame}
 
