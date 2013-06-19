@@ -115,15 +115,13 @@
 \begin{frame}
 \frametitle{Why to be interested in Life-Cycle ?}
 \framesubtitle{\vspace{0.3cm} Evaluation inequalities} \pause
-\begin{itemize}
-	\item Annual income doesn't measure utility (or living standard)
-		\begin{enumerate}
-		\item Income chocks (plus value, unemployment, child care, bad harvest)
-		\item Different period of life (studies, retirement)
-		\item Wealth (and inheritance) can't be ignored
-		\end{enumerate}
-	On administrative (Swedish) data, it was measured that 40\% \ of Gini-inequalities are intra-personal. 
-\end{itemize}
+Annual income doesn't measure utility (or living standard)
+	\begin{enumerate}
+	\item Income chocks (capital gain, unemployment, child care, bad harvest)
+	\item Different period of life (studies, retirement)
+	\item Wealth (and expected inheritance) can't be ignored
+	\end{enumerate}
+On administrative (Swedish) data, it was measured that 40\% \ of Gini-inequalities are intra-personal. 
 \end{frame}
 
 \subsection{Redistribution}
@@ -131,7 +129,10 @@
 \begin{frame}
 \frametitle{Why to be interested in Life-Cycle ?}
 \framesubtitle{\vspace{0.3cm} Redistribution} 
-A part of what I give to the state, I give actually to myself.
+\begin{itemize}
+	\item People contribute and benefit from the tax and benefit system at different periods.
+\end{itemize}
+What part of what I give to the state, I actually give to myself?
 \footnotesize
 \begin{table}	
 \caption{Share of within redistribution in whole redistribution}
@@ -170,16 +171,15 @@ O'Donoghue &     Italy &     24 \% \\
 \end{itemize}
 \end{frame} 
 
-\subsection{Microsimulation landscape}
 \begin{frame}
-\frametitle{Microsimulation landscape}
+\frametitle{Why to be interested in Life-Cycle ?}
+\framesubtitle{\vspace{0.3cm} Others ideas } 
 \begin{itemize}
-	\item A life-cycle perspective is unavoidable when careers is a major point   \\
-	\	$\longrightarrow$ pension, educational choice
-	\item Can add very interesting point in particular when demography is at stake. \\
-	\	$\longrightarrow$ Female labour, health (end of life)	
-\end{itemize} \pause
-The aim of \til \ is to be as general as possible and not focused on a specific topic.
+\item How many people are impacted by a reform today and during their whole life ?
+\item Intergenerational inequalities ?\\	
+		\ 	$\longrightarrow$ Life was easier for my parents (no crisis, no unemployment, lower house pricing, pension without having contributed) \\
+		\ 	$\longrightarrow$ Young people are privileged (no war, growth and technology, longer education, longer lives) 
+\end{itemize}
 \end{frame} 
 
 %\subsection{Particular fields}
@@ -227,38 +227,299 @@ The aim of \til \ is to be as general as possible and not focused on a specific 
 %\end{frame} 
 
 
-\section{Some issues for a dynamic microsimulation model}
-
+\section{How \til \ simulate}
 \begin{frame}
 \frametitle{Roadmap}
   \tableofcontents[currentsection, hideothersubsections] 
 \end{frame} 
 
+\subsection{Microsimulation landscape}
+\begin{frame}
+\frametitle{How \til \ simulate}
+\framesubtitle{\vspace{0.3cm} Microsimulation landscape}
+Many dynamic microsimulation model are focused on a specific topic.\\
+\	$\longrightarrow$ pension, educational choice \\
+\	$\longrightarrow$ Female labour, dependency \pause  \newline
+\newline
+The aim of \til \ is to be as general as possible and not focused on a specific topic.\\
+\	$\longrightarrow$ "It's like in chess: First, you strategically position your pieces and when the timing is right you strike." \\
+\end{frame} 
+
+\subsection{Entities and links}
+\begin{frame}
+\frametitle{How \til \ simulate}
+\framesubtitle{\vspace{0.3cm}Entities and links}
+\begin{itemize}
+\item \textbf{Entities} \\
+4 entities (one is not vital)
+	\begin{itemize}
+	\item Individuals
+	\item House
+	\item Income Declaration
+	\item Companies
+	\end{itemize} \pause
+\item + a \textbf{register} \pause
+\item \textbf{Links}
+	\begin{itemize}
+	\item Links between persons : spouse and parents.
+	\item Links from persons to their entities
+	\item Links from entities to their owners
+	\end{itemize} 
+\end{itemize}
+\end{frame}
+
+
+\subsection{Simulation Processes}
+\subsubsection{Demography}
+\begin{frame}
+\frametitle{Simulation Processes}
+\framesubtitle{\vspace{0.3cm}Demography - 1}
+\begin{itemize}
+\item Birth \\
+\begin{itemize}
+\item Women in a couple, alignment on birth per age.
+\item No (direct) correlation with education, nor previous children
+\end{itemize}
+\item Independence
+\begin{itemize}
+\item At a deterministic age given education level
+\item No other moving
+\end{itemize}
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Simulation Processes}
+\framesubtitle{\vspace{0.3cm}Demography - 2}
+\begin{itemize}
+\item Marriage \\
+	\begin{itemize}
+	\item Equations taken from Destinie microsimulation model
+	\item Probability to look for a spouse depends on age, leaving eduction age, time since previous union and number of child
+	\item Matching depends only on age and education
+	\item Children follow their parents (in household and income declaration)
+	\end{itemize}
+\item Divorce
+	\begin{itemize}
+	\item Depends on couple's duration, number of children and age difference.
+	\item Children follow randomly mother or father.
+	\end{itemize}
+\end{itemize}
+\end{frame}
+
+
+\begin{frame}
+\frametitle{Simulation Processes}
+\framesubtitle{\vspace{0.3cm}Demography - 3}
+\begin{itemize}
+\item Death \\
+	\begin{itemize}
+	\item Alignment according to age and sex
+	\item Income and education are not taken into account
+	\item \textbf{Inheritance} (including second order inheritance)
+	\item Tax on inheritance 
+	\item No car accident
+	\end{itemize}
+\end{itemize}
+\end{frame}
+
+\subsubsection{Job market}
+\begin{frame}
+\frametitle{Simulation Processes}
+\framesubtitle{\vspace{0.3cm}Status}
+\begin{itemize}
+\item Education
+	\begin{itemize}
+	\item Leaving education age depends only on parental educational background.
+	\item Level of education depends on age only
+	\end{itemize}
+\item Job market
+	\begin{itemize}
+	\item Simple equations and rough alignment
+	\item No part-time job.
+	\end{itemize}
+\item Retirement
+	\begin{itemize}
+	\item Systematic with age
+	\item PENSIPP could do the job
+	\end{itemize}
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Simulation Processes}
+\framesubtitle{\vspace{0.3cm}Income}
+\begin{itemize}
+\item In work
+	\begin{itemize}
+		\item Salary on a Mincer equation...
+		\item ... and an observed or simulated personal productivity
+	\end{itemize}
+\item Pension
+	\begin{itemize}
+		\item Pension depends only on last salary
+		\item PENSIPP could do the job
+	\end{itemize}
+\item Unemployment benefit
+	\begin{itemize}
+	\item Code written
+	\item but not very relevant with year time scale
+	\end{itemize}
+\end{itemize}
+\end{frame}
+
+
+\subsubsection{Consumption and savings}
+\begin{frame}
+\frametitle{Simulation Processes}
+\framesubtitle{\vspace{0.3cm}Consumption and savings}
+\begin{itemize}
+\item Need new estimation taking into account:
+	\begin{itemize}
+	\item Life-cycle and permanent income
+	\item Individualisation 
+	\end{itemize}
+\end{itemize}
+\end{frame}
+
+%\subsubsection{Développements futurs}
+%\begin{frame}
+%  \hligne
+%  \frametitle{III. Les étapes de la simulation - activité }
+%  \begin{itemize}
+%	\item Il y a encore beaucoup de champs qui pourrait être travaillés
+%  	\begin{itemize}
+%	\item Santé et dépendance
+%	\item Mode de garde
+%	\item Choix d'éducation
+%  	\end{itemize}
+%  \end{itemize}
+%\end{frame}
+
+\subsubsection{Tax and benefit system}
+\begin{frame}
+\frametitle{Simulation Processes}
+\framesubtitle{\vspace{0.3cm}Tax and benefit system}
+\begin{itemize}
+\item Applied at each period or after the simulation.
+\item Done with OpenFisca
+\begin{itemize}
+	\item Open source model
+	\item French and Tunisian legislation
+	\item Faster than other static microsimulation model in France.
+\end{itemize}
+\end{itemize}
+\end{frame}
+
+
+\begin{frame}
+\frametitle{How \til \ simulate}
+\framesubtitle{\vspace{0.3cm}Computational time}
+\begin{itemize}
+\item With an IFS good computer
+\item From 300,000 individuals (390,000 in all)
+\item 50 periods run in 39 minutes (50 s per period)
+\begin{itemize}
+	\item Open source model
+	\item French and Tunisian legislation
+	\item Faster than other model in France.
+\end{itemize}
+\end{itemize}
+\end{frame}
+
+
+\section{Some issues for a dynamic microsimulation model}
+\begin{frame}
+\frametitle{Roadmap}
+\tableofcontents[currentsection, hideothersubsections] 
+\end{frame} 
 
 \subsection{Data}
 \begin{frame}
 \frametitle{Data}
 \begin{itemize}
-\item \textbf{Issue: } To know people's past and on careers (administrative data) and on marital status (survey data).
-\item \textbf{How \til \ deals with:}  \pause
+\item \textbf{Issue: } To know people's past and on careers (administrative data) and on demographic status (survey data). \pause
+\item \textbf{How \til \ deals with:}
 	\begin{itemize}
-	\item French wealth survey
-	\item Administrative data (pension)
-	\item Statistical matching 
+	\item French wealth survey $\longrightarrow$ partial profile career 
+	\item Administrative data (pension) $\longrightarrow$ complete profile career 
+	\item $\Rightarrow$ Statistical survey matching 
 	\begin{itemize}
-	\item  Exact matching on sex, age, kind of work
-	\item  Distance for income in 2009
-	\item  Optimal matching for career (replacement, insertion, deletion cost)\\
-		$\longrightarrow$ closest neighbour
-	\end{itemize}	\pause
-	\item Survey closure
+		\item  Exact matching on sex, age, kind of work
+		\item  Euclidean distance for income in 2009
+		\item  Optimal matching for career (inspired by DNA analysis : replacement, insertion, deletion cost)\\
+			$\longrightarrow$ closest neighbour
+		\end{itemize}
 	\end{itemize} \pause
 \item \textbf{How to get better: }
 	\begin{itemize}
+	\item Test other distance for the matching
 	\item Other surveys (Health survey)
 	\item Joint selection for parents
-	\end{itemize} \pause 
-\item \textbf{Issue: } To know people's future	
+	\item Deal with past union and divorce (in progress).
+	\end{itemize} \pause
+\item  Survey closure for intergenerational transfers
+\end{itemize}
+\end{frame}
+
+
+\subsection{Marriage}
+\begin{frame}
+\frametitle{Marriage}
+Two approaches in microsimulation: statistics or behaviours? \pause
+\begin{itemize}
+\item \textbf{Issue: } To marry people to match a given joint distribution of characteristics of women and men in a couple (age difference). \pause
+\item \textbf{How \til \ deals with:}  
+	\begin{itemize}
+	\item Distance between people
+	\item Minimisation: closest neighbour without replacement
+	\end{itemize} \pause
+\item \textbf{How to get better: } 
+	\begin{itemize}
+	\item Improve minimisation algorithm (Hungarian method)
+	\item Randomly select some potential match and minimize on that basket.
+	\end{itemize}
+\end{itemize}
+\end{frame}
+
+\subsection{Individualisation}
+\begin{frame}
+\frametitle{Individualisation}
+In cross section studies, people are assumed to share their income in their household  $\longrightarrow$ equivalence scale. \newline
+In a dynamic/Life-cycle framework households change  $\Rightarrow$ the only pertinent entity is the individual \pause
+\begin{itemize}
+\item \textbf{Issue: } Living standards, benefits and sometimes taxes are calculated at a bigger level (household, couple, family). How individualize? \pause
+\item \textbf{How \til \ deals with:}  
+	\begin{itemize}
+	\item Income tax split between spouse.
+	\item but tax reduction related to children which is split between children.
+	\item Family benefit split between children.
+	\item Other benefits split between all household members.
+	\end{itemize} \pause
+\item \textbf{How to get better: }
+	\begin{itemize}
+	\item Be more precise but...
+	\item ...is not the Shapley Value the lonely solution?
+	\end{itemize}
+\end{itemize}
+\end{frame}
+
+\subsection{Time scale}
+\begin{frame}
+\frametitle{Time scale}
+\begin{itemize}
+\item \textbf{Issue: } A trade-off between precision and calculus time.
+\item \textbf{How \til \ deals with:}  \pause
+	\begin{itemize}
+	\item So far : annual scale
+	\item Possibility to run some process on a longer basis
+	\end{itemize} 
+\item \textbf{How to get better: }
+	\begin{itemize}
+	\item Month scale
+	\item ...or at least trim scale
+	\item Simulate durations more than transitions
+	\end{itemize}
 \end{itemize}
 \end{frame}
 
@@ -285,44 +546,6 @@ The aim of \til \ is to be as general as possible and not focused on a specific 
 \end{itemize}
 \end{frame}
 
-\subsection{Time scale}
-\begin{frame}
-\frametitle{Time scale}
-\begin{itemize}
-\item \textbf{Issue: } A trade-off between precision and calculus time.
-\item \textbf{How \til \ deals with:}  \pause
-	\begin{itemize}
-	\item So far : annual scale
-	\item Possibility to run some process on a longer basis
-	\end{itemize} 
-\item \textbf{How to get better: }
-	\begin{itemize}
-	\item Month scale
-	\item ...or at least trim scale
-	\item Simulate durations more than transitions
-	\end{itemize}
-\end{itemize}
-\end{frame}
-
-\subsection{Marriage}
-\begin{frame}
-\frametitle{Marriage}
-\begin{itemize}
-\item \textbf{Issue: } To marry people verifying a given joint distribution of characteristics. A trade-off between optimality and computational intensity. \pause
-\item \textbf{How \til \ deals with:}  
-	\begin{itemize}
-	\item Not a marriage market
-	\item Distance between people
-	\item Minimisation Algorithm
-	\end{itemize} \pause
-\item \textbf{How to get better: } \pause
-	\begin{itemize}
-	\item Improve minimisation algorithm (Hungarian method)
-	\item Randomly select some potential match and run the optimisation on that subset
-	\end{itemize}
-\end{itemize}
-\end{frame}
-
 \subsection{Alignment}
 \begin{frame}
 \frametitle{Alignment}
@@ -339,30 +562,6 @@ The aim of \til \ is to be as general as possible and not focused on a specific 
 \end{itemize}
 \end{frame}
 
-
-\subsection{Individualisation}
-\begin{frame}
-\frametitle{Individualisation}
-\begin{itemize}
-\item \textbf{Issue: } In a life-cycle point of view, the lonely pertinent entitiy is the individual. But living standards, benefits and sometimes taxes are calculated at a bigger level (household, couple, family). How individualize? \pause
-\item \textbf{How \til \ deals with:}  
-	\begin{itemize}
-	\item Income tax split between spouse.
-	\item but tax reduction related to children which is split between children.
-	\item Family benefit split between children.
-	\item Other benefits split between all household members.
-	\end{itemize} \pause
-\item \textbf{How to get better: }
-	\begin{itemize}
-	\item Be more precise but...
-	\item ...is not the Shapley Value the lonely solution?
-	\end{itemize}
-\end{itemize}
-\end{frame}
-
-
-
-
 \subsection{Programming language}
 \begin{frame}
 
@@ -377,13 +576,11 @@ The aim of \til \ is to be as general as possible and not focused on a specific 
     \end{itemize}
      \item \textbf{Why Python} ?\pause
     \begin{itemize}
-    	\item Clear
-    	\item Possibility to look at a particular point.
+    	\item Clear and readable
+    	\item Possibility to look at a particular point
 		\item Way much faster than statistical language.
     \end{itemize}
 	\item A choice made by Liam2 et OpenFisca.
-	\item Simulation on 30 000 individuals : \  6 s/period
-	\item Simulation on 300 000 individuals : 70 s/period
   \end{itemize}
 \end{frame}
 
@@ -394,204 +591,42 @@ The aim of \til \ is to be as general as possible and not focused on a specific 
 \end{center}
 \end{frame}
 
-\section{How \til \ simulate}
-\begin{frame}
-\frametitle{Roadmap}
-  \tableofcontents[currentsection, hideothersubsections] 
-\end{frame} 
-
-
-\subsection{Entities and links}
-\begin{frame}
-\frametitle{Entities and links}
-\framesubtitle{\vspace{0.3cm}Organisation}
-\begin{itemize}
-\item \textbf{Entities} \\
-4 entities (one is not vital)
-	\begin{itemize}
-	\item Individuals
-	\item House
-	\item Income Declaration
-	\item Companies 
-	\end{itemize} \pause
-\item + a \textbf{register} \pause
-\item \textbf{Links}
-	\begin{itemize}
-	\item Links between persons : spouse and parents.
-	\item Links from persons to their entities
-	\item Links from entities to their owners
-	\end{itemize} 
-\end{itemize}
-\end{frame}
-
-
-\subsection{Simulation Processes}
-\subsubsection{Demography}
-\begin{frame}
-\frametitle{Simulation Processes}
-\framesubtitle{Demography - 1}
-\begin{itemize}
-\item Birth \\
-\begin{itemize}
-\item Women in a couple, alignment on birth per age.
-\item No (direct) correlation with education, nor previous children
-\end{itemize}
-\item Independence
-\begin{itemize}
-\item At a deterministic age given education level
-\item No other moving
-\end{itemize}
-\end{itemize}
-\end{frame}
-
-\begin{frame}
-\frametitle{Simulation Processes}
-\framesubtitle{Demography - 2}
-\begin{itemize}
-\item Marriage \\
-	\begin{itemize}
-	\item Equations taken from Destinie microsimulation model
-	\item Probability to look for a spouse depends on age, leaving eduction age, time since previous union and number of child
-	\item Matching depends only on age and education
-	\item Children follow their parents (in household and income declaration)
-	\end{itemize}
-\item Divorce
-	\begin{itemize}
-	\item Depends on couple's duration, number of children and age difference.
-	\item Children follow randomly mother or father.
-	\end{itemize}
-\end{itemize}
-\end{frame}
-
-
-\begin{frame}
-\frametitle{Simulation Processes}
-\framesubtitle{Demography - 3}
-\begin{itemize}
-\item Death \\
-	\begin{itemize}
-	\item Alignment according to age and sex
-	\item Income and education are not taken into account
-	\item \textbf{Inheritance} (including second order inheritance)
-	\item Tax on inheritance 
-	\item No car accident
-	\end{itemize}
-\end{itemize}
-\end{frame}
-
-\subsubsection{Job market}
-\begin{frame}
-\frametitle{Simulation Processes}
-\framesubtitle{Status}
-\begin{itemize}
-\item Education
-	\begin{itemize}
-	\item Depends only on parental educational background.
-	\item Classes just depends on age
-	\end{itemize}
-\item Job market
-	\begin{itemize}
-	\item Simple equations and rough alignment
-	\item No part-time job.
-	\end{itemize}
-\item Retirement
-	\begin{itemize}
-	\item Systematic with age
-	\item PENSIPP could do the job
-	\end{itemize}
-\end{itemize}
-\end{frame}
-
-\begin{frame}
-\frametitle{Simulation Processes}
-\framesubtitle{Income}
-\begin{itemize}
-\item In work
-	\begin{itemize}
-		\item Salary on a Mincer equation...
-		\item ... and an observed or simulated personal productivity
-	\end{itemize}
-\item Pension
-	\begin{itemize}
-		\item Pension depends only on last salary
-		\item PENSIPP could do the job
-	\end{itemize}
-\item Unemployment benefit
-	\begin{itemize}
-	\item Code written
-	\item but not very relevant with year time scale
-	\end{itemize}
-\end{itemize}
-\end{frame}
-
-
-\subsubsection{Consumption and savings}
-\begin{frame}
-\frametitle{Simulation Processes}
-\framesubtitle{Consumption and savings}
-\begin{itemize}
-\item Need new estimation
-	\begin{itemize}
-	\item taking life-cycle as a parameter
-	\item individualisation 
-	\end{itemize}
-\end{itemize}
-\end{frame}
-
-%\subsubsection{Développements futurs}
-%\begin{frame}
-%  \hligne
-%  \frametitle{III. Les étapes de la simulation - activité }
-%  \begin{itemize}
-%	\item Il y a encore beaucoup de champs qui pourrait être travaillés
-%  	\begin{itemize}
-%	\item Santé et dépendance
-%	\item Mode de garde
-%	\item Choix d'éducation
-%  	\end{itemize}
-%  \end{itemize}
-%\end{frame}
-
-
-\section{Becoming of \til}
+\section{Development of \til}
 \begin{frame}
 \frametitle{Roadmap}
 \tableofcontents[currentsection, hideothersubsections] 
 \end{frame} 
 
 \begin{frame}
-\frametitle{Becoming of \til}
+\frametitle{Development of \til}
 \framesubtitle{\vspace{0.3cm} First stage: a suspended time}
 \begin{itemize}
 \item Legislation and population of 2009
-\begin{itemize}
-\item No growth ( nor trend)
-\item Revaluation of past income
-\item Only 2009 legislation is applied
-\end{itemize}
-\item Not deal with past union and divorce (in progress).
-\end{itemize}
-\end{frame}
-
-\begin{frame}
-\frametitle{Becoming of \til}
-\framesubtitle{\vspace{0.3cm} Response}
-\begin{itemize}
-\item Reform can be implemented after the simulation \pause
-\item But also after each period \\
-	$\rightarrow$ Response \pause
-\item A midterm goal is to have a decision model
+	\begin{itemize}
+	\item No growth (nor trend)
+	\item Revaluation of past income
+	\item Only 2009 legislation is applied
+	\end{itemize}
 \end{itemize}
 \end{frame}
 
 \begin{frame}
-\frametitle{Becoming of \til}
-\framesubtitle{\vspace{0.3cm} Development}
+\frametitle{Development of \til}
+\framesubtitle{\vspace{0.3cm} Ideas}
+\begin{itemize}
+\item A medium term goal is to have a decision model
+\item Add health fields
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Development of \til}
+\framesubtitle{\vspace{0.3cm} Becoming}
 \begin{itemize}
 \item OpenFisca can deal with other countries \\ \pause
 	$\rightarrow$ Is French legislation different or are French different? \pause
 \item Becoming of \til \ linked to becoming of IPP \pause
-\item Becoming of \til \ \textbf{not} \ linked with mine, I hope.
+\item Becoming of \til \ \textbf{not} linked with mine, I hope.
 \item To be continued...
 \end{itemize}
 \end{frame}
