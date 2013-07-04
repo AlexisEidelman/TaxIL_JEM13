@@ -84,9 +84,9 @@
 \framesubtitle{\vspace{0.3cm}General overview of \til}
 \begin{itemize}
 	\item Dynamic microsimulation model developed by \textit{Institut des politiques publiques} (IPP)
-	\item Ageing and legislation \pause
-	\item Reforms
-	\item \textbf{Work in progress} \pause
+	\item Ageing and legislation 
+	\item Reforms\pause
+	\item \textbf{Work in progress}
 %\item \textbf{Importance de la perspective de cycle de vie}
 %    \begin{enumerate}
 %      \item Pour l'étude des niveaux de vie et des inégalités
@@ -114,13 +114,14 @@
 
 \begin{frame}
 \frametitle{Why to be interested in Life-Cycle ?}
-\framesubtitle{\vspace{0.3cm} Evaluation inequalities} \pause
-Annual income doesn't measure utility (or living standard)
+\framesubtitle{\vspace{0.3cm} Evaluation inequalities} 
+Annual income doesn't measure utility (or living standard) \pause
 	\begin{enumerate}
-	\item Income chocks (capital gain, unemployment, child care, bad harvest)
-	\item Different period of life (studies, retirement)
-	\item Wealth (and expected inheritance) can't be ignored
-	\end{enumerate}
+	\item Income chocks (capital gain, unemployment, child care, bad harvest) \pause
+	\item Different period of life (education, retirement) \pause
+	\item Wealth (and expected inheritance) can't be ignored \pause \newline
+	\end{enumerate} \pause
+
 On administrative (Swedish) data, it was measured that 40\% \ of Gini-inequalities are intra-personal. 
 \end{frame}
 
@@ -146,9 +147,7 @@ Falkingham and Harding (1996) &  Australia &  48-63 \% \\
 \hline
 Falkingham and Harding (1996) & United-Kingdom &  29-38 \% \\
 \hline
-O'Donoghue &    Ireland &     45 \% \\
-\hline
-O'Donoghue &     Italy &     24 \% \\
+O'Donoghue (2002) &    Ireland &     45 \% \\
 \hline
 \end{tabular}
 \end{table}
@@ -158,14 +157,13 @@ O'Donoghue &     Italy &     24 \% \\
 \frametitle{Why to be interested in Life-Cycle ?}
 \framesubtitle{\vspace{0.3cm} Redistribution} 
 \begin{itemize}
-	\item People may contribute and benefit from the tax and benefit system at different periods. \\
 		\item Assurance issue
 		\begin{enumerate}
 		\item unemployment benefit, health care, pension system
 		\item Forced consumption? \\	
 		\ 	$\longrightarrow$ no redistribution
 		\item But a contribution may not equal risk expectancy \\
-		\	$\longrightarrow$ redistribution
+		\	$\longrightarrow$ redistribution \pause
 	\end{enumerate}
 	\item  Does someone pay someone else pension ?
 \end{itemize}
@@ -175,10 +173,10 @@ O'Donoghue &     Italy &     24 \% \\
 \frametitle{Why to be interested in Life-Cycle ?}
 \framesubtitle{\vspace{0.3cm} Others ideas } 
 \begin{itemize}
-\item How many people are impacted by a reform today and during their whole life ?
+\item How many people are impacted by a reform today and during their whole life ? \pause
 \item Intergenerational inequalities ?\\	
-		\ 	$\longrightarrow$ Life was easier for my parents (no crisis, no unemployment, lower house pricing, pension without having contributed) \\
-		\ 	$\longrightarrow$ Young people are privileged (no war, growth and technology, longer education, longer lives) 
+		\ 	$\longrightarrow$ Life was easier for my parents (no unemployment, lower house pricing, pension without having contributed) \\
+		\ 	$\longrightarrow$ Young people are privileged (growth and technology, longer education, longer lives) 
 \end{itemize}
 \end{frame} 
 
@@ -238,10 +236,10 @@ O'Donoghue &     Italy &     24 \% \\
 \frametitle{How \til \ simulate}
 \framesubtitle{\vspace{0.3cm} Microsimulation landscape}
 Many dynamic microsimulation model are focused on a specific topic.\\
-\	$\longrightarrow$ pension, educational choice \\
-\	$\longrightarrow$ Female labour, dependency \pause  \newline
+\ \	$\longrightarrow$ pension, educational choice \\
+\ \	$\longrightarrow$ female labour, dependency \pause  \newline
 \newline
-The aim of \til \ is to be as general as possible and not focused on a specific topic.\\
+The aim of \til \ is to be as general as possible and not focused on a specific topic.\\ \pause
 \	$\longrightarrow$ "It's like in chess: First, you strategically position your pieces and when the timing is right you strike." \\
 \end{frame} 
 
@@ -255,8 +253,8 @@ The aim of \til \ is to be as general as possible and not focused on a specific 
 	\begin{itemize}
 	\item Individuals
 	\item House
-	\item Income Declaration
 	\item Companies
+	\item Income Declaration
 	\end{itemize} \pause
 \item + a \textbf{register} \pause
 \item \textbf{Links}
@@ -279,11 +277,11 @@ The aim of \til \ is to be as general as possible and not focused on a specific 
 \begin{itemize}
 \item Women in a couple, alignment on birth per age.
 \item No (direct) correlation with education, nor previous children
-\end{itemize}
+\end{itemize} 
 \item Independence
 \begin{itemize}
-\item At a deterministic age given education level
 \item No other moving
+\item At a deterministic age given education level
 \end{itemize}
 \end{itemize}
 \end{frame}
@@ -401,12 +399,12 @@ The aim of \til \ is to be as general as possible and not focused on a specific 
 \frametitle{Simulation Processes}
 \framesubtitle{\vspace{0.3cm}Tax and benefit system}
 \begin{itemize}
-\item Applied at each period or after the simulation.
-\item Done with OpenFisca
+\item Applied at each period or after the simulation. \pause
+\item done with OpenFisca \pause
 \begin{itemize}
-	\item Open source model
+	\item open source model
 	\item French and Tunisian legislation
-	\item Faster than other static microsimulation model in France.
+	\item faster than other static microsimulation model in France.
 \end{itemize}
 \end{itemize}
 \end{frame}
@@ -416,17 +414,12 @@ The aim of \til \ is to be as general as possible and not focused on a specific 
 \frametitle{How \til \ simulate}
 \framesubtitle{\vspace{0.3cm}Computational time}
 \begin{itemize}
-\item With an IFS good computer
-\item From 300,000 individuals (390,000 in all)
-\item 50 periods run in 39 minutes (50 s per period)
-\begin{itemize}
-	\item Open source model
-	\item French and Tunisian legislation
-	\item Faster than other model in France.
-\end{itemize}
+\item with 300,000 individuals (390,000 in all)\\
+\	$\longrightarrow$ \ 50 periods run in 39 minutes  \\
+\	 = less than a minute per period with an IFS computer
+\item It allows to look forward
 \end{itemize}
 \end{frame}
-
 
 \section{Some issues for a dynamic microsimulation model}
 \begin{frame}
@@ -441,9 +434,9 @@ The aim of \til \ is to be as general as possible and not focused on a specific 
 \item \textbf{Issue: } To know people's past and on careers (administrative data) and on demographic status (survey data). \pause
 \item \textbf{How \til \ deals with:}
 	\begin{itemize}
-	\item French wealth survey $\longrightarrow$ partial profile career 
-	\item Administrative data (pension) $\longrightarrow$ complete profile career 
-	\item $\Rightarrow$ Statistical survey matching 
+	\item French wealth survey (2009) $\longrightarrow$ partial profile career 
+	\item Administrative data (pension) $\longrightarrow$ complete profile career  \pause
+	\item $\Rightarrow$ Statistical survey matching \pause
 	\begin{itemize}
 		\item  Exact matching on sex, age, kind of work
 		\item  Euclidean distance for income in 2009
@@ -454,10 +447,9 @@ The aim of \til \ is to be as general as possible and not focused on a specific 
 \item \textbf{How to get better: }
 	\begin{itemize}
 	\item Test other distance for the matching
-	\item Other surveys (Health survey)
-	\item Joint selection for parents
 	\item Deal with past union and divorce (in progress).
-	\end{itemize} \pause
+	\item Other surveys (Health survey)
+	\end{itemize} \pause	
 \item  Survey closure for intergenerational transfers
 \end{itemize}
 \end{frame}
@@ -466,7 +458,7 @@ The aim of \til \ is to be as general as possible and not focused on a specific 
 \subsection{Marriage}
 \begin{frame}
 \frametitle{Marriage}
-Two approaches in microsimulation: statistics or behaviours? \pause
+Probabilistic based modelling or behavioural equations model \pause
 \begin{itemize}
 \item \textbf{Issue: } To marry people to match a given joint distribution of characteristics of women and men in a couple (age difference). \pause
 \item \textbf{How \til \ deals with:}  
@@ -485,14 +477,14 @@ Two approaches in microsimulation: statistics or behaviours? \pause
 \subsection{Individualisation}
 \begin{frame}
 \frametitle{Individualisation}
-In cross section studies, people are assumed to share their income in their household  $\longrightarrow$ equivalence scale. \newline
+In cross section studies, people are assumed to share their income in their household  $\longrightarrow$ equivalence scale. \newline \pause
 In a dynamic/Life-cycle framework households change  $\Rightarrow$ the only pertinent entity is the individual \pause
 \begin{itemize}
 \item \textbf{Issue: } Living standards, benefits and sometimes taxes are calculated at a bigger level (household, couple, family). How individualize? \pause
 \item \textbf{How \til \ deals with:}  
 	\begin{itemize}
-	\item Income tax split between spouse.
-	\item but tax reduction related to children which is split between children.
+	\item Income tax split between spouses...
+	\item ...except tax reduction related to children which is split between children.
 	\item Family benefit split between children.
 	\item Other benefits split between all household members.
 	\end{itemize} \pause
@@ -508,8 +500,8 @@ In a dynamic/Life-cycle framework households change  $\Rightarrow$ the only pert
 \begin{frame}
 \frametitle{Time scale}
 \begin{itemize}
-\item \textbf{Issue: } A trade-off between precision and calculus time.
-\item \textbf{How \til \ deals with:}  \pause
+\item \textbf{Issue: } A trade-off between precision and calculus time.  \pause
+\item \textbf{How \til \ deals with:} 
 	\begin{itemize}
 	\item So far : annual scale
 	\item Possibility to run some process on a longer basis
@@ -517,8 +509,8 @@ In a dynamic/Life-cycle framework households change  $\Rightarrow$ the only pert
 \item \textbf{How to get better: }
 	\begin{itemize}
 	\item Month scale
-	\item ...or at least trim scale
-	\item Simulate durations more than transitions
+	\item ...or at least quarter scale  \pause
+	\item Simulate\textbf{ durations more than transitions}
 	\end{itemize}
 \end{itemize}
 \end{frame}
@@ -527,16 +519,16 @@ In a dynamic/Life-cycle framework households change  $\Rightarrow$ the only pert
 \begin{frame}
 \frametitle{Survey weight}
 \begin{itemize}
-\item \textbf{Issue: } Links between people change in a dynamic simulation. How link two individuals with different weight. \pause
+\item \textbf{Issue: } Links between people change in a dynamic simulation. How link two individuals with different weight? \pause
 \item \textbf{How \til \ deals with:} 
 	\begin{itemize}
 	  \item Work with uniform weight
 	  \item Replication according to weight
 	  \item Increase variability \pause
-	  \item No real other option
+	  \item No real other option \pause
 	\end{itemize}
-\item \textbf{How to get better: } \pause
-	\begin{itemize} \pause
+\item \textbf{How to get better: } 
+	\begin{itemize}
 	\item Smallest weight in wealth survey is 6 ! \\
 	$\rightarrow$ 11 millions individuals
 	\item  200 is our constant weight  \\
@@ -551,7 +543,7 @@ In a dynamic/Life-cycle framework households change  $\Rightarrow$ the only pert
 \frametitle{Alignment}
 \begin{itemize}
 \item \textbf{Issue: } High volatility for number of events simulated by a binary model. \pause
-\item \textbf{How \til \ deals with:}  \pause
+\item \textbf{How \til \ deals with:} 
 	\begin{itemize}
 	\item Use an already implemented technique of Liam2 (see Li and O'Donoghue 2012)
 	\end{itemize} \pause
@@ -571,21 +563,21 @@ In a dynamic/Life-cycle framework households change  $\Rightarrow$ the only pert
   \item \textbf{Langages}
     \begin{itemize}
     \item Initial work on data in R
-    \item Motor in Python
+    \item Engine in Python
     \item User-friendly Text Interface (YAML)
     \end{itemize}
      \item \textbf{Why Python} ?\pause
     \begin{itemize}
     	\item Clear and readable
     	\item Possibility to look at a particular point
-		\item Way much faster than statistical language.
+		\item Way much faster than statistical language. \pause
     \end{itemize}
 	\item A choice made by Liam2 et OpenFisca.
   \end{itemize}
 \end{frame}
 
 \begin{frame}[plain,t]
-\frametitle{Athlete struggling with a python}
+\frametitle{struggling with a python...}
 \begin{center}
 \includegraphics[0.8]{struggling_with_Python.jpg}
 \end{center}
@@ -600,14 +592,14 @@ In a dynamic/Life-cycle framework households change  $\Rightarrow$ the only pert
 \begin{frame}
 \frametitle{Development of \til}
 \framesubtitle{\vspace{0.3cm} First stage: a suspended time}
-\begin{itemize}
-\item Legislation and population of 2009
+
+Legislation and population of 2009
 	\begin{itemize}
 	\item No growth (nor trend)
 	\item Revaluation of past income
 	\item Only 2009 legislation is applied
 	\end{itemize}
-\end{itemize}
+
 \end{frame}
 
 \begin{frame}
@@ -623,10 +615,10 @@ In a dynamic/Life-cycle framework households change  $\Rightarrow$ the only pert
 \frametitle{Development of \til}
 \framesubtitle{\vspace{0.3cm} Becoming}
 \begin{itemize}
-\item OpenFisca can deal with other countries \\ \pause
+\item OpenFisca can deal with other countries legislation \\ \pause
+	$\rightarrow$ Comparison \\ 
 	$\rightarrow$ Is French legislation different or are French different? \pause
 \item Becoming of \til \ linked to becoming of IPP \pause
-\item Becoming of \til \ \textbf{not} linked with mine, I hope.
 \item To be continued...
 \end{itemize}
 \end{frame}
